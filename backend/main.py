@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import networkx as nx
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -15,6 +15,24 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.middleware("http")
+async def add_cache_headers(request: Request, call_next):
+    response = await call_next(request)
+    if request.url.path.startswith("/assets/"):
+        response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
+    elif request.url.path in [
+        "/",
+        "/index.html",
+        "/registerSW.js",
+        "/sw.js",
+        "/manifest.webmanifest",
+    ]:
+        response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    return response
+
+
 metro_graph = nx.Graph()
 CSV_FILE = "metro_data.csv"
 URL = "https://raw.githubusercontent.com/sachinbajaj4477/Delhi-Metro-Network-Analysis/main/Delhi-Metro-Network.csv"
