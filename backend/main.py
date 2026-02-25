@@ -49,6 +49,17 @@ def get_stations():
     return sorted(list(metro_graph.nodes))
 
 
+def format_route(path):
+    route = []
+    for s in path:
+        parts = str(s).split(" (")
+        name = parts[0]
+        line = parts[1].replace(")", "") if len(parts) > 1 else "Unknown"
+        if not route or route[-1]["name"] != name or route[-1]["line"] != line:
+            route.append({"name": name, "line": line})
+    return route
+
+
 @app.post("/find-midpoint")
 def find_midpoint(req: MeetRequest):
     dist_a = nx.single_source_dijkstra_path_length(metro_graph, req.station_a)
@@ -65,21 +76,11 @@ def find_midpoint(req: MeetRequest):
                 best_station = str(node)
     if not best_station:
         raise HTTPException(status_code=404, detail="Path not found")
-    route_a = [str(s).split(" (")[0] for s in path_a[best_station]]
-    route_b = [str(s).split(" (")[0] for s in path_b[best_station]]
-    clean_route_a = [
-        route_a[i]
-        for i in range(len(route_a))
-        if i == 0 or route_a[i] != route_a[i - 1]
-    ]
-    clean_route_b = [
-        route_b[i]
-        for i in range(len(route_b))
-        if i == 0 or route_b[i] != route_b[i - 1]
-    ]
+    route_a = format_route(path_a[best_station])
+    route_b = format_route(path_b[best_station])
     return {
         "meet_station": best_station.split(" (")[0],
         "time_taken": round(min_max_time),
-        "route_a": clean_route_a,
-        "route_b": clean_route_b,
+        "route_a": route_a,
+        "route_b": route_b,
     }

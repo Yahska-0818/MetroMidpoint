@@ -1,16 +1,25 @@
 import { useState, useEffect } from "react";
+type RouteNode = { name: string; line: string };
+type ResultType = {
+  meet_station: string;
+  time_taken: number;
+  route_a: RouteNode[];
+  route_b: RouteNode[];
+};
 export default function App() {
   const [stations, setStations] = useState<string[]>([]);
   const [stationA, setStationA] = useState("");
   const [stationB, setStationB] = useState("");
-  const [result, setResult] = useState<{
-    meet_station: string;
-    time_taken: number;
-    route_a: string[];
-    route_b: string[];
-  } | null>(null);
+  const [result, setResult] = useState<ResultType | null>(null);
   const [loading, setLoading] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem("theme");
+    return saved !== null ? saved === "dark" : true;
+  });
   const API_URL = "http://localhost:8000";
+  useEffect(() => {
+    localStorage.setItem("theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
   useEffect(() => {
     fetch(`${API_URL}/stations`)
       .then((res) => res.json())
@@ -27,34 +36,104 @@ export default function App() {
     setResult(data);
     setLoading(false);
   };
+  const swapStations = () => {
+    setStationA(stationB);
+    setStationB(stationA);
+  };
+  const getLineColor = (line: string) => {
+    const colors: Record<string, string> = {
+      "Yellow Line": "bg-yellow-400 text-yellow-900",
+      "Blue Line": "bg-blue-500 text-white",
+      "Blue Line Branch": "bg-blue-400 text-white",
+      "Red Line": "bg-red-500 text-white",
+      "Green Line": "bg-green-500 text-white",
+      "Green Line Branch": "bg-green-400 text-white",
+      "Violet Line": "bg-purple-600 text-white",
+      "Pink Line": "bg-pink-500 text-white",
+      "Magenta Line": "bg-fuchsia-600 text-white",
+      "Grey Line": "bg-gray-500 text-white",
+      "Orange Line": "bg-orange-500 text-white",
+      "Aqua Line": "bg-teal-500 text-white",
+      "Rapid Metro": "bg-emerald-500 text-white",
+    };
+    return colors[line] || "bg-gray-300 text-gray-800";
+  };
+  const renderRoute = (route: RouteNode[]) => {
+    return route.map((s, i, arr) => {
+      const isInterchange =
+        i > 0 && arr[i - 1].name === s.name && arr[i - 1].line !== s.line;
+      if (isInterchange) {
+        return (
+          <div
+            key={i}
+            className="my-2 p-2 rounded border border-orange-500/50 bg-orange-50 dark:bg-orange-900/20 text-center text-sm font-bold text-orange-600 dark:text-orange-400"
+          >
+            🔄 Interchange to {s.line}
+          </div>
+        );
+      }
+      return (
+        <li
+          key={i}
+          className="p-2 hover:bg-gray-100 dark:hover:bg-zinc-800 rounded flex items-center gap-2"
+        >
+          <span
+            className={`text-xs px-2 py-1 rounded-full whitespace-nowrap font-bold ${getLineColor(s.line)}`}
+          >
+            {s.line}
+          </span>
+          <span className="text-gray-800 dark:text-gray-200">{s.name}</span>
+        </li>
+      );
+    });
+  };
   return (
-    <div className="min-h-screen bg-gray-100 p-8 font-sans">
-      <div className="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-md">
-        <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
-          Delhi Metro Meetup Finder
-        </h1>
+    <div
+      className={`min-h-screen p-8 font-sans transition-colors ${darkMode ? "dark bg-black" : "bg-gray-100"}`}
+    >
+      <div className="max-w-4xl mx-auto bg-white dark:bg-black dark:border dark:border-zinc-800 p-6 rounded-xl shadow-md transition-colors">
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
+            Delhi Metro Meetup Finder
+          </h1>
+          <button
+            className="px-3 py-1 rounded bg-gray-200 dark:bg-zinc-800 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-zinc-700 transition"
+            onClick={() => setDarkMode(!darkMode)}
+          >
+            {darkMode ? "Light" : "Dark"} Mode
+          </button>
+        </div>
         <datalist id="stations-list">
           {stations.map((s) => (
             <option key={s} value={s} />
           ))}
         </datalist>
-        <div className="flex flex-col md:flex-row gap-4 mb-6">
+        <div className="flex flex-col md:flex-row gap-4 mb-6 items-center">
           <input
-            className="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={stationA}
+            className="flex-1 w-full p-3 bg-white dark:bg-zinc-900 text-gray-900 dark:text-white border border-gray-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             list="stations-list"
             onChange={(e) => setStationA(e.target.value)}
             placeholder="Station A"
             disabled={loading}
           />
+          <button
+            onClick={swapStations}
+            className="p-3 bg-gray-200 dark:bg-zinc-800 rounded-full hover:bg-gray-300 dark:hover:bg-zinc-700 transition text-gray-800 dark:text-white"
+            disabled={loading}
+          >
+            ⇄
+          </button>
           <input
-            className="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={stationB}
+            className="flex-1 w-full p-3 bg-white dark:bg-zinc-900 text-gray-900 dark:text-white border border-gray-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             list="stations-list"
             onChange={(e) => setStationB(e.target.value)}
             placeholder="Station B"
             disabled={loading}
           />
           <button
-            className={`px-6 py-3 rounded-lg font-semibold text-white transition ${loading ? "bg-blue-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"}`}
+            className={`px-6 py-3 rounded-lg font-semibold text-white transition w-full md:w-auto ${loading ? "bg-blue-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"}`}
             onClick={findMeetup}
             disabled={loading}
           >
@@ -62,35 +141,23 @@ export default function App() {
           </button>
         </div>
         {result && !loading && (
-          <div className="mt-8 border-t pt-6">
-            <h2 className="text-xl font-semibold text-center text-green-700 mb-6">
+          <div className="mt-8 border-t dark:border-zinc-800 pt-6">
+            <h2 className="text-xl font-semibold text-center text-green-700 dark:text-green-400 mb-6">
               Optimal Meeting Point: {result.meet_station} (~{result.time_taken}{" "}
               mins)
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 shadow-sm">
-                <h3 className="text-lg font-medium text-gray-800 border-b pb-2 mb-4">
+              <div className="bg-gray-50 dark:bg-zinc-900 p-4 rounded-lg border border-gray-200 dark:border-zinc-800 shadow-sm">
+                <h3 className="text-lg font-medium text-gray-800 dark:text-white border-b dark:border-zinc-800 pb-2 mb-4">
                   Person A Route
                 </h3>
-                <ol className="list-decimal list-inside space-y-2 text-gray-600">
-                  {result.route_a.map((s, i) => (
-                    <li key={i} className="p-1 hover:bg-gray-100 rounded">
-                      {s}
-                    </li>
-                  ))}
-                </ol>
+                <ul className="space-y-1">{renderRoute(result.route_a)}</ul>
               </div>
-              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 shadow-sm">
-                <h3 className="text-lg font-medium text-gray-800 border-b pb-2 mb-4">
+              <div className="bg-gray-50 dark:bg-zinc-900 p-4 rounded-lg border border-gray-200 dark:border-zinc-800 shadow-sm">
+                <h3 className="text-lg font-medium text-gray-800 dark:text-white border-b dark:border-zinc-800 pb-2 mb-4">
                   Person B Route
                 </h3>
-                <ol className="list-decimal list-inside space-y-2 text-gray-600">
-                  {result.route_b.map((s, i) => (
-                    <li key={i} className="p-1 hover:bg-gray-100 rounded">
-                      {s}
-                    </li>
-                  ))}
-                </ol>
+                <ul className="space-y-1">{renderRoute(result.route_b)}</ul>
               </div>
             </div>
           </div>
