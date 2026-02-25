@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemaps help crawlers find your pages faster
+Sitemap: https://your-render-url.onrender.com/sitemap.xml
