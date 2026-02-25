@@ -1,6 +1,5 @@
 import type { ResultType, RouteNode } from "../types";
 import { useState } from "react";
-
 export default function RouteDisplay({ result }: { result: ResultType }) {
   const [copied, setCopied] = useState(false);
   const ROUTE_COLORS = [
@@ -38,7 +37,7 @@ export default function RouteDisplay({ result }: { result: ResultType }) {
         return (
           <div
             key={i}
-            className="my-2 p-2 rounded border border-green-500/50 bg-green-50 dark:bg-green-900/20 text-center text-sm font-bold text-green-600 dark:text-green-400"
+            className="my-3 p-3 rounded border border-green-500/50 bg-green-50 dark:bg-green-900/20 text-center text-sm font-bold text-green-600 dark:text-green-400"
           >
             Interchange to {s.line}
           </div>
@@ -47,10 +46,10 @@ export default function RouteDisplay({ result }: { result: ResultType }) {
       return (
         <li
           key={i}
-          className="p-2 hover:bg-gray-100 dark:hover:bg-zinc-800 rounded flex items-center gap-2"
+          className="p-3 my-1 hover:bg-gray-100 dark:hover:bg-zinc-800 rounded flex flex-col sm:flex-row sm:items-center gap-2"
         >
           <span
-            className={`text-xs px-2 py-1 rounded-full whitespace-nowrap font-bold ${getLineColor(s.line)}`}
+            className={`text-xs px-2 py-1 rounded-full whitespace-nowrap font-bold w-fit ${getLineColor(s.line)}`}
           >
             {s.line}
           </span>
@@ -68,13 +67,13 @@ export default function RouteDisplay({ result }: { result: ResultType }) {
         Max Travel Time: ~{result.time_taken} mins
       </p>
       <div className="text-center mb-6">
-        <span className="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-lg font-medium border border-blue-200 dark:border-blue-800">
+        <span className="inline-block px-4 py-3 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-lg font-medium border border-blue-200 dark:border-blue-800 w-full sm:w-auto">
           Location: {result.meetup_spot}
         </span>
       </div>
       <div className="flex justify-center mb-6">
         <button
-          className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-zinc-800 text-gray-800 dark:text-gray-200 font-semibold hover:bg-gray-300 dark:hover:bg-zinc-700 transition"
+          className="px-6 py-3 w-full sm:w-auto rounded-lg bg-gray-200 dark:bg-zinc-800 text-gray-800 dark:text-gray-200 font-semibold hover:bg-gray-300 dark:hover:bg-zinc-700 transition"
           onClick={() => {
             navigator.clipboard.writeText(window.location.href);
             setCopied(true);
@@ -83,10 +82,10 @@ export default function RouteDisplay({ result }: { result: ResultType }) {
             }, 1000);
           }}
         >
-          {copied ? "Copied to clipboard" : "Copy"}
+          {copied ? "Copied to clipboard" : "Copy Link"}
         </button>
       </div>
-      <div className="bg-gray-50 dark:bg-zinc-900 p-4 rounded-lg border border-gray-200 dark:border-zinc-800 shadow-sm max-h-[600px] overflow-y-auto space-y-6">
+      <div className="bg-gray-50 dark:bg-zinc-900 p-4 sm:p-6 rounded-lg border border-gray-200 dark:border-zinc-800 shadow-sm max-h-150 overflow-y-auto space-y-6">
         <div
           className={`grid grid-cols-1 ${result.routes.length > 1 ? "md:grid-cols-2" : ""} lg:grid-cols-${Math.min(result.routes.length, 3)} gap-6`}
         >
@@ -95,11 +94,11 @@ export default function RouteDisplay({ result }: { result: ResultType }) {
               key={idx}
               className={`border-l-4 pl-4 ${ROUTE_COLORS[idx % ROUTE_COLORS.length]}`}
             >
-              <div className="border-b dark:border-zinc-800 pb-2 mb-4 flex justify-between items-center">
+              <div className="border-b dark:border-zinc-800 pb-3 mb-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                 <h3 className="text-lg font-medium text-gray-800 dark:text-white">
                   Person {idx + 1} Route
                 </h3>
-                <span className="text-sm font-bold text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-2 py-1 rounded">
+                <span className="text-sm font-bold text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-3 py-1 rounded w-fit">
                   Rs. {routeData.fare}
                 </span>
               </div>

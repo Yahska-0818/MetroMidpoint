@@ -71,15 +71,15 @@ export default function App() {
   };
   return (
     <div
-      className={`min-h-screen p-8 font-sans transition-colors ${darkMode ? "dark bg-black" : "bg-gray-100"}`}
+      className={`min-h-screen p-4 sm:p-8 font-sans transition-colors ${darkMode ? "dark bg-black" : "bg-gray-100"}`}
     >
-      <div className="max-w-7xl mx-auto bg-white dark:bg-black dark:border dark:border-zinc-800 p-6 rounded-xl shadow-md transition-colors">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
+      <div className="max-w-7xl mx-auto bg-white dark:bg-black dark:border dark:border-zinc-800 p-4 sm:p-6 rounded-xl shadow-md transition-colors">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white text-center sm:text-left">
             Delhi Metro Meetup Finder
           </h1>
           <button
-            className="px-3 py-1 rounded bg-gray-200 dark:bg-zinc-800 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-zinc-700 transition"
+            className="px-4 py-2 w-full sm:w-auto rounded-md cursor-pointer bg-gray-200 dark:bg-zinc-800 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-zinc-700 transition"
             onClick={() => setDarkMode(!darkMode)}
           >
             {darkMode ? "Light" : "Dark"} Mode
