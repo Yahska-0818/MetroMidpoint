@@ -1,5 +1,8 @@
 import type { ResultType, RouteNode } from "../types";
+import { useState } from "react";
+
 export default function RouteDisplay({ result }: { result: ResultType }) {
+  const [copied, setCopied] = useState(false);
   const ROUTE_COLORS = [
     "border-red-500",
     "border-blue-500",
@@ -74,10 +77,13 @@ export default function RouteDisplay({ result }: { result: ResultType }) {
           className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-zinc-800 text-gray-800 dark:text-gray-200 font-semibold hover:bg-gray-300 dark:hover:bg-zinc-700 transition"
           onClick={() => {
             navigator.clipboard.writeText(window.location.href);
-            alert("URL copied to clipboard!");
+            setCopied(true);
+            setTimeout(() => {
+              setCopied(false);
+            }, 1000);
           }}
         >
-          Copy Link
+          {copied ? "Copied to clipboard" : "Copy"}
         </button>
       </div>
       <div className="bg-gray-50 dark:bg-zinc-900 p-4 rounded-lg border border-gray-200 dark:border-zinc-800 shadow-sm max-h-[600px] overflow-y-auto space-y-6">
