@@ -1,8 +1,18 @@
 import { useState, useEffect } from "react";
-type RouteNode = { name: string; line: string };
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  Polyline,
+} from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+type RouteNode = { name: string; line: string; lat: number; lng: number };
 type ResultType = {
   meet_station: string;
   time_taken: number;
+  meet_lat: number;
+  meet_lng: number;
   route_a: RouteNode[];
   route_b: RouteNode[];
 };
@@ -12,6 +22,7 @@ export default function App() {
   const [stationB, setStationB] = useState("");
   const [result, setResult] = useState<ResultType | null>(null);
   const [loading, setLoading] = useState(false);
+  const [showMap, setShowMap] = useState(false);
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem("theme");
     return saved !== null ? saved === "dark" : true;
@@ -66,7 +77,7 @@ export default function App() {
         return (
           <div
             key={i}
-            className="my-2 p-2 rounded border border-orange-500/50 bg-orange-50 dark:bg-orange-900/20 text-center text-sm font-bold text-orange-600 dark:text-orange-400"
+            className="my-2 p-2 rounded border border-green-500/50 bg-green-50 dark:bg-green-900/20 text-center text-sm font-bold text-green-600 dark:text-green-400"
           >
             🔄 Interchange to {s.line}
           </div>
@@ -91,7 +102,7 @@ export default function App() {
     <div
       className={`min-h-screen p-8 font-sans transition-colors ${darkMode ? "dark bg-black" : "bg-gray-100"}`}
     >
-      <div className="max-w-4xl mx-auto bg-white dark:bg-black dark:border dark:border-zinc-800 p-6 rounded-xl shadow-md transition-colors">
+      <div className="max-w-7xl mx-auto bg-white dark:bg-black dark:border dark:border-zinc-800 p-6 rounded-xl shadow-md transition-colors">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
             Delhi Metro Meetup Finder
@@ -142,18 +153,61 @@ export default function App() {
         </div>
         {result && !loading && (
           <div className="mt-8 border-t dark:border-zinc-800 pt-6">
-            <h2 className="text-xl font-semibold text-center text-green-700 dark:text-green-400 mb-6">
+            <h2 className="text-xl font-semibold text-center text-green-700 dark:text-green-400 mb-4">
               Optimal Meeting Point: {result.meet_station} (~{result.time_taken}{" "}
               mins)
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-gray-50 dark:bg-zinc-900 p-4 rounded-lg border border-gray-200 dark:border-zinc-800 shadow-sm">
+            <div className="flex justify-center mb-6">
+              <button
+                className="px-4 py-2 rounded-lg bg-blue-100 dark:bg-zinc-800 text-blue-700 dark:text-blue-400 font-semibold hover:bg-blue-200 dark:hover:bg-zinc-700 transition"
+                onClick={() => setShowMap(!showMap)}
+              >
+                {showMap ? "Hide Map" : "Show Map"}
+              </button>
+            </div>
+            <div
+              className={`grid grid-cols-1 ${showMap ? "lg:grid-cols-3" : "lg:grid-cols-2"} gap-8`}
+            >
+              <div className="bg-gray-50 dark:bg-zinc-900 p-4 rounded-lg border border-gray-200 dark:border-zinc-800 shadow-sm max-h-[500px] overflow-y-auto">
                 <h3 className="text-lg font-medium text-gray-800 dark:text-white border-b dark:border-zinc-800 pb-2 mb-4">
                   Person A Route
                 </h3>
                 <ul className="space-y-1">{renderRoute(result.route_a)}</ul>
               </div>
-              <div className="bg-gray-50 dark:bg-zinc-900 p-4 rounded-lg border border-gray-200 dark:border-zinc-800 shadow-sm">
+              {showMap && (
+                <div className="bg-gray-50 dark:bg-zinc-900 p-4 rounded-lg border border-gray-200 dark:border-zinc-800 shadow-sm lg:col-span-1 h-[500px] z-0 overflow-hidden">
+                  <MapContainer
+                    center={[result.meet_lat, result.meet_lng]}
+                    zoom={11}
+                    className="h-full w-full rounded-lg"
+                    style={{ background: darkMode ? "#1a1a1a" : "#f3f4f6" }}
+                  >
+                    <TileLayer
+                      url={
+                        darkMode
+                          ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                          : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                      }
+                    />
+                    <Polyline
+                      positions={result.route_a.map((s) => [s.lat, s.lng])}
+                      color="#ef4444"
+                      weight={5}
+                      opacity={0.8}
+                    />
+                    <Polyline
+                      positions={result.route_b.map((s) => [s.lat, s.lng])}
+                      color="#3b82f6"
+                      weight={5}
+                      opacity={0.8}
+                    />
+                    <Marker position={[result.meet_lat, result.meet_lng]}>
+                      <Popup>{result.meet_station}</Popup>
+                    </Marker>
+                  </MapContainer>
+                </div>
+              )}
+              <div className="bg-gray-50 dark:bg-zinc-900 p-4 rounded-lg border border-gray-200 dark:border-zinc-800 shadow-sm max-h-[500px] overflow-y-auto">
                 <h3 className="text-lg font-medium text-gray-800 dark:text-white border-b dark:border-zinc-800 pb-2 mb-4">
                   Person B Route
                 </h3>

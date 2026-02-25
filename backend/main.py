@@ -25,6 +25,8 @@ df["Station Name"] = (
     df["Station Name"].str.replace(r"\s*\[.*\]", "", regex=True).str.strip()
 )
 df["Node Name"] = df["Station Name"] + " (" + df["Line"] + ")"
+for idx, row in df.iterrows():
+    metro_graph.add_node(row["Node Name"], lat=row["Latitude"], lng=row["Longitude"])
 for line, group in df.groupby("Line"):
     group = group.sort_values("Distance from Start (km)")
     stations = group["Node Name"].tolist()
@@ -55,8 +57,10 @@ def format_route(path):
         parts = str(s).split(" (")
         name = parts[0]
         line = parts[1].replace(")", "") if len(parts) > 1 else "Unknown"
+        lat = metro_graph.nodes[s].get("lat", 28.6139)
+        lng = metro_graph.nodes[s].get("lng", 77.2090)
         if not route or route[-1]["name"] != name or route[-1]["line"] != line:
-            route.append({"name": name, "line": line})
+            route.append({"name": name, "line": line, "lat": lat, "lng": lng})
     return route
 
 
@@ -78,9 +82,13 @@ def find_midpoint(req: MeetRequest):
         raise HTTPException(status_code=404, detail="Path not found")
     route_a = format_route(path_a[best_station])
     route_b = format_route(path_b[best_station])
+    meet_lat = metro_graph.nodes[best_station].get("lat", 28.6139)
+    meet_lng = metro_graph.nodes[best_station].get("lng", 77.2090)
     return {
         "meet_station": best_station.split(" (")[0],
         "time_taken": round(min_max_time),
+        "meet_lat": meet_lat,
+        "meet_lng": meet_lng,
         "route_a": route_a,
         "route_b": route_b,
     }
