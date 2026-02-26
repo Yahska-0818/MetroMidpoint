@@ -1,8 +1,18 @@
-export type RouteNode = { name: string; line: string };
-export type RouteInfo = { fare: number; steps: RouteNode[] };
-export type ResultType = {
+export interface RouteStep {
+  name: string;
+  line: string;
+}
+
+export interface RouteInfo {
+  path: RouteStep[];
+  total_time: number;
+  fare: number;
+  interchanges: number;
+}
+
+export interface ResultType {
   meet_station: string;
-  time_taken: number;
-  meetup_spot: string;
+  max_travel_time: number;
+  meetup_spot?: string;
   routes: RouteInfo[];
-};
+}
