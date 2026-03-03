@@ -36,7 +36,7 @@ export default function RouteDisplay({ result }: { result: ResultType }) {
         </button>
       </div>
 
-      <div className="bg-gray-50 dark:bg-zinc-900 p-4 sm:p-6 rounded-lg border border-gray-200 dark:border-zinc-800 shadow-sm max-h-[600px] overflow-y-auto space-y-6">
+      <div className="bg-gray-50 dark:bg-zinc-900 p-4 sm:p-6 rounded-lg border border-gray-200 dark:border-zinc-800 shadow-sm max-h-150 overflow-y-auto space-y-6">
         {!result.routes || result.routes.length === 0 ? (
           <div className="text-center text-zinc-500 dark:text-zinc-400">
             Optimal route not available for this combination.
