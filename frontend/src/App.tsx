@@ -143,13 +143,19 @@ export default function App() {
         <div className="flex gap-4 mb-6 border-b border-gray-200 dark:border-zinc-800 pb-2">
           <button
             className={`pb-2 px-2 font-semibold transition-colors cursor-pointer ${activeTab === "meetup" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"}`}
-            onClick={() => setActiveTab("meetup")}
+            onClick={() => {
+              setActiveTab("meetup");
+              trigger([{ duration: 15 }], { intensity: 0.4 });
+            }}
           >
             Find Meetup
           </button>
           <button
             className={`pb-2 px-2 font-semibold transition-colors cursor-pointer ${activeTab === "route" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"}`}
-            onClick={() => setActiveTab("route")}
+            onClick={() => {
+              setActiveTab("route");
+              trigger([{ duration: 15 }], { intensity: 0.4 });
+            }}
           >
             Point-to-Point Route
           </button>
