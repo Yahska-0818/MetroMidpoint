@@ -41,7 +41,7 @@ export default function StationInput({
             <button
               onClick={() => {
                 onRemovePerson(idx);
-                trigger([{ duration: 40 }], { intensity: 0.4 });
+                trigger([{ duration: 15 }], { intensity: 0.4 });
               }}
               className="px-5 py-4 bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/50 transition font-bold"
               disabled={loading}
@@ -55,7 +55,7 @@ export default function StationInput({
         <button
           onClick={() => {
             onAddPerson();
-            trigger([{ duration: 40 }], { intensity: 0.4 });
+            trigger([{ duration: 15 }], { intensity: 0.4 });
           }}
           className="flex-1 py-4 cursor-pointer rounded-lg font-semibold bg-gray-200 dark:bg-zinc-800 text-gray-800 dark:text-white hover:bg-gray-300 dark:hover:bg-zinc-700 transition"
           disabled={loading}
@@ -66,7 +66,7 @@ export default function StationInput({
           <button
             onClick={() => {
               onSwap();
-              trigger([{ duration: 40 }], { intensity: 0.4 });
+              trigger([{ duration: 15 }], { intensity: 0.4 });
             }}
             className="flex-1 sm:flex-none px-6 py-4 cursor-pointer rounded-lg font-semibold bg-gray-200 dark:bg-zinc-800 text-gray-800 dark:text-white hover:bg-gray-300 dark:hover:bg-zinc-700 transition"
             disabled={loading}
@@ -76,7 +76,10 @@ export default function StationInput({
         )}
         <button
           className={`flex-1 py-4 cursor-pointer rounded-lg font-semibold text-white transition ${loading ? "bg-blue-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"}`}
-          onClick={onSubmit}
+          onClick={() => {
+            onSubmit();
+            trigger([{ duration: 15 }], { intensity: 0.4 });
+          }}
           disabled={loading}
         >
           {loading ? "Calculating..." : "Find Meetup"}

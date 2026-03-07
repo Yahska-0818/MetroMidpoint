@@ -82,7 +82,10 @@ export default function RouteVisualizer({ stations }: Props) {
           className="p-3.5 bg-white dark:bg-zinc-900 text-black dark:text-white rounded-lg flex-1 focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-300 dark:border-zinc-700 shadow-inner"
         />
         <button
-          onClick={handleGetRoute}
+          onClick={() => {
+            handleGetRoute();
+            trigger([{ duration: 15 }], { intensity: 0.4 });
+          }}
           disabled={loading}
           className="px-6 py-3.5 cursor-pointer bg-blue-600 rounded-lg font-semibold disabled:bg-blue-400 disabled:cursor-not-allowed transition hover:bg-blue-700 shadow"
         >

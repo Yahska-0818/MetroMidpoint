@@ -33,7 +33,7 @@ export default function RouteDisplay({ result }: { result: ResultType }) {
             navigator.clipboard.writeText(window.location.href);
             setCopied(true);
             setTimeout(() => setCopied(false), 1000);
-            trigger([{ duration: 40 }], { intensity: 0.4 });
+            trigger([{ duration: 15 }], { intensity: 0.4 });
           }}
         >
           {copied ? "Copied to clipboard" : "Copy Link"}
