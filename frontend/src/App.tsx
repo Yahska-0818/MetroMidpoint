@@ -3,6 +3,7 @@ import type { ResultType } from "./types";
 import StationInput from "./components/StationInput";
 import RouteDisplay from "./components/RouteDisplay";
 import RouteVisualizer from "./components/RouteVisualizer";
+import { useWebHaptics } from "web-haptics/react";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<"meetup" | "route">("meetup");
@@ -19,6 +20,7 @@ export default function App() {
     const saved = localStorage.getItem("theme");
     return saved !== null ? saved === "dark" : true;
   });
+  const { trigger } = useWebHaptics();
 
   const API_URL = import.meta.env.PROD ? "" : "http://localhost:8000";
 
@@ -79,12 +81,29 @@ export default function App() {
           data.detail ||
             "Calculating optimal midpoint failed. Verify station inputs.",
         );
+        trigger(
+          [
+            { duration: 40 },
+            { delay: 40, duration: 40 },
+            { delay: 40, duration: 40 },
+          ],
+          { intensity: 0.9 },
+        );
       } else {
         setResult(data);
+        trigger([{ duration: 30 }, { delay: 60, duration: 40, intensity: 1 }]);
       }
       // eslint-disable-next-line
     } catch (err) {
       setError("Network error. Unable to reach the Delhi Metro server.");
+      trigger(
+        [
+          { duration: 40 },
+          { delay: 40, duration: 40 },
+          { delay: 40, duration: 40 },
+        ],
+        { intensity: 0.9 },
+      );
     } finally {
       setLoading(false);
     }
@@ -112,7 +131,10 @@ export default function App() {
           </h1>
           <button
             className="px-4 py-2 w-full sm:w-auto rounded-md cursor-pointer bg-gray-200 dark:bg-zinc-800 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-zinc-700 transition"
-            onClick={() => setDarkMode(!darkMode)}
+            onClick={() => {
+              setDarkMode(!darkMode);
+              trigger([{ duration: 40 }], { intensity: 0.4 });
+            }}
           >
             {darkMode ? "Light" : "Dark"} Mode
           </button>

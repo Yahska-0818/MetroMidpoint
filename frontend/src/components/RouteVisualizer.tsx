@@ -2,6 +2,7 @@ import { useState } from "react";
 import { fetchRoute } from "../api";
 import type { RouteStep } from "../types";
 import TransitTimeline from "./TransitTimeline";
+import { useWebHaptics } from "web-haptics/react";
 
 interface RouteData {
   path: RouteStep[];
@@ -20,6 +21,8 @@ export default function RouteVisualizer({ stations }: Props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [routeData, setRouteData] = useState<RouteData | null>(null);
+
+  const { trigger } = useWebHaptics({ debug: true });
 
   const handleGetRoute = async () => {
     if (!source.trim() || !destination.trim()) return;
