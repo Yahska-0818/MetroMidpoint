@@ -1,3 +1,4 @@
+import { useWebHaptics } from "web-haptics/react";
 type Props = {
   inputs: string[];
   stations: string[];
@@ -18,6 +19,7 @@ export default function StationInput({
   onSwap,
   onSubmit,
 }: Props) {
+  const { trigger } = useWebHaptics({ debug: true });
   return (
     <div className="flex flex-col gap-4 mb-6">
       <datalist id="stations-list">
@@ -48,7 +50,10 @@ export default function StationInput({
       ))}
       <div className="flex flex-col sm:flex-row gap-4">
         <button
-          onClick={onAddPerson}
+          onClick={() => {
+            onAddPerson();
+            trigger([{ duration: 40 }]);
+          }}
           className="flex-1 py-4 cursor-pointer rounded-lg font-semibold bg-gray-200 dark:bg-zinc-800 text-gray-800 dark:text-white hover:bg-gray-300 dark:hover:bg-zinc-700 transition"
           disabled={loading}
         >
@@ -56,7 +61,10 @@ export default function StationInput({
         </button>
         {inputs.length === 2 && (
           <button
-            onClick={onSwap}
+            onClick={() => {
+              onSwap();
+              trigger([{ duration: 40 }]);
+            }}
             className="flex-1 sm:flex-none px-6 py-4 cursor-pointer rounded-lg font-semibold bg-gray-200 dark:bg-zinc-800 text-gray-800 dark:text-white hover:bg-gray-300 dark:hover:bg-zinc-700 transition"
             disabled={loading}
           >
