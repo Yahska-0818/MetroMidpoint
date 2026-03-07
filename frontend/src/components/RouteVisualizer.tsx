@@ -22,7 +22,7 @@ export default function RouteVisualizer({ stations }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [routeData, setRouteData] = useState<RouteData | null>(null);
 
-  const { trigger } = useWebHaptics({ debug: true });
+  const { trigger } = useWebHaptics();
 
   const handleGetRoute = async () => {
     if (!source.trim() || !destination.trim()) return;
@@ -33,10 +33,19 @@ export default function RouteVisualizer({ stations }: Props) {
     try {
       const data = await fetchRoute(source, destination);
       setRouteData(data);
+      trigger([{ duration: 30 }, { delay: 60, duration: 40, intensity: 1 }]);
       //eslint-disable-next-line
     } catch (err) {
       setError(
         "Could not retrieve route. Double-check station names and line names.",
+      );
+      trigger(
+        [
+          { duration: 40 },
+          { delay: 40, duration: 40 },
+          { delay: 40, duration: 40 },
+        ],
+        { intensity: 0.9 },
       );
     } finally {
       setLoading(false);
