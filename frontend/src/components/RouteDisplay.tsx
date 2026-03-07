@@ -1,6 +1,7 @@
 import type { ResultType } from "../types";
 import { useState } from "react";
 import TransitTimeline from "./TransitTimeline";
+import { useWebHaptics } from "web-haptics/react";
 
 export default function RouteDisplay({ result }: { result: ResultType }) {
   const [copied, setCopied] = useState(false);
@@ -13,6 +14,8 @@ export default function RouteDisplay({ result }: { result: ResultType }) {
     "border-pink-500",
     "border-cyan-500",
   ];
+
+  const { trigger } = useWebHaptics({ debug: true });
 
   return (
     <div className="mt-8 border-t dark:border-zinc-800 pt-6">
@@ -30,6 +33,7 @@ export default function RouteDisplay({ result }: { result: ResultType }) {
             navigator.clipboard.writeText(window.location.href);
             setCopied(true);
             setTimeout(() => setCopied(false), 1000);
+            trigger([{ duration: 40 }], { intensity: 0.4 });
           }}
         >
           {copied ? "Copied to clipboard" : "Copy Link"}
