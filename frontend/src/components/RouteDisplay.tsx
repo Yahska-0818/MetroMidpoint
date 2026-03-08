@@ -15,7 +15,7 @@ export default function RouteDisplay({ result }: { result: ResultType }) {
     "border-cyan-500",
   ];
 
-  const { trigger } = useWebHaptics({ debug: true });
+  const { trigger } = useWebHaptics({});
 
   return (
     <div className="mt-8 border-t dark:border-zinc-800 pt-6">
