@@ -2,15 +2,12 @@ import networkx as nx
 import pandas as pd
 from typing import List, Dict, Any
 from fare_service import FareService
-import os
 
 
 class AlgorithmService:
     def __init__(self, graph: nx.Graph, csv_url: str):
         self.graph = graph
-        import os
-local_csv = os.path.join(os.path.dirname(__file__), "metro_data.csv")
-self.df = pd.read_csv(local_csv)
+        self.df = pd.read_csv(csv_url)
         self.df["Station Name"] = (
             self.df["Station Name"]
             .str.replace(r"\s*\[.*\]", "", regex=True)
