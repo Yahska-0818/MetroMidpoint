@@ -9,7 +9,6 @@ import { useQuery } from "@tanstack/react-query";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<"meetup" | "route">("meetup");
-  const [stations, setStations] = useState<string[]>([]);
   const [inputs, setInputs] = useState<string[]>(() => {
     const params = new URLSearchParams(window.location.search);
     const urlStations = params.get("stations");
@@ -35,9 +34,7 @@ export default function App() {
     queryFn: getStations,
   });
 
-  useEffect(() => {
-    setStations(fetchedStations.data ?? []);
-  }, [fetchedStations.data]);
+  const stations = fetchedStations.data ?? [];
 
   const updateUrl = (currentInputs: string[]) => {
     const params = new URLSearchParams(window.location.search);
