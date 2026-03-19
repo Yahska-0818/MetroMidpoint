@@ -4,6 +4,8 @@ import StationInput from "./components/StationInput";
 import RouteDisplay from "./components/RouteDisplay";
 import RouteVisualizer from "./components/RouteVisualizer";
 import { useWebHaptics } from "web-haptics/react";
+import { getStations } from "./requests";
+import { useQuery } from "@tanstack/react-query";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<"meetup" | "route">("meetup");
@@ -28,11 +30,14 @@ export default function App() {
     localStorage.setItem("theme", darkMode ? "dark" : "light");
   }, [darkMode]);
 
+  const fetchedStations = useQuery({
+    queryKey: ["stations"],
+    queryFn: getStations,
+  });
+
   useEffect(() => {
-    fetch(`${API_URL}/stations`)
-      .then((res) => res.json())
-      .then(setStations);
-  }, [API_URL]);
+    setStations(fetchedStations.data ?? []);
+  }, [fetchedStations.data]);
 
   const updateUrl = (currentInputs: string[]) => {
     const params = new URLSearchParams(window.location.search);
