@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import type { ResultType } from "./types";
 import StationInput from "./components/StationInput";
 import RouteDisplay from "./components/RouteDisplay";
 import RouteVisualizer from "./components/RouteVisualizer";
 import { useWebHaptics } from "web-haptics/react";
-import { getStations } from "./requests";
-import { useQuery } from "@tanstack/react-query";
+import { findMeetupInfo, getStations } from "./requests";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<"meetup" | "route">("meetup");
@@ -14,16 +13,11 @@ export default function App() {
     const urlStations = params.get("stations");
     return urlStations ? urlStations.split(",") : ["", ""];
   });
-  const [result, setResult] = useState<ResultType | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem("theme");
     return saved !== null ? saved === "dark" : true;
   });
   const { trigger } = useWebHaptics();
-
-  const API_URL = import.meta.env.PROD ? "" : "http://localhost:8000";
 
   useEffect(() => {
     localStorage.setItem("theme", darkMode ? "dark" : "light");
@@ -34,8 +28,24 @@ export default function App() {
     queryFn: getStations,
   });
 
-  const stations = fetchedStations.data ?? [];
+  const fetchMidpointMutation = useMutation({
+    mutationFn: findMeetupInfo,
+    onSuccess: () => {
+      trigger([{ duration: 30 }, { delay: 60, duration: 40, intensity: 1 }]);
+    },
+    onError: () => {
+      trigger(
+        [
+          { duration: 40 },
+          { delay: 40, duration: 40 },
+          { delay: 40, duration: 40 },
+        ],
+        { intensity: 0.9 },
+      );
+    },
+  });
 
+  const stations = fetchedStations.data ?? [];
   const updateUrl = (currentInputs: string[]) => {
     const params = new URLSearchParams(window.location.search);
     params.set("stations", currentInputs.filter(Boolean).join(","));
@@ -59,56 +69,6 @@ export default function App() {
     const newInputs = inputs.filter((_, i) => i !== index);
     setInputs(newInputs);
     updateUrl(newInputs);
-  };
-
-  const findMeetup = async () => {
-    const validInputs = inputs.filter((i) => i.trim() !== "");
-    if (validInputs.length < 2) return;
-    setLoading(true);
-    setResult(null);
-    setError(null);
-    updateUrl(validInputs);
-
-    try {
-      const res = await fetch(`${API_URL}/find-midpoint`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ stations: validInputs }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        setError(
-          data.detail ||
-            "Calculating optimal midpoint failed. Verify station inputs.",
-        );
-        trigger(
-          [
-            { duration: 40 },
-            { delay: 40, duration: 40 },
-            { delay: 40, duration: 40 },
-          ],
-          { intensity: 0.9 },
-        );
-      } else {
-        setResult(data);
-        trigger([{ duration: 30 }, { delay: 60, duration: 40, intensity: 1 }]);
-      }
-      // eslint-disable-next-line
-    } catch (err) {
-      setError("Network error. Unable to reach the Delhi Metro server.");
-      trigger(
-        [
-          { duration: 40 },
-          { delay: 40, duration: 40 },
-          { delay: 40, duration: 40 },
-        ],
-        { intensity: 0.9 },
-      );
-    } finally {
-      setLoading(false);
-    }
   };
 
   const swapStations = () => {
@@ -168,24 +128,28 @@ export default function App() {
             <StationInput
               inputs={inputs}
               stations={stations}
-              loading={loading}
+              loading={fetchMidpointMutation.isPending}
               onInputChange={handleInputChange}
               onAddPerson={addPerson}
               onRemovePerson={removePerson}
               onSwap={swapStations}
-              onSubmit={findMeetup}
+              onSubmit={() => {
+                fetchMidpointMutation.mutate(inputs);
+              }}
             />
-            {loading && (
+            {fetchMidpointMutation.isPending && (
               <div className="animate-pulse text-zinc-600 dark:text-zinc-400 mt-4 text-center">
                 Locating optimal meetup station...
               </div>
             )}
-            {error && (
+            {fetchMidpointMutation.isError && (
               <div className="mt-4 p-4 rounded-lg bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400 text-center font-medium border border-red-200 dark:border-red-800">
-                {error}
+                {fetchMidpointMutation.error.message}
               </div>
             )}
-            {result && !loading && <RouteDisplay result={result} />}
+            {fetchMidpointMutation.data && !fetchMidpointMutation.isPending && (
+              <RouteDisplay result={fetchMidpointMutation.data} />
+            )}
           </>
         ) : (
           <RouteVisualizer stations={stations} />
