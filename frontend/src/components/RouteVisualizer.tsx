@@ -1,15 +1,8 @@
 import { useState } from "react";
-import { fetchRoute } from "../api";
-import type { RouteStep } from "../types";
+import { useMutation } from "@tanstack/react-query";
+import { fetchRouteInfo } from "../requests";
 import TransitTimeline from "./TransitTimeline";
 import { useWebHaptics } from "web-haptics/react";
-
-interface RouteData {
-  path: RouteStep[];
-  total_time: number;
-  fare: number;
-  interchanges: number;
-}
 
 interface Props {
   stations: string[];
@@ -18,27 +11,14 @@ interface Props {
 export default function RouteVisualizer({ stations }: Props) {
   const [source, setSource] = useState("");
   const [destination, setDestination] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [routeData, setRouteData] = useState<RouteData | null>(null);
-
   const { trigger } = useWebHaptics();
 
-  const handleGetRoute = async () => {
-    if (!source.trim() || !destination.trim()) return;
-    setLoading(true);
-    setError(null);
-    setRouteData(null);
-
-    try {
-      const data = await fetchRoute(source, destination);
-      setRouteData(data);
+  const routeMutation = useMutation({
+    mutationFn: () => fetchRouteInfo(source, destination),
+    onSuccess: () => {
       trigger([{ duration: 30 }, { delay: 60, duration: 40, intensity: 1 }]);
-      //eslint-disable-next-line
-    } catch (err) {
-      setError(
-        "Could not retrieve route. Double-check station names and line names.",
-      );
+    },
+    onError: () => {
       trigger(
         [
           { duration: 40 },
@@ -47,10 +27,8 @@ export default function RouteVisualizer({ stations }: Props) {
         ],
         { intensity: 0.9 },
       );
-    } finally {
-      setLoading(false);
-    }
-  };
+    },
+  });
 
   return (
     <div className="p-4 sm:p-6 bg-zinc-950/20 dark:bg-zinc-900/50 rounded-xl text-white border border-zinc-200 dark:border-zinc-800 shadow-lg">
@@ -83,53 +61,55 @@ export default function RouteVisualizer({ stations }: Props) {
         />
         <button
           onClick={() => {
-            handleGetRoute();
             trigger([{ duration: 15 }], { intensity: 0.4 });
+            if (source.trim() && destination.trim()) {
+              routeMutation.mutate();
+            }
           }}
-          disabled={loading}
+          disabled={routeMutation.isPending}
           className="px-6 py-3.5 cursor-pointer bg-blue-600 rounded-lg font-semibold disabled:bg-blue-400 disabled:cursor-not-allowed transition hover:bg-blue-700 shadow"
         >
-          {loading ? "Calculating..." : "Find Route"}
+          {routeMutation.isPending ? "Calculating..." : "Find Route"}
         </button>
       </div>
 
-      {loading && (
+      {routeMutation.isPending && (
         <div className="animate-pulse text-zinc-600 dark:text-zinc-400 text-center text-lg mt-6">
           Calculating optimal path...
         </div>
       )}
 
-      {error && (
+      {routeMutation.isError && (
         <div className="p-4 rounded-lg bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400 font-medium text-center border border-red-200 dark:border-red-800 mt-6">
-          {error}
+          {routeMutation.error.message}
         </div>
       )}
 
-      {routeData && !loading && (
+      {routeMutation.data && !routeMutation.isPending && (
         <div className="mt-8 border-t dark:border-zinc-800 pt-6">
           <div className="flex justify-between items-center mb-6 bg-zinc-100 dark:bg-zinc-900 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-inner">
             <span className="font-medium text-zinc-800 dark:text-zinc-200">
               Time:{" "}
               <span className="font-bold text-blue-600 dark:text-blue-400">
-                {routeData.total_time}
+                {routeMutation.data.total_time}
               </span>{" "}
               mins
             </span>
             <span className="font-medium text-zinc-800 dark:text-zinc-200">
               Fare:{" "}
               <span className="font-bold text-green-600 dark:text-green-400">
-                Rs. {routeData.fare}
+                Rs. {routeMutation.data.fare}
               </span>
             </span>
             <span className="font-medium text-zinc-800 dark:text-zinc-200">
               Changes:{" "}
               <span className="font-bold text-purple-600 dark:text-purple-400">
-                {routeData.interchanges}
+                {routeMutation.data.interchanges}
               </span>
             </span>
           </div>
 
-          <TransitTimeline path={routeData.path} />
+          <TransitTimeline path={routeMutation.data.path} />
         </div>
       )}
     </div>

@@ -81,10 +81,43 @@ export default function App() {
       updateUrl(newInputs);
     }
   };
+  if (fetchedStations.isPending) {
+    return (
+      <div
+        className={`min-h-screen p-4 sm:p-8 font-sans ${
+          darkMode ? "dark bg-black" : "bg-gray-100"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto bg-white dark:bg-black dark:border dark:border-zinc-800 p-6 rounded-xl shadow-md text-center">
+          <div className="animate-pulse text-zinc-600 dark:text-zinc-400">
+            Fetching station list...
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (fetchedStations.isError) {
+    return (
+      <div
+        className={`min-h-screen p-4 sm:p-8 font-sans ${
+          darkMode ? "dark bg-black" : "bg-gray-100"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto bg-white dark:bg-black dark:border dark:border-zinc-800 p-6 rounded-xl shadow-md">
+          <div className="p-4 rounded-lg bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400 text-center font-medium border border-red-200 dark:border-red-800">
+            Failed to load stations. Please refresh the page.
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
-      className={`min-h-screen p-4 sm:p-8 font-sans transition-colors ${darkMode ? "dark bg-black" : "bg-gray-100"}`}
+      className={`min-h-screen p-4 sm:p-8 font-sans transition-colors ${
+        darkMode ? "dark bg-black" : "bg-gray-100"
+      }`}
     >
       <div className="max-w-7xl mx-auto bg-white dark:bg-black dark:border dark:border-zinc-800 p-4 sm:p-6 rounded-xl shadow-md transition-colors">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
@@ -104,7 +137,11 @@ export default function App() {
 
         <div className="flex gap-4 mb-6 border-b border-gray-200 dark:border-zinc-800 pb-2">
           <button
-            className={`pb-2 px-2 font-semibold transition-colors cursor-pointer ${activeTab === "meetup" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"}`}
+            className={`pb-2 px-2 font-semibold transition-colors cursor-pointer ${
+              activeTab === "meetup"
+                ? "text-blue-600 border-b-2 border-blue-600"
+                : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            }`}
             onClick={() => {
               setActiveTab("meetup");
               trigger([{ duration: 15 }], { intensity: 0.4 });
@@ -113,7 +150,11 @@ export default function App() {
             Find Meetup
           </button>
           <button
-            className={`pb-2 px-2 font-semibold transition-colors cursor-pointer ${activeTab === "route" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"}`}
+            className={`pb-2 px-2 font-semibold transition-colors cursor-pointer ${
+              activeTab === "route"
+                ? "text-blue-600 border-b-2 border-blue-600"
+                : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            }`}
             onClick={() => {
               setActiveTab("route");
               trigger([{ duration: 15 }], { intensity: 0.4 });
@@ -134,19 +175,25 @@ export default function App() {
               onRemovePerson={removePerson}
               onSwap={swapStations}
               onSubmit={() => {
-                fetchMidpointMutation.mutate(inputs);
+                const validInputs = inputs.filter((i) => i.trim() !== "");
+                if (validInputs.length < 2) return;
+                updateUrl(validInputs);
+                fetchMidpointMutation.mutate(validInputs);
               }}
             />
+
             {fetchMidpointMutation.isPending && (
               <div className="animate-pulse text-zinc-600 dark:text-zinc-400 mt-4 text-center">
                 Locating optimal meetup station...
               </div>
             )}
+
             {fetchMidpointMutation.isError && (
               <div className="mt-4 p-4 rounded-lg bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400 text-center font-medium border border-red-200 dark:border-red-800">
                 {fetchMidpointMutation.error.message}
               </div>
             )}
+
             {fetchMidpointMutation.data && !fetchMidpointMutation.isPending && (
               <RouteDisplay result={fetchMidpointMutation.data} />
             )}
