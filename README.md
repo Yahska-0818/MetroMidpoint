@@ -1,5 +1,3 @@
----
-
 # MetroMidpoint
 
 **MetroMidpoint** is a high-performance, graph-based transit optimization engine that computes the optimal meeting point for multiple participants across a subway network.
