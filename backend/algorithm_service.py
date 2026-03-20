@@ -1,6 +1,7 @@
 import networkx as nx
 import pandas as pd
 import pickle
+import numpy as np
 from typing import Dict, Any, List
 from fare_service import FareService
 
@@ -50,9 +51,10 @@ class AlgorithmService:
             for i in range(len(path) - 1)
             if self.graph[path[i]][path[i + 1]]["type"] == "travel"
         )
+        log_distance = np.log1p(distance)
         features = pd.DataFrame(
-            [[distance, stations, interchanges]],
-            columns=["distance", "stations", "interchanges"],
+            [[log_distance, stations, interchanges]],
+            columns=["stations", "log_distance", "interchanges"],
         )
         time = self.model.predict(features)[0]
         formatted_path = []
@@ -90,9 +92,10 @@ class AlgorithmService:
                         for i in range(len(p) - 1)
                         if self.graph[p[i]][p[i + 1]]["type"] == "travel"
                     )
+                    log_distance = np.log1p(distance)
                     features = pd.DataFrame(
-                        [[distance, stations, interchanges]],
-                        columns=["distance", "stations", "interchanges"],
+                        [[log_distance, stations, interchanges]],
+                        columns=["stations", "log_distance", "interchanges"],
                     )
                     times.append(self.model.predict(features)[0])
                 candidates.append(

@@ -9,16 +9,20 @@ from graph_loader import GraphLoader
 from algorithm_service import AlgorithmService
 
 app = FastAPI()
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+app.add_middleware(
+    CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"]
+)
 
-CSV_URL = "https://raw.githubusercontent.com/sachinbajaj4477/Delhi-Metro-Network-Analysis/main/Delhi-Metro-Network.csv"
+CSV_URL = "./metro_data.csv"
 loader = GraphLoader(CSV_URL)
 graph = loader.build_or_load_graph()
 algo_service = AlgorithmService(graph, CSV_URL)
 
+
 @app.get("/stations")
 def list_stations() -> List[str]:
     return sorted(list(graph.nodes))
+
 
 @app.post("/find-midpoint")
 def find_midpoint(req: MeetRequest):
@@ -28,6 +32,7 @@ def find_midpoint(req: MeetRequest):
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
 
 @app.post("/route", response_model=RouteResponse)
 def get_route(req: RouteRequest):
@@ -40,8 +45,10 @@ def get_route(req: RouteRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+
 if os.path.isdir("dist"):
     app.mount("/assets", StaticFiles(directory="dist/assets"), name="assets")
+
     @app.get("/{full_path:path}")
     async def serve_frontend(full_path: str):
         if full_path != "" and os.path.exists(f"dist/{full_path}"):
