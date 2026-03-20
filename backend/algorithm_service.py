@@ -1,6 +1,5 @@
 import networkx as nx
 import pandas as pd
-from typing import List, Dict, Any
 from fare_service import FareService
 
 
@@ -47,7 +46,7 @@ class AlgorithmService:
 
     def get_route_details(self, source: str, destination: str) -> Dict[str, Any]:
         path = self.all_pairs_shortest[source]["paths"][destination]
-        time = self.all_pairs_shortest[source]["distances"][destination]
+        total_time = self.all_pairs_shortest[source]["distances"][destination]
 
         formatted_path = []
         interchanges = 0
@@ -60,7 +59,7 @@ class AlgorithmService:
 
         return {
             "path": formatted_path,
-            "total_time": round(time, 1),
+            "total_time": round(total_time, 1),
             "fare": FareService.calculate_fare(path, self.graph),
             "interchanges": interchanges,
         }

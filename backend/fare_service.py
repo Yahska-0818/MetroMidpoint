@@ -5,14 +5,15 @@ from typing import List
 class FareService:
     @staticmethod
     def calculate_fare(path: List[str], graph: nx.Graph) -> int:
-        """Calculates fare based on physical distance, excluding interchange penalties."""
         travel_time = 0.0
         for i in range(len(path) - 1):
             edge_data = graph[path[i]][path[i + 1]]
             if edge_data["type"] == "travel":
                 travel_time += edge_data["weight"]
 
-        dist_km = travel_time / 1.7
+        AVG_SPEED = 35
+        dist_km = (travel_time / 60) * AVG_SPEED
+
         if dist_km <= 2:
             return 11
         elif dist_km <= 5:

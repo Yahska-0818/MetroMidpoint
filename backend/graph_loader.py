@@ -8,11 +8,12 @@ from gtfs_parser import GTFSParser
 
 class GraphLoader:
     INTERCHANGE_PENALTIES = {
-        "Rajiv Chowk": 7.0,
-        "Kashmere Gate": 8.0,
-        "Mandi House": 6.0,
+        "Rajiv Chowk": 4.5,
+        "Kashmere Gate": 5.0,
+        "Mandi House": 4.5,
+        "Kalkaji Mandir": 4.5
     }
-    DEFAULT_INTERCHANGE = 5.0
+    DEFAULT_INTERCHANGE = 4.0
     PICKLE_PATH = "graph.pkl"
 
     def __init__(self, csv_url: str, gtfs_path: str = "gtfs_data"):
@@ -38,16 +39,15 @@ class GraphLoader:
             nodes = group.to_dict("records")
             for i in range(len(nodes) - 1):
                 u, v = nodes[i], nodes[i + 1]
-                dist_weight = (
-                    abs(v["Distance from Start (km)"] - u["Distance from Start (km)"])
-                    * 1.7
-                )
+
+                segment_time = v.get("Segment Time (min)", 2.5)
+
                 pair = tuple(sorted((u["Station Name"], v["Station Name"])))
-                weight = gtfs_weights.get(pair, dist_weight)
+                weight = gtfs_weights.get(pair, segment_time)
 
                 G.add_edge(
-                    nodes[i]["Node Name"],
-                    nodes[i + 1]["Node Name"],
+                    u["Node Name"],
+                    v["Node Name"],
                     weight=weight,
                     type="travel",
                 )
