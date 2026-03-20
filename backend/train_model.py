@@ -11,6 +11,12 @@ timeData["log_distance"] = np.log1p(timeData["distance"])
 timeData["avg_station_dist"] = timeData["distance"] / timeData["stations"]
 timeData["interchange_ratio"] = timeData["interchanges"] / timeData["stations"]
 
+timeData["is_long_route"] = (timeData["distance"] > 12).astype(int)
+
+timeData["graph_weight"] = (timeData["distance"] * 1.7) + (
+    timeData["interchanges"] * 5.0
+)
+
 timeData = timeData.drop(["destination", "source", "distance"], axis=1)
 
 features = [
@@ -19,6 +25,8 @@ features = [
     "interchanges",
     "avg_station_dist",
     "interchange_ratio",
+    "is_long_route",
+    "graph_weight",
 ]
 X = timeData[features]
 y = timeData["time"]

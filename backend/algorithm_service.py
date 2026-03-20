@@ -17,8 +17,10 @@ class AlgorithmService:
         )
         self.df["Node Name"] = self.df["Station Name"] + " (" + self.df["Line"] + ")"
         self.centrality = nx.degree_centrality(graph)
+
         with open("model.pkl", "rb") as f:
             self.model = pickle.load(f)
+
         self.all_pairs_shortest = {}
         self._precompute_all_paths()
 
@@ -40,9 +42,32 @@ class AlgorithmService:
 
     def _predict_time(self, distance, stations, interchanges):
         log_distance = np.log1p(distance)
+        avg_station_dist = distance / stations if stations > 0 else 0
+        interchange_ratio = interchanges / stations if stations > 0 else 0
+        is_long_route = int(distance > 12)
+        graph_weight = (distance * 1.7) + (interchanges * 5.0)
+
         features = pd.DataFrame(
-            [[stations, log_distance, interchanges]],
-            columns=["stations", "log_distance", "interchanges"],
+            [
+                [
+                    stations,
+                    log_distance,
+                    interchanges,
+                    avg_station_dist,
+                    interchange_ratio,
+                    is_long_route,
+                    graph_weight,
+                ]
+            ],
+            columns=[
+                "stations",
+                "log_distance",
+                "interchanges",
+                "avg_station_dist",
+                "interchange_ratio",
+                "is_long_route",
+                "graph_weight",
+            ],
         )
         return self.model.predict(features)[0]
 
@@ -59,11 +84,14 @@ class AlgorithmService:
             for i in range(len(path) - 1)
             if self.graph[path[i]][path[i + 1]]["type"] == "travel"
         )
+
         time = self._predict_time(distance, stations, interchanges)
+
         formatted_path = []
         for node in path:
             name, line = node.rsplit(" (", 1)
             formatted_path.append({"name": name, "line": line.strip(")")})
+
         return {
             "path": formatted_path,
             "total_time": round(time, 1),
@@ -75,6 +103,7 @@ class AlgorithmService:
         resolved_start_nodes = [self._resolve_station_name(s) for s in start_stations]
         valid_nodes = []
         feature_batch = []
+
         for node in self.graph.nodes:
             if all(
                 node in self.all_pairs_shortest[s]["distances"]
@@ -94,20 +123,49 @@ class AlgorithmService:
                         for i in range(len(p) - 1)
                         if self.graph[p[i]][p[i + 1]]["type"] == "travel"
                     )
+
                     log_distance = np.log1p(distance)
-                    feature_batch.append([stations, log_distance, interchanges])
+                    avg_station_dist = distance / stations if stations > 0 else 0
+                    interchange_ratio = interchanges / stations if stations > 0 else 0
+                    is_long_route = int(distance > 12)
+                    graph_weight = (distance * 1.7) + (interchanges * 5.0)
+
+                    feature_batch.append(
+                        [
+                            stations,
+                            log_distance,
+                            interchanges,
+                            avg_station_dist,
+                            interchange_ratio,
+                            is_long_route,
+                            graph_weight,
+                        ]
+                    )
+
         if not valid_nodes:
             raise ValueError("No path exists between all participants")
+
         batch_df = pd.DataFrame(
-            feature_batch, columns=["stations", "log_distance", "interchanges"]
+            feature_batch,
+            columns=[
+                "stations",
+                "log_distance",
+                "interchanges",
+                "avg_station_dist",
+                "interchange_ratio",
+                "is_long_route",
+                "graph_weight",
+            ],
         )
         predictions = self.model.predict(batch_df)
+
         candidates = []
         num_starts = len(resolved_start_nodes)
         for idx, node in enumerate(valid_nodes):
             node_times = predictions[idx * num_starts : (idx + 1) * num_starts]
             node_features = feature_batch[idx * num_starts : (idx + 1) * num_starts]
             total_interchanges = sum(f[2] for f in node_features)
+
             candidates.append(
                 {
                     "node": node,
@@ -117,6 +175,7 @@ class AlgorithmService:
                     "total_interchanges": total_interchanges,
                 }
             )
+
         best = sorted(
             candidates,
             key=lambda x: (
@@ -126,7 +185,9 @@ class AlgorithmService:
                 x["total_interchanges"],
             ),
         )[0]
+
         routes = [self.get_route_details(s, best["node"]) for s in resolved_start_nodes]
+
         return {
             "meet_station": best["node"].split(" (")[0],
             "max_travel_time": round(best["max_time"], 1),
