@@ -38,6 +38,14 @@ class AlgorithmService:
         ].tolist()
         return possible[0]
 
+    def _predict_time(self, distance, stations, interchanges):
+        log_distance = np.log1p(distance)
+        features = pd.DataFrame(
+            [[stations, log_distance, interchanges]],
+            columns=["stations", "log_distance", "interchanges"],
+        )
+        return self.model.predict(features)[0]
+
     def get_route_details(self, source: str, destination: str) -> Dict[str, Any]:
         path = self.all_pairs_shortest[source]["paths"][destination]
         stations = len(path)
@@ -51,12 +59,7 @@ class AlgorithmService:
             for i in range(len(path) - 1)
             if self.graph[path[i]][path[i + 1]]["type"] == "travel"
         )
-        log_distance = np.log1p(distance)
-        features = pd.DataFrame(
-            [[log_distance, stations, interchanges]],
-            columns=["stations", "log_distance", "interchanges"],
-        )
-        time = self.model.predict(features)[0]
+        time = self._predict_time(distance, stations, interchanges)
         formatted_path = []
         for node in path:
             name, line = node.rsplit(" (", 1)
@@ -70,14 +73,14 @@ class AlgorithmService:
 
     def find_best_midpoint(self, start_stations: List[str]) -> Dict[str, Any]:
         resolved_start_nodes = [self._resolve_station_name(s) for s in start_stations]
-        candidates = []
+        valid_nodes = []
+        feature_batch = []
         for node in self.graph.nodes:
             if all(
                 node in self.all_pairs_shortest[s]["distances"]
                 for s in resolved_start_nodes
             ):
-                times = []
-                total_interchanges = 0
+                valid_nodes.append(node)
                 for s in resolved_start_nodes:
                     p = self.all_pairs_shortest[s]["paths"][node]
                     stations = len(p)
@@ -86,29 +89,34 @@ class AlgorithmService:
                         for i in range(len(p) - 1)
                         if self.graph[p[i]][p[i + 1]]["type"] == "interchange"
                     )
-                    total_interchanges += interchanges
                     distance = sum(
                         self.graph[p[i]][p[i + 1]].get("distance", 0)
                         for i in range(len(p) - 1)
                         if self.graph[p[i]][p[i + 1]]["type"] == "travel"
                     )
                     log_distance = np.log1p(distance)
-                    features = pd.DataFrame(
-                        [[log_distance, stations, interchanges]],
-                        columns=["stations", "log_distance", "interchanges"],
-                    )
-                    times.append(self.model.predict(features)[0])
-                candidates.append(
-                    {
-                        "node": node,
-                        "max_time": max(times),
-                        "total_time": sum(times),
-                        "centrality": self.centrality[node],
-                        "total_interchanges": total_interchanges,
-                    }
-                )
-        if not candidates:
+                    feature_batch.append([stations, log_distance, interchanges])
+        if not valid_nodes:
             raise ValueError("No path exists between all participants")
+        batch_df = pd.DataFrame(
+            feature_batch, columns=["stations", "log_distance", "interchanges"]
+        )
+        predictions = self.model.predict(batch_df)
+        candidates = []
+        num_starts = len(resolved_start_nodes)
+        for idx, node in enumerate(valid_nodes):
+            node_times = predictions[idx * num_starts : (idx + 1) * num_starts]
+            node_features = feature_batch[idx * num_starts : (idx + 1) * num_starts]
+            total_interchanges = sum(f[2] for f in node_features)
+            candidates.append(
+                {
+                    "node": node,
+                    "max_time": max(node_times),
+                    "total_time": sum(node_times),
+                    "centrality": self.centrality[node],
+                    "total_interchanges": total_interchanges,
+                }
+            )
         best = sorted(
             candidates,
             key=lambda x: (

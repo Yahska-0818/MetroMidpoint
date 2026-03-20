@@ -1,23 +1,44 @@
 import pandas as pd
 import numpy as np
-from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import HistGradientBoostingRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_absolute_error, r2_score
 import pickle
 
 timeData = pd.read_csv("dmrc_training_data.csv")
-timeData["log_distance"] = np.log1p(timeData["distance"])
-timeData = timeData.drop("destination", axis=1)
-timeData = timeData.drop("source", axis=1)
-timeData = timeData.drop("distance", axis=1)
 
-features = ["stations", "log_distance", "interchanges"]
+timeData["log_distance"] = np.log1p(timeData["distance"])
+timeData["avg_station_dist"] = timeData["distance"] / timeData["stations"]
+timeData["interchange_ratio"] = timeData["interchanges"] / timeData["stations"]
+
+timeData = timeData.drop(["destination", "source", "distance"], axis=1)
+
+features = [
+    "stations",
+    "log_distance",
+    "interchanges",
+    "avg_station_dist",
+    "interchange_ratio",
+]
 X = timeData[features]
 y = timeData["time"]
 
-model = LinearRegression()
-model.fit(X, y)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
 
-print("Coefficients:", model.coef_)
-print("Intercept:", model.intercept_)
+model = HistGradientBoostingRegressor(
+    max_iter=500, max_depth=10, learning_rate=0.05, min_samples_leaf=4, random_state=42
+)
+
+model.fit(X_train, y_train)
+
+predictions = model.predict(X_test)
+mae = mean_absolute_error(y_test, predictions)
+r2 = r2_score(y_test, predictions)
+
+print(f"Mean Absolute Error: {mae:.2f} minutes")
+print(f"R2 Score: {r2:.4f}")
 
 with open("model.pkl", "wb") as f:
     pickle.dump(model, f)
