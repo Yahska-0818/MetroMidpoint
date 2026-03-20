@@ -1,11 +1,17 @@
 import pandas as pd
+import numpy as np
 from sklearn.linear_model import LinearRegression
 import pickle
 
-df = pd.read_csv("dmrc_training_data.csv")
+timeData = pd.read_csv("dmrc_training_data.csv")
+timeData["log_distance"] = np.log1p(timeData["distance"])
+timeData = timeData.drop("destination", axis=1)
+timeData = timeData.drop("source", axis=1)
+timeData = timeData.drop("distance", axis=1)
 
-X = df[["distance", "stations", "interchanges"]]
-y = df["time"]
+features = ["stations", "log_distance", "interchanges"]
+X = timeData[features]
+y = timeData["time"]
 
 model = LinearRegression()
 model.fit(X, y)
