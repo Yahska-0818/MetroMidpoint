@@ -1,0 +1,251 @@
+source,destination,distance,stations,interchanges,time
+JLN Stadium,Golf Course,18.8,14,2,43.83
+Karol Bagh,Badarpur Border,64.9,21,2,56.57
+Shaheed Nagar,Nehru Place,23.1,22,2,63.13
+Okhla Bird Sanctuary,Panchsheel Park,12.4,12,0,29.18
+Indraprastha,Jhandewalan,5.5,7,0,12.32
+IFFCO Chowk,Mansarovar Park,38.1,30,1,78.37
+Sarita Vihar,Nehru Enclave,48.6,6,1,20.58
+Haiderpur Badli Mor,Ghevra Metro station,34.3,21,2,57.98
+Rohini West,Kanhaiya Nagar,6.2,7,0,11.6
+Sukhdev Vihar,Sikanderpur,21.9,17,1,48.42
+Delhi Gate,Govind Puri,12.9,14,0,29.38
+Ashram,Green Park,7.2,7,1,25.03
+Green Park,Mewala Maharajpur,64.2,17,2,57.32
+Hauz Khas,Ashram,9.0,8,1,27.62
+Arthala,R.K.Puram,55.3,29,2,79.95
+Nehru Place,Nangloi Railway Station,41.7,25,2,65.95
+Arjan Garh,Kalkaji Mandir,16.7,13,1,39.15
+Uttam Nagar East,Ashok Park Main,20.5,11,2,36.43
+East Azad Nagar,Green Park,18.3,17,2,50.55
+Delhi Aerocity,ITO,16.2,8,3,40.85
+Anand Vihar ISBT,Maharaja Surajmal Stadium,57.8,24,2,58.77
+Panchsheel Park,Kalkaji Mandir,4.0,5,0,7.9
+Lok Kalyan Marg,Nehru Place,8.3,8,2,31.07
+Shakurpur,Krishna Nagar,17.0,15,2,45.73
+Nirman Vihar,Shyam park,15.3,15,2,44.0
+Golf Course,Shaheed Nagar,26.3,23,3,69.95
+Rajendra Place,Akshardham,10.8,11,0,22.3
+Ashok Park Main,Palam,23.8,13,3,56.4
+IFFCO Chowk,Civil Lines,32.1,26,0,58.73
+Kalkaji Mandir,Model Town,19.2,20,1,47.97
+Hindon River,Chandni Chowk,18.6,16,1,42.6
+Adarsh Nagar,Shyam park,22.5,19,1,49.77
+Ghevra Metro station,Shastri Park,57.8,23,1,51.53
+Cyber City,Ghitorni,10.8,8,1,25.52
+Nehru Place,Janakpuri East,47.8,19,2,68.68
+Moolchand,Najafgarh,31.5,24,3,77.55
+East Azad Nagar,Janakpuri West,45.5,20,4,67.67
+Maujpur-Babarpur,NHPC Chowk,76.7,29,3,87.18
+Munirka,Khan Market,36.6,12,2,39.88
+Kalindi Kunj,Seelampur,24.0,20,4,69.72
+Preet Vihar,Jafrabad,6.3,7,1,23.28
+Govind Puri,Naraina Vihar,17.9,14,1,37.7
+Jhandewalan,Paschim Vihar East,32.1,13,1,30.83
+Laxmi Nagar,Shalimar Bagh,19.1,17,3,55.88
+Rajendra Place,Mandi House,6.1,7,0,12.77
+New Ashok Nagar,Dhaula Kuan,19.4,13,2,45.85
+Haiderpur Badli Mor,IIT,36.8,24,1,59.77
+ESI-BASAIDARAPUR,Jor Bagh,16.0,11,1,37.35
+JAMIA MILLIA ISLAMIA,Vinobapuri,8.3,9,2,32.83
+Hauz Khas,Nirman Vihar,16.5,15,2,42.4
+ITO,Munirka,38.0,14,2,42.73
+Bhikaji Cama Place,Karkarduma,17.4,16,3,54.23
+Govind Puri,Okhla NSIC,1.5,3,1,13.87
+Uttam Nagar West,Dhaula Kuan,23.2,15,1,40.78
+JAMIA MILLIA ISLAMIA,Indraprastha,19.9,15,1,44.87
+Vasant Vihar,Tilak Nagar,14.8,10,1,39.35
+Mayapuri,Sector-28,111.4,25,1,64.95
+Noida Sector-15,Trilokpuri-Sanjay Lake,16.0,15,2,45.87
+Hindon River,Jor Bagh,26.8,24,1,59.48
+Delhi Gate,Pulbangash,5.8,6,1,20.67
+Bhikaji Cama Place,Kohat Enclave,18.7,12,1,41.8
+Karkarduma,Nehru Place,20.4,14,3,50.8
+Paschim Vihar East,Shakurpur,15.6,5,1,14.27
+Kaushambi,Mandi House,9.8,10,0,20.98
+Bhikaji Cama Place,Janpath,8.0,8,2,29.15
+Preet Vihar,Okhla NSIC,20.8,15,4,62.67
+Sikanderpur,Dhaula Kuan,32.2,22,1,63.28
+Ramakrishna Ashram Marg,Shivaji Stadium,2.3,4,2,22.65
+IFFCO Chowk,NHPC Chowk,78.3,26,2,81.18
+Chirag Delhi,Shankar Vihar,32.2,8,0,16.43
+Azadpur,Millennium City Centre Gurugram,38.0,32,0,71.97
+NHPC Chowk,Sector-42-43,78.7,26,3,91.05
+Vishwavidyalaya,Mandi House,9.2,9,1,22.15
+Kailash Colony,Dashrathpuri,44.7,17,1,48.9
+Mohan Nagar,Tis Hazari,16.5,14,0,28.67
+Tis Hazari,Shastri Nagar,3.4,4,0,6.03
+Seelampur,Pratap Nagar,6.6,6,0,11.47
+Shivaji Stadium,Lal Quila,4.4,6,2,26.75
+Sarojini Nagar,Delhi Cantt,7.7,5,0,12.28
+Subhash Nagar,Dhaula Kuan,10.4,8,2,47.85
+Hindon River,Rajouri Garden,52.2,25,2,62.98
+Durgabai Deshmukh South Campus,Rajouri Garden,8.4,5,0,13.83
+Civil Lines,Harkesh Nagar Okhla,37.3,18,1,43.77
+NHPC Chowk,Paschim Vihar East,94.0,29,2,79.73
+Barakhamba Road,Lok Kalyan Marg,4.8,6,1,15.05
+Shadipur,Shivaji Park,24.9,7,1,18.78
+Mayapuri,Lok Kalyan Marg,14.6,10,1,34.82
+JLN Stadium,Govind Puri,6.0,8,0,14.88
+Nehru Enclave,Jafrabad,20.5,20,4,74.35
+Badkal Mor,Welcome,149.8,30,2,83.15
+Keshav Puram,New Ashok Nagar,23.7,20,2,56.12
+Mandawali - West Vinod Nagar,Sarai,79.2,26,4,91.0
+Raj Bagh,Rajendra Place,20.0,18,2,52.77
+Millennium City Centre Gurugram,Shadipur,33.6,28,1,68.13
+Jor Bagh,Panchsheel Park,6.4,6,1,21.58
+Cyber City,Shalimar Bagh,42.1,34,2,94.8
+Maujpur-Babarpur,Punjabi Bagh,28.4,13,2,38.55
+Shahdara,Ashram,19.9,14,4,58.8
+Kashmere Gate,Badkal Mor,145.0,27,1,65.45
+Pulbangash,Jama Masjid,4.4,5,1,18.35
+Haiderpur Badli Mor,Karol Bagh,30.8,16,5,69.2
+Civil Lines,Palam,45.3,20,5,87.28
+Satguru Ram Singh Marg,Okhla NSIC,18.7,20,4,67.32
+Sikanderpur,Rajiv Chowk,24.7,19,0,43.1
+Punjabi Bagh,Satguru Ram Singh Marg,2.0,3,0,5.02
+Kaushambi,Udyog Nagar,57.9,24,3,69.23
+Neelam Chowk Ajronda,Udyog Nagar,174.3,37,2,95.88
+Qutab Minar,Chirag Delhi,6.7,6,1,22.6
+Moulsari Avenue,Lal Quila,33.7,26,2,71.62
+Central Secretariat,Khan Market,2.1,2,0,3.57
+Neelam Chowk Ajronda,Kohat Enclave,161.8,34,2,97.52
+Jahangirpuri,Kalindi Kunj,33.4,27,3,74.22
+Chawri Bazar,Ghevra Metro station,57.8,24,2,62.75
+Saket,Jahangirpuri,26.6,24,0,50.57
+Qutab Minar,Model Town,24.1,22,0,46.85
+Hindon River,Nawada,60.4,33,3,89.3
+Raj Bagh,Patel Nagar,20.9,19,2,54.73
+Indraprastha,Jasola Vihar Shaheen Bagh,17.6,13,1,37.52
+Sector-28,Punjabi Bagh,126.3,29,2,80.02
+Nangloi,JLN Stadium,42.2,24,3,64.35
+Neelam Chowk Ajronda,Jafrabad,153.8,33,3,95.72
+Udyog Nagar,Badarpur Border,92.0,30,2,79.37
+Majlis Park,Palam,20.8,16,2,62.07
+Janakpuri West,Ramesh Nagar,5.9,7,0,11.88
+Dashrathpuri,Chandni Chowk,43.8,19,5,84.82
+Nirman Vihar,ESI-BASAIDARAPUR,19.1,19,1,49.57
+Mohan Nagar,Ramesh Nagar,40.0,23,3,64.42
+Jhandewalan,JLN Stadium,6.5,7,2,24.88
+Mundka,Uttam Nagar West,32.0,21,2,54.6
+Okhla NSIC,Anand Vihar ISBT,23.0,17,4,66.93
+Punjabi Bagh West,Janpath,23.6,15,3,44.97
+Shalimar Bagh,Rajouri Garden,7.6,6,0,13.27
+Maharaja Surajmal Stadium,Kashmere Gate,48.1,16,1,35.65
+Preet Vihar,Paschim Vihar West,55.2,21,3,63.33
+Munirka,Moulsari Avenue,43.6,17,2,56.65
+Noida Sector-15,Ashram,10.2,6,1,19.27
+Karkarduma Court,Akshardham,7.0,7,2,30.08
+Krishna Nagar,Jama Masjid,9.2,8,2,31.15
+Arthala,Rohini West,29.2,26,0,51.98
+Subhash Nagar,Nehru Place,21.4,16,2,53.78
+ITO,Escorts Mujesar,148.2,28,0,63.03
+ITO,Golf Course,16.5,14,1,34.8
+Patel Chowk,Jasola-Apollo,54.8,13,1,32.75
+Mundka,Okhla Vihar,48.6,32,3,90.88
+Sarojini Nagar,Govind Puri,8.4,9,1,22.38
+AIIMS,Qutab Minar,7.1,6,0,12.6
+Adarsh Nagar,Mohan Estate,71.0,27,1,63.52
+Lajpat Nagar,Rajdhani Park,39.9,23,1,56.48
+Seelampur,Azadpur,10.7,9,1,29.0
+Janakpuri West,Janpath,18.9,19,2,46.67
+Sarai,New Ashok Nagar,70.0,19,2,55.48
+Maharaja Surajmal Stadium,Adarsh Nagar,24.1,13,2,41.17
+Bata Chowk,IIT,152.5,22,1,57.85
+Civil Lines,Sikanderpur,29.8,24,0,54.07
+Dwarka,Nangli,1.5,2,0,2.27
+Dwarka,Barakhamba Road,28.1,16,3,61.1
+Preet Vihar,Old Faridabad,152.6,27,3,81.48
+Escorts Mujesar,Welcome,155.7,34,2,92.12
+Okhla Bird Sanctuary,Escorts Mujesar,145.7,24,1,68.8
+R.K.Puram,East Azad Nagar,45.2,20,3,67.05
+Khan Market,Noida Sector-15,16.0,12,1,32.25
+Govind Puri,Nehru Place,1.5,3,0,3.82
+Sarai,Neelam Chowk Ajronda,79.8,7,0,13.83
+Inderlok,Durgabai Deshmukh South Campus,37.3,10,1,31.17
+Nangli,Tikri Border,43.3,29,3,78.28
+Noida Sector-15,Arjan Garh,30.4,20,2,65.42
+Rohini West,Sector-42-43,44.9,31,3,106.48
+Botanical Garden,Sarojini Nagar,20.0,14,1,38.73
+Tikri Border,Chawri Bazar,60.9,26,2,67.5
+Janakpuri East,Rohini East,13.1,12,2,44.27
+Vishwavidyalaya,Chawri Bazar,5.5,6,0,11.27
+Palam,Durgabai Deshmukh South Campus,17.9,13,2,56.12
+Krishna Nagar,Janakpuri East,45.5,20,4,67.38
+Moolchand,Raj Bagh,22.1,21,2,60.8
+South Extension,Tis Hazari,13.0,13,2,45.83
+Ghevra Metro station,Laxmi Nagar,51.1,31,1,68.37
+Jasola Vihar Shaheen Bagh,Old Faridabad,138.0,19,1,54.67
+Vishwavidyalaya,Okhla Vihar,20.6,22,2,62.57
+Okhla Bird Sanctuary,Jafrabad,22.5,19,3,63.43
+Ghitorni,Punjabi Bagh,39.1,21,2,67.33
+Patel Nagar,Delhi Aerocity,19.0,10,2,41.0
+Keshav Puram,JAMIA MILLIA ISLAMIA,24.4,25,3,77.45
+Patel Nagar,Azadpur,24.8,11,4,48.77
+Tikri Kalan,Ashram,49.0,29,1,72.07
+Barakhamba Road,Delhi Cantt,16.1,13,2,43.83
+M.G. Road,Shakurpur,37.9,25,1,73.88
+Nawada,Janakpuri West,3.3,4,0,6.42
+Jama Masjid,Uttam Nagar East,43.2,19,4,69.33
+Nehru Enclave,Hindon River,32.0,30,3,88.88
+Shivaji Stadium,Ashok Park Main,23.3,11,3,47.48
+Sarai,NHPC Chowk,1.6,2,0,3.02
+Okhla NSIC,Botanical Garden,9.3,8,0,22.75
+Krishna Nagar,Malviya Nagar,22.2,20,3,63.42
+Ghevra Metro station,Millennium City Centre Gurugram,62.2,39,2,105.83
+Dilshad Garden,Ashram,23.0,17,4,64.78
+Mundka,Chawri Bazar,54.4,22,2,57.75
+Subhash Nagar,Ghitorni,27.7,20,2,69.17
+Raj Bagh,Chawri Bazar,13.7,12,1,34.8
+Millennium City Centre Gurugram,Uttam Nagar West,59.6,26,2,89.25
+Maujpur-Babarpur,Haiderpur Badli Mor,18.2,15,2,47.78
+Shastri Park,Shivaji Park,44.6,11,1,28.5
+Maharaja Surajmal Stadium,Sukhdev Vihar,42.7,26,3,78.48
+Shastri Park,Sikanderpur,30.8,24,1,64.98
+Kanhaiya Nagar,Welcome,11.8,10,0,20.07
+Jasola Vihar Shaheen Bagh,Saket,13.5,13,1,39.52
+Pratap Nagar,Guru Dronacharya,30.6,25,1,65.6
+Haiderpur Badli Mor,Tikri Kalan,36.1,22,2,60.57
+IIT,Welcome,30.5,18,2,57.77
+Jangpura,Mohan Nagar,23.6,22,2,62.42
+Lal Quila,Maujpur-Babarpur,8.6,7,2,30.88
+Millennium City Centre Gurugram,Tikri Kalan,64.0,40,2,108.42
+Indraprastha,Panchsheel Park,13.8,13,3,46.43
+Shaheed Nagar,Trilokpuri-Sanjay Lake,13.0,15,1,37.25
+Shankar Vihar,Sarita Vihar,83.0,15,1,41.15
+Vaishali,Okhla Bird Sanctuary,20.8,17,2,48.68
+Arjan Garh,Jahangirpuri,35.2,29,0,64.08
+Shadipur,JAMIA MILLIA ISLAMIA,19.3,20,3,62.88
+South Extension,Krishna Nagar,18.1,17,4,66.4
+Tagore Garden,Pandit Shree Ram Sharma,33.7,20,2,54.35
+NHPC Chowk,Rohini West,86.7,32,2,92.28
+Shyam park,NHPC Chowk,83.6,35,2,93.37
+South Extension,Pratap Nagar,14.7,15,2,49.42
+Janakpuri West,Subhash Nagar,2.9,4,0,5.88
+Delhi Gate,Guru Teg Bahadur Nagar,7.9,8,1,20.48
+Jasola Vihar Shaheen Bagh,Arthala,35.5,30,4,93.05
+Millennium City Centre Gurugram,Janpath,26.1,21,1,52.25
+Dashrathpuri,Ashram,46.4,17,2,61.82
+Malviya Nagar,Rajiv Chowk,11.9,11,0,22.07
+Mandawali - West Vinod Nagar,Munirka,48.8,23,4,81.87
+Shastri Park,Cyber City,32.8,27,2,80.15
+Kailash Colony,Guru Dronacharya,20.8,16,2,56.53
+Udyog Nagar,Karkarduma Court,55.0,21,2,52.7
+Maharaja Surajmal Stadium,ITO,53.1,20,2,54.3
+Dhaula Kuan,Yamuna Bank,12.6,9,2,35.87
+Old Faridabad,Punjabi Bagh,166.2,31,2,84.65
+Paschim Vihar West,Ramesh Nagar,18.8,8,2,29.48
+Badkal Mor,Janakpuri West,177.4,29,1,83.37
+Mayapuri,Nangli,13.5,13,2,41.1
+Majlis Park,Bata Chowk,158.2,37,2,99.2
+Karol Bagh,Chirag Delhi,16.0,15,2,46.02
+Najafgarh,Sikanderpur,64.5,28,3,100.28
+Ashok Park Main,Vaishali,32.5,17,3,50.92
+Old Faridabad,Yamuna Bank,149.2,24,2,68.5
+Belvedere Towers,Welcome,38.9,31,2,88.4
+Nehru Place,Delhi Aerocity,22.5,14,2,51.57
+R.K.Puram,Vaishali,47.2,22,3,67.1
+Sarai,Kanhaiya Nagar,75.0,29,2,78.45
+Shankar Vihar,Palam,6.1,4,0,10.22
+Bhikaji Cama Place,Khan Market,8.8,8,2,31.35
+Sarojini Nagar,Mohan Estate,56.6,13,1,31.6

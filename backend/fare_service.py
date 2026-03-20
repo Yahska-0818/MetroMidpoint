@@ -1,19 +1,13 @@
 import networkx as nx
 from typing import List
-
-
 class FareService:
     @staticmethod
     def calculate_fare(path: List[str], graph: nx.Graph) -> int:
-        travel_time = 0.0
-        for i in range(len(path) - 1):
-            edge_data = graph[path[i]][path[i + 1]]
-            if edge_data["type"] == "travel":
-                travel_time += edge_data["weight"]
-
-        AVG_SPEED = 35
-        dist_km = (travel_time / 60) * AVG_SPEED
-
+        dist_km = sum(
+            graph[path[i]][path[i + 1]].get("distance", 0)
+            for i in range(len(path) - 1)
+            if graph[path[i]][path[i + 1]]["type"] == "travel"
+        )
         if dist_km <= 2:
             return 11
         elif dist_km <= 5:

@@ -3,3 +3,5 @@ uvicorn
 networkx
 pydantic
 pandas
+requests
+scikit-learn
