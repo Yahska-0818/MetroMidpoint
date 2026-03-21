@@ -19,6 +19,9 @@ const statCardVariants: Variants = {
 	},
 };
 
+const glassInput =
+	"w-full py-3 px-4 bg-white/[0.07] dark:bg-white/[0.05] text-zinc-900 dark:text-white rounded-2xl border border-white/30 dark:border-white/10 focus:bg-white/[0.12] dark:focus:bg-white/[0.09] focus:border-white/50 dark:focus:border-white/25 focus:ring-0 outline-none transition-all font-medium text-[15px] placeholder:text-zinc-400 dark:placeholder:text-white/25 backdrop-blur-sm";
+
 export default function RouteVisualizer({ stations }: Props) {
 	const [source, setSource] = useState("");
 	const [destination, setDestination] = useState("");
@@ -31,11 +34,7 @@ export default function RouteVisualizer({ stations }: Props) {
 		},
 		onError: () => {
 			trigger(
-				[
-					{ duration: 40 },
-					{ delay: 40, duration: 40 },
-					{ delay: 40, duration: 40 },
-				],
+				[{ duration: 40 }, { delay: 40, duration: 40 }, { delay: 40, duration: 40 }],
 				{ intensity: 0.9 },
 			);
 		},
@@ -56,11 +55,11 @@ export default function RouteVisualizer({ stations }: Props) {
 			</datalist>
 
 			<div className="relative mb-6 mt-1">
-				<div className="absolute left-[15px] top-7 bottom-7 w-[2px] bg-zinc-200 dark:bg-zinc-700/60 rounded-full z-0" />
+				<div className="absolute left-[15px] top-7 bottom-7 w-[2px] bg-white/10 dark:bg-white/[0.08] rounded-full z-0" />
 
 				<div className="space-y-4 relative z-10 flex flex-col">
 					<div className="flex items-center gap-3">
-						<div className="w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center border-[3px] border-white dark:border-zinc-900 shrink-0 z-10">
+						<div className="w-8 h-8 rounded-full bg-blue-500/15 dark:bg-blue-400/10 flex items-center justify-center border-[3px] border-white/20 dark:border-white/[0.08] shrink-0 z-10">
 							<div className="w-2 h-2 rounded-full bg-blue-500 dark:bg-blue-400" />
 						</div>
 						<input
@@ -70,7 +69,7 @@ export default function RouteVisualizer({ stations }: Props) {
 							placeholder="Source Station"
 							list="route-stations-list"
 							disabled={routeMutation.isPending}
-							className="w-full py-3 px-4 bg-zinc-50 dark:bg-zinc-800/50 text-zinc-900 dark:text-zinc-100 rounded-xl border border-zinc-200/80 dark:border-zinc-700/50 focus:bg-white dark:focus:bg-zinc-800 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-[3px] focus:ring-blue-500/10 outline-none transition-all font-medium text-[15px] placeholder:text-zinc-400 dark:placeholder:text-zinc-500"
+							className={glassInput}
 						/>
 					</div>
 
@@ -81,17 +80,16 @@ export default function RouteVisualizer({ stations }: Props) {
 							transition={{ type: "spring", stiffness: 400, damping: 15 }}
 							onClick={handleSwap}
 							disabled={routeMutation.isPending}
-							className="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:border-blue-300 dark:hover:border-blue-600 transition-colors shadow-sm hover:shadow-md disabled:opacity-50 cursor-pointer"
+							className="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white/[0.08] dark:bg-white/[0.06] border border-white/25 dark:border-white/10 hover:bg-white/[0.15] dark:hover:bg-white/[0.12] backdrop-blur-sm transition-colors shadow-sm disabled:opacity-50 cursor-pointer"
 						>
-							<svg xmlns="http://www.w3.org/2000/svg" className="w-4.5 h-4.5 text-zinc-500 dark:text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-								<path d="M7 7h11l-4-4" />
-								<path d="M17 17H6l4 4" />
+							<svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-white/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+								<path d="M7 7h11l-4-4" /><path d="M17 17H6l4 4" />
 							</svg>
 						</motion.button>
 					</div>
 
 					<div className="flex items-center gap-3">
-						<div className="w-8 h-8 rounded-full bg-red-50 dark:bg-red-500/10 flex items-center justify-center border-[3px] border-white dark:border-zinc-900 shrink-0 z-10">
+						<div className="w-8 h-8 rounded-full bg-red-500/15 dark:bg-red-400/10 flex items-center justify-center border-[3px] border-white/20 dark:border-white/[0.08] shrink-0 z-10">
 							<div className="w-2 h-2 rounded-full bg-red-500 dark:bg-red-400" />
 						</div>
 						<input
@@ -101,7 +99,7 @@ export default function RouteVisualizer({ stations }: Props) {
 							placeholder="Destination Station"
 							list="route-stations-list"
 							disabled={routeMutation.isPending}
-							className="w-full py-3 px-4 bg-zinc-50 dark:bg-zinc-800/50 text-zinc-900 dark:text-zinc-100 rounded-xl border border-zinc-200/80 dark:border-zinc-700/50 focus:bg-white dark:focus:bg-zinc-800 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-[3px] focus:ring-blue-500/10 outline-none transition-all font-medium text-[15px] placeholder:text-zinc-400 dark:placeholder:text-zinc-500"
+							className={glassInput}
 						/>
 					</div>
 				</div>
@@ -117,7 +115,7 @@ export default function RouteVisualizer({ stations }: Props) {
 					}
 				}}
 				disabled={routeMutation.isPending}
-				className="w-full py-3.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-[15px] transition-all disabled:bg-blue-600/50 shadow-lg shadow-blue-500/20 cursor-pointer flex items-center justify-center gap-2"
+				className="w-full py-3.5 bg-blue-500/80 hover:bg-blue-400/90 disabled:bg-blue-500/30 text-white rounded-2xl font-bold text-[15px] transition-all shadow-[0_0_24px_rgba(59,130,246,0.3)] border border-blue-400/30 backdrop-blur-sm cursor-pointer flex items-center justify-center gap-2"
 			>
 				{routeMutation.isPending ? (
 					<>
@@ -136,7 +134,7 @@ export default function RouteVisualizer({ stations }: Props) {
 						animate={{ opacity: 1, scale: 1 }}
 						exit={{ opacity: 0, scale: 0.95 }}
 						transition={{ type: "spring", stiffness: 400, damping: 25 }}
-						className="p-4 rounded-xl bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-400 font-semibold text-center border border-red-200 dark:border-red-900/50 mt-5 text-[15px]"
+						className="p-4 rounded-2xl bg-red-500/10 border border-red-400/20 text-red-300 font-semibold text-center mt-5 text-[15px]"
 					>
 						{routeMutation.error.message}
 					</motion.div>
@@ -150,55 +148,47 @@ export default function RouteVisualizer({ stations }: Props) {
 						animate={{ opacity: 1, y: 0 }}
 						exit={{ opacity: 0, y: -8 }}
 						transition={{ duration: 0.4, ease: "easeOut" }}
-						className="mt-8 pt-6 border-t border-zinc-200 dark:border-zinc-800"
+						className="mt-8 pt-6 border-t border-white/10"
 					>
 						<motion.div
 							initial="hidden"
 							animate="show"
-							variants={{
-								show: { transition: { staggerChildren: 0.08 } },
-							}}
+							variants={{ show: { transition: { staggerChildren: 0.08 } } }}
 							className="grid grid-cols-3 gap-3 mb-6"
 						>
 							<motion.div
 								variants={statCardVariants}
-								className="bg-blue-50 dark:bg-blue-500/5 rounded-xl p-4 text-center border border-blue-100 dark:border-blue-500/10"
+								className="bg-blue-500/10 rounded-2xl p-4 text-center border border-blue-400/15 backdrop-blur-sm"
 							>
-								<div className="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-1">
-									Time
-								</div>
-								<div className="text-2xl font-extrabold text-zinc-900 dark:text-white">
+								<div className="text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-1">Time</div>
+								<div className="text-2xl font-extrabold text-white">
 									{routeMutation.data.total_time}
-									<span className="text-xs font-semibold text-zinc-400 ml-0.5">min</span>
+									<span className="text-xs font-semibold text-white/40 ml-0.5">min</span>
 								</div>
 							</motion.div>
 
 							<motion.div
 								variants={statCardVariants}
-								className="bg-emerald-50 dark:bg-emerald-500/5 rounded-xl p-4 text-center border border-emerald-100 dark:border-emerald-500/10"
+								className="bg-emerald-500/10 rounded-2xl p-4 text-center border border-emerald-400/15 backdrop-blur-sm"
 							>
-								<div className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-1">
-									Fare
-								</div>
-								<div className="text-2xl font-extrabold text-zinc-900 dark:text-white">
+								<div className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider mb-1">Fare</div>
+								<div className="text-2xl font-extrabold text-white">
 									₹{routeMutation.data.fare}
 								</div>
 							</motion.div>
 
 							<motion.div
 								variants={statCardVariants}
-								className="bg-violet-50 dark:bg-violet-500/5 rounded-xl p-4 text-center border border-violet-100 dark:border-violet-500/10"
+								className="bg-violet-500/10 rounded-2xl p-4 text-center border border-violet-400/15 backdrop-blur-sm"
 							>
-								<div className="text-[10px] font-bold text-violet-600 dark:text-violet-400 uppercase tracking-wider mb-1">
-									Changes
-								</div>
-								<div className="text-2xl font-extrabold text-zinc-900 dark:text-white">
+								<div className="text-[10px] font-bold text-violet-400 uppercase tracking-wider mb-1">Changes</div>
+								<div className="text-2xl font-extrabold text-white">
 									{routeMutation.data.interchanges}
 								</div>
 							</motion.div>
 						</motion.div>
 
-						<div className="bg-zinc-50 dark:bg-zinc-800/30 rounded-xl p-4 sm:p-5 border border-zinc-200/80 dark:border-zinc-700/50">
+						<div className="bg-white/[0.04] backdrop-blur-sm rounded-2xl p-4 sm:p-5 border border-white/[0.08]">
 							<TransitTimeline path={routeMutation.data.path} />
 						</div>
 					</motion.div>

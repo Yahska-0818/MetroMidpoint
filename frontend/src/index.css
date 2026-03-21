@@ -24,3 +24,22 @@ body {
 ::selection {
   background-color: oklch(0.623 0.214 259.1 / 0.3);
 }
+
+@keyframes float-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -40px) scale(1.08); }
+}
+
+@keyframes float-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-20px, 30px) scale(0.94); }
+}
+
+@keyframes float-c {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(25px, 20px) scale(1.06); }
+}
+
+.orb-a { animation: float-a 18s ease-in-out infinite; }
+.orb-b { animation: float-b 22s ease-in-out infinite; }
+.orb-c { animation: float-c 16s ease-in-out infinite; }

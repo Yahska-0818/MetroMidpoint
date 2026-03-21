@@ -12,6 +12,12 @@ type Props = {
 	onSubmit: () => void;
 };
 
+const glassInput =
+	"w-full py-3 px-4 bg-white/[0.07] dark:bg-white/[0.05] text-zinc-900 dark:text-white rounded-2xl border border-white/30 dark:border-white/10 focus:bg-white/[0.12] dark:focus:bg-white/[0.09] focus:border-white/50 dark:focus:border-white/25 focus:ring-0 outline-none transition-all font-medium text-[15px] placeholder:text-zinc-400 dark:placeholder:text-white/25 backdrop-blur-sm";
+
+const glassBtn =
+	"flex-1 py-2.5 px-4 bg-white/[0.07] dark:bg-white/[0.05] text-zinc-700 dark:text-white/80 rounded-2xl font-semibold hover:bg-white/[0.14] dark:hover:bg-white/[0.10] transition-colors cursor-pointer flex items-center justify-center gap-2 text-sm border border-white/25 dark:border-white/10 backdrop-blur-sm";
+
 export default function StationInput({
 	inputs,
 	stations,
@@ -33,7 +39,7 @@ export default function StationInput({
 			</datalist>
 
 			<div className="relative mb-5">
-				<div className="absolute left-[15px] top-7 bottom-7 w-[2px] bg-zinc-200 dark:bg-zinc-700/60 rounded-full z-0" />
+				<div className="absolute left-[15px] top-7 bottom-7 w-[2px] bg-white/10 dark:bg-white/[0.08] rounded-full z-0" />
 
 				<div className="space-y-3 relative z-10">
 					<AnimatePresence initial={false}>
@@ -52,7 +58,7 @@ export default function StationInput({
 								}}
 								className="flex items-center gap-3"
 							>
-								<div className="w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center border-[3px] border-white dark:border-zinc-900 shrink-0 z-10">
+								<div className="w-8 h-8 rounded-full bg-blue-500/15 dark:bg-blue-400/10 flex items-center justify-center border-[3px] border-white/20 dark:border-white/[0.08] shrink-0 z-10">
 									<div className="w-2 h-2 rounded-full bg-blue-500 dark:bg-blue-400" />
 								</div>
 								<div className="flex-1">
@@ -62,7 +68,7 @@ export default function StationInput({
 										placeholder={`Station ${idx + 1}`}
 										list="stations-list"
 										disabled={loading}
-										className="w-full py-3 px-4 bg-zinc-50 dark:bg-zinc-800/50 text-zinc-900 dark:text-zinc-100 rounded-xl border border-zinc-200/80 dark:border-zinc-700/50 focus:bg-white dark:focus:bg-zinc-800 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-[3px] focus:ring-blue-500/10 outline-none transition-all font-medium text-[15px] placeholder:text-zinc-400 dark:placeholder:text-zinc-500"
+										className={glassInput}
 									/>
 								</div>
 								{inputs.length > 2 && (
@@ -77,11 +83,10 @@ export default function StationInput({
 											trigger([{ duration: 15 }], { intensity: 0.4 });
 										}}
 										disabled={loading}
-										className="p-2 text-zinc-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg transition-colors cursor-pointer shrink-0"
+										className="p-2 text-white/30 hover:text-red-400 hover:bg-red-500/10 rounded-xl transition-colors cursor-pointer shrink-0"
 									>
 										<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-											<line x1="18" y1="6" x2="6" y2="18" />
-											<line x1="6" y1="6" x2="18" y2="18" />
+											<line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
 										</svg>
 									</motion.button>
 								)}
@@ -100,11 +105,10 @@ export default function StationInput({
 						trigger([{ duration: 15 }], { intensity: 0.4 });
 					}}
 					disabled={loading}
-					className="flex-1 py-2.5 px-4 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 rounded-xl font-semibold hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors cursor-pointer flex items-center justify-center gap-2 text-sm border border-zinc-200/60 dark:border-zinc-700/50"
+					className={glassBtn}
 				>
 					<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-						<line x1="12" y1="5" x2="12" y2="19" />
-						<line x1="5" y1="12" x2="19" y2="12" />
+						<line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
 					</svg>
 					Add Person
 				</motion.button>
@@ -119,19 +123,16 @@ export default function StationInput({
 							trigger([{ duration: 15 }], { intensity: 0.4 });
 						}}
 						disabled={loading}
-						className="flex-1 py-2.5 px-4 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 rounded-xl font-semibold hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors cursor-pointer flex items-center justify-center gap-2 text-sm border border-zinc-200/60 dark:border-zinc-700/50"
+						className={glassBtn}
 					>
 						<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-							<polyline points="16 3 21 3 21 8" />
-							<line x1="4" y1="20" x2="21" y2="3" />
-							<polyline points="21 16 21 21 16 21" />
-							<line x1="15" y1="15" x2="21" y2="21" />
-							<line x1="4" y1="4" x2="9" y2="9" />
+							<polyline points="16 3 21 3 21 8" /><line x1="4" y1="20" x2="21" y2="3" /><polyline points="21 16 21 21 16 21" /><line x1="15" y1="15" x2="21" y2="21" /><line x1="4" y1="4" x2="9" y2="9" />
 						</svg>
 						Swap
 					</motion.button>
 				)}
 			</div>
+
 			<motion.button
 				whileHover={{ scale: loading ? 1 : 1.01 }}
 				whileTap={{ scale: loading ? 1 : 0.98 }}
@@ -140,7 +141,7 @@ export default function StationInput({
 					trigger([{ duration: 15 }], { intensity: 0.4 });
 				}}
 				disabled={loading}
-				className="w-full py-3.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-[15px] transition-all disabled:bg-blue-600/50 shadow-lg shadow-blue-500/20 cursor-pointer flex items-center justify-center gap-2"
+				className="w-full py-3.5 bg-blue-500/80 hover:bg-blue-400/90 disabled:bg-blue-500/30 text-white rounded-2xl font-bold text-[15px] transition-all shadow-[0_0_24px_rgba(59,130,246,0.3)] border border-blue-400/30 backdrop-blur-sm cursor-pointer flex items-center justify-center gap-2"
 			>
 				{loading ? (
 					<>
