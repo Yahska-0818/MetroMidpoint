@@ -21,6 +21,18 @@ class AlgorithmService:
         with open("model.pkl", "rb") as f:
             self.model = pickle.load(f)
 
+        try:
+            with open("feature_names.pkl", "rb") as f:
+                self.feature_names = pickle.load(f)
+        except FileNotFoundError:
+            self.feature_names = [
+                "stations", "distance", "interchanges", "log_distance", "log_stations",
+                "avg_station_dist", "interchange_ratio", "interchange_density",
+                "distance_sq", "stations_sq", "dist_x_interchanges",
+                "stations_x_interchanges", "is_short_route", "is_long_route",
+                "is_very_long_route", "graph_weight", "effective_stations",
+            ]
+
         self.all_pairs_shortest = {}
         self._precompute_all_paths()
 
@@ -40,36 +52,32 @@ class AlgorithmService:
         ].tolist()
         return possible[0]
 
-    def _predict_time(self, distance, stations, interchanges):
+    def _build_features(self, distance: float, stations: int, interchanges: int) -> list:
         log_distance = np.log1p(distance)
+        log_stations = np.log1p(stations)
         avg_station_dist = distance / stations if stations > 0 else 0
         interchange_ratio = interchanges / stations if stations > 0 else 0
+        interchange_density = interchanges / max(distance, 0.1)
+        distance_sq = distance ** 2
+        stations_sq = stations ** 2
+        dist_x_interchanges = distance * interchanges
+        stations_x_interchanges = stations * interchanges
+        is_short_route = int(distance <= 5)
         is_long_route = int(distance > 12)
+        is_very_long_route = int(distance > 30)
         graph_weight = (distance * 1.7) + (interchanges * 5.0)
+        effective_stations = stations + (interchanges * 1.5)
+        return [
+            stations, distance, interchanges, log_distance, log_stations,
+            avg_station_dist, interchange_ratio, interchange_density,
+            distance_sq, stations_sq, dist_x_interchanges, stations_x_interchanges,
+            is_short_route, is_long_route, is_very_long_route, graph_weight, effective_stations,
+        ]
 
-        features = pd.DataFrame(
-            [
-                [
-                    stations,
-                    log_distance,
-                    interchanges,
-                    avg_station_dist,
-                    interchange_ratio,
-                    is_long_route,
-                    graph_weight,
-                ]
-            ],
-            columns=[
-                "stations",
-                "log_distance",
-                "interchanges",
-                "avg_station_dist",
-                "interchange_ratio",
-                "is_long_route",
-                "graph_weight",
-            ],
-        )
-        return self.model.predict(features)[0]
+    def _predict_time(self, distance: float, stations: int, interchanges: int) -> float:
+        row = self._build_features(distance, stations, interchanges)
+        features_df = pd.DataFrame([row], columns=self.feature_names)
+        return self.model.predict(features_df)[0]
 
     def get_route_details(self, source: str, destination: str) -> Dict[str, Any]:
         path = self.all_pairs_shortest[source]["paths"][destination]
@@ -112,51 +120,23 @@ class AlgorithmService:
                 valid_nodes.append(node)
                 for s in resolved_start_nodes:
                     p = self.all_pairs_shortest[s]["paths"][node]
-                    stations = len(p)
-                    interchanges = sum(
+                    p_stations = len(p)
+                    p_interchanges = sum(
                         1
                         for i in range(len(p) - 1)
                         if self.graph[p[i]][p[i + 1]]["type"] == "interchange"
                     )
-                    distance = sum(
+                    p_distance = sum(
                         self.graph[p[i]][p[i + 1]].get("distance", 0)
                         for i in range(len(p) - 1)
                         if self.graph[p[i]][p[i + 1]]["type"] == "travel"
                     )
-
-                    log_distance = np.log1p(distance)
-                    avg_station_dist = distance / stations if stations > 0 else 0
-                    interchange_ratio = interchanges / stations if stations > 0 else 0
-                    is_long_route = int(distance > 12)
-                    graph_weight = (distance * 1.7) + (interchanges * 5.0)
-
-                    feature_batch.append(
-                        [
-                            stations,
-                            log_distance,
-                            interchanges,
-                            avg_station_dist,
-                            interchange_ratio,
-                            is_long_route,
-                            graph_weight,
-                        ]
-                    )
+                    feature_batch.append(self._build_features(p_distance, p_stations, p_interchanges))
 
         if not valid_nodes:
             raise ValueError("No path exists between all participants")
 
-        batch_df = pd.DataFrame(
-            feature_batch,
-            columns=[
-                "stations",
-                "log_distance",
-                "interchanges",
-                "avg_station_dist",
-                "interchange_ratio",
-                "is_long_route",
-                "graph_weight",
-            ],
-        )
+        batch_df = pd.DataFrame(feature_batch, columns=self.feature_names)
         predictions = self.model.predict(batch_df)
 
         candidates = []
