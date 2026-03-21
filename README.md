@@ -1,4 +1,6 @@
-# MetroMidpoint
+# MetroMidpoint 
+
+Try it out [here](https://metromidpoint-production.up.railway.app/)
 
 MetroMidpoint is an intelligent transit application for the Delhi Metro ecosystem. It solves the common problem of friends or colleagues spread across the city trying to find the "fairest" meeting point. By leveraging graph mathematics and a custom Machine Learning model trained on real-time DMRC data, MetroMidpoint calculates the optimal intersection station that minimizes the maximum travel time for everyone involved.
 
@@ -100,7 +102,7 @@ MetroMidpoint/
 ├── frontend/
 │   ├── index.html                 # Vite entrypoint with injected fonts
 │   ├── package.json               # Bun dependencies (Tailwind, Framer Motion)
-│   ├── vite.config.ts 
+│   ├── vite.config.ts
 │   └── src/
 │       ├── main.tsx               # React root renderer
 │       ├── App.tsx                # Shell, theming, glass UI architecture
@@ -123,7 +125,7 @@ MetroMidpoint/
     ├── graph_loader.py            # Initial network topology grapher
     ├── fare_service.py            # Travel ticketing slab engine
     ├── train_model.py             # Feature engineering & VotingRegressor generator
-    └── Scraper Utils: 
+    └── Scraper Utils:
         ├── dmrc_data_collector.py     # Training data fetcher
         ├── gtfs_parser.py             # Optional transit timing ingestion
         └── station_code_builder.py    # DMRC id normalization
