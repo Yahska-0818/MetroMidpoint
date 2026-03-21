@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { fetchRouteInfo } from "../requests";
+import { fetchRouteInfo, getNearestStation } from "../requests";
 import TransitTimeline from "./TransitTimeline";
 import { useWebHaptics } from "web-haptics/react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
@@ -25,7 +25,27 @@ const glassInput =
 export default function RouteVisualizer({ stations }: Props) {
 	const [source, setSource] = useState("");
 	const [destination, setDestination] = useState("");
+	const [sourceFocused, setSourceFocused] = useState(false);
+	const [geoLoading, setGeoLoading] = useState(false);
 	const { trigger } = useWebHaptics();
+
+	const handleNearestStation = () => {
+		if (!navigator.geolocation) return;
+		setGeoLoading(true);
+		navigator.geolocation.getCurrentPosition(
+			async (pos) => {
+				try {
+					const nearest = await getNearestStation(pos.coords.latitude, pos.coords.longitude);
+					setSource(nearest);
+				} catch {
+					// silently fail
+				} finally {
+					setGeoLoading(false);
+				}
+			},
+			() => setGeoLoading(false),
+		);
+	};
 
 	const routeMutation = useMutation({
 		mutationFn: () => fetchRouteInfo(source, destination),
@@ -62,15 +82,42 @@ export default function RouteVisualizer({ stations }: Props) {
 						<div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-400/10 flex items-center justify-center border-[3px] border-white/80 dark:border-white/[0.08] shrink-0 z-10">
 							<div className="w-2 h-2 rounded-full bg-blue-500 dark:bg-blue-400" />
 						</div>
-						<input
-							type="text"
-							value={source}
-							onChange={(e) => setSource(e.target.value)}
-							placeholder="Source Station"
-							list="route-stations-list"
-							disabled={routeMutation.isPending}
-							className={glassInput}
-						/>
+						<div className="flex-1 relative">
+							<input
+								type="text"
+								value={source}
+								onChange={(e) => setSource(e.target.value)}
+								placeholder="Source Station"
+								list="route-stations-list"
+								disabled={routeMutation.isPending}
+								className={glassInput}
+								onFocus={() => setSourceFocused(true)}
+								onBlur={() => setSourceFocused(false)}
+							/>
+							<AnimatePresence>
+								{sourceFocused && (
+									<motion.button
+										initial={{ opacity: 0, y: -6, scale: 0.92 }}
+										animate={{ opacity: 1, y: 0, scale: 1 }}
+										exit={{ opacity: 0, y: -6, scale: 0.92 }}
+										transition={{ type: "spring", stiffness: 500, damping: 28 }}
+										onMouseDown={(e) => e.preventDefault()}
+										onClick={handleNearestStation}
+										disabled={geoLoading}
+										className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 px-2.5 py-1 bg-blue-50/90 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400 text-[11px] font-semibold rounded-xl border border-blue-200/70 dark:border-blue-400/20 backdrop-blur-sm hover:bg-blue-100/90 dark:hover:bg-blue-500/25 transition-colors cursor-pointer disabled:opacity-60 whitespace-nowrap"
+									>
+										{geoLoading ? (
+											<div className="w-3 h-3 border border-blue-400/40 border-t-blue-500 rounded-full animate-spin" />
+										) : (
+											<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+												<circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
+											</svg>
+										)}
+										Nearest
+									</motion.button>
+								)}
+							</AnimatePresence>
+						</div>
 					</div>
 
 					<div className="relative flex justify-center">

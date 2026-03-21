@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useWebHaptics } from "web-haptics/react";
+import { getNearestStation } from "../requests";
 
 type Props = {
 	inputs: string[];
@@ -29,6 +31,25 @@ export default function StationInput({
 	onSubmit,
 }: Props) {
 	const { trigger } = useWebHaptics();
+	const [firstInputFocused, setFirstInputFocused] = useState(false);
+	const [geoLoading, setGeoLoading] = useState(false);
+
+	const handleNearestStation = () => {
+		if (!navigator.geolocation) return;
+		setGeoLoading(true);
+		navigator.geolocation.getCurrentPosition(
+			async (pos) => {
+				try {
+					const nearest = await getNearestStation(pos.coords.latitude, pos.coords.longitude);
+					onInputChange(0, nearest);
+				} catch {
+				} finally {
+					setGeoLoading(false);
+				}
+			},
+			() => setGeoLoading(false),
+		);
+	};
 
 	return (
 		<div>
@@ -61,7 +82,7 @@ export default function StationInput({
 								<div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-400/10 flex items-center justify-center border-[3px] border-white/80 dark:border-white/[0.08] shrink-0 z-10">
 									<div className="w-2 h-2 rounded-full bg-blue-500 dark:bg-blue-400" />
 								</div>
-								<div className="flex-1">
+								<div className="flex-1 relative">
 									<input
 										value={val}
 										onChange={(e) => onInputChange(idx, e.target.value)}
@@ -69,7 +90,32 @@ export default function StationInput({
 										list="stations-list"
 										disabled={loading}
 										className={glassInput}
+										onFocus={() => idx === 0 && setFirstInputFocused(true)}
+										onBlur={() => idx === 0 && setFirstInputFocused(false)}
 									/>
+									<AnimatePresence>
+										{idx === 0 && firstInputFocused && (
+											<motion.button
+												initial={{ opacity: 0, y: -6, scale: 0.92 }}
+												animate={{ opacity: 1, y: 0, scale: 1 }}
+												exit={{ opacity: 0, y: -6, scale: 0.92 }}
+												transition={{ type: "spring", stiffness: 500, damping: 28 }}
+												onMouseDown={(e) => e.preventDefault()}
+												onClick={handleNearestStation}
+												disabled={geoLoading}
+												className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 px-2.5 py-1 bg-blue-50/90 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400 text-[11px] font-semibold rounded-xl border border-blue-200/70 dark:border-blue-400/20 backdrop-blur-sm hover:bg-blue-100/90 dark:hover:bg-blue-500/25 transition-colors cursor-pointer disabled:opacity-60 whitespace-nowrap"
+											>
+												{geoLoading ? (
+													<div className="w-3 h-3 border border-blue-400/40 border-t-blue-500 rounded-full animate-spin" />
+												) : (
+													<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+														<circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
+													</svg>
+												)}
+												Nearest
+											</motion.button>
+										)}
+									</AnimatePresence>
 								</div>
 								{inputs.length > 2 && (
 									<motion.button

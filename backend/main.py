@@ -1,5 +1,6 @@
 import os
-from fastapi import FastAPI, HTTPException
+import math
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -22,6 +23,37 @@ algo_service = AlgorithmService(graph, CSV_URL)
 @app.get("/stations")
 def list_stations() -> List[str]:
     return sorted(list(graph.nodes))
+
+
+def haversine(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    R = 6371.0
+    dlat = math.radians(lat2 - lat1)
+    dlon = math.radians(lon2 - lon1)
+    a = (math.sin(dlat / 2) ** 2) + math.cos(math.radians(lat1)) * math.cos(
+        math.radians(lat2)
+    ) * (math.sin(dlon / 2) ** 2)
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    return R * c
+
+
+@app.get("/nearest-station")
+def nearest_station(lat: float = Query(...), lng: float = Query(...)):
+    df = algo_service.df
+    
+    valid_df = df.dropna(subset=['Latitude', 'Longitude'])
+    
+    if valid_df.empty:
+        raise HTTPException(status_code=404, detail="No station coordinates available")
+
+    distances = valid_df.apply(
+        lambda row: haversine(lat, lng, row['Latitude'], row['Longitude']), 
+        axis=1
+    )
+    
+    nearest_idx = distances.idxmin()
+    nearest_station_node = valid_df.loc[nearest_idx, 'Node Name']
+    
+    return {"station": nearest_station_node}
 
 
 @app.post("/find-midpoint")

@@ -63,3 +63,10 @@ export const fetchRouteInfo = async (
 
   return data;
 };
+
+export const getNearestStation = async (lat: number, lng: number): Promise<string> => {
+  const res = await fetch(`${API_URL}/nearest-station?lat=${lat}&lng=${lng}`);
+  const data = await res.json();
+  if (!res.ok) throw new Error("Could not find nearest station");
+  return data.station as string;
+};
