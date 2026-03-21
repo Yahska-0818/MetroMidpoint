@@ -50,6 +50,8 @@ class AlgorithmService:
         possible = self.df[self.df["Station Name"].str.lower() == station_name.lower()][
             "Node Name"
         ].tolist()
+        if not possible:
+            raise ValueError(f"Station '{station_name}' not found")
         return possible[0]
 
     def _build_features(self, distance: float, stations: int, interchanges: int) -> list:
