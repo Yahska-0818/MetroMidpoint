@@ -28,6 +28,7 @@ export default function RouteVisualizer({ stations }: Props) {
 	const [destination, setDestination] = useState("");
 	const [sourceFocused, setSourceFocused] = useState(false);
 	const [geoLoading, setGeoLoading] = useState(false);
+	const [localError, setLocalError] = useState("");
 	const [activeView, setActiveView] = useState<"fastest" | "fewest_interchanges">("fastest");
 	const { trigger } = useWebHaptics();
 
@@ -40,7 +41,6 @@ export default function RouteVisualizer({ stations }: Props) {
 					const nearest = await getNearestStation(pos.coords.latitude, pos.coords.longitude);
 					setSource(nearest);
 				} catch {
-					// silently fail
 				} finally {
 					setGeoLoading(false);
 				}
@@ -60,8 +60,13 @@ export default function RouteVisualizer({ stations }: Props) {
 	});
 
 	const handleFindRoute = () => {
+		if (!source.trim() || !destination.trim()) {
+			trigger([{ duration: 40 }, { delay: 40, duration: 40 }], { intensity: 0.9 });
+			setLocalError("Please select both a source and destination station.");
+			return;
+		}
+		setLocalError("");
 		trigger([{ duration: 15 }], { intensity: 0.4 });
-		if (!source.trim() || !destination.trim()) return;
 		setActiveView("fastest");
 		fastestMutation.mutate();
 		leastInterchangeMutation.mutate();
@@ -108,7 +113,10 @@ export default function RouteVisualizer({ stations }: Props) {
 							<input
 								type="text"
 								value={source}
-								onChange={(e) => setSource(e.target.value)}
+								onChange={(e) => {
+									setLocalError("");
+									setSource(e.target.value);
+								}}
 								placeholder="Source Station"
 								list="route-stations-list"
 								disabled={isLoading}
@@ -164,7 +172,10 @@ export default function RouteVisualizer({ stations }: Props) {
 						<input
 							type="text"
 							value={destination}
-							onChange={(e) => setDestination(e.target.value)}
+							onChange={(e) => {
+								setLocalError("");
+								setDestination(e.target.value);
+							}}
 							placeholder="Destination Station"
 							list="route-stations-list"
 							disabled={isLoading}
@@ -191,6 +202,23 @@ export default function RouteVisualizer({ stations }: Props) {
 				)}
 			</motion.button>
 
+			<AnimatePresence>
+				{localError && (
+					<motion.div
+						initial={{ opacity: 0, height: 0 }}
+						animate={{ opacity: 1, height: "auto" }}
+						exit={{ opacity: 0, height: 0 }}
+						transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+						className="overflow-hidden"
+					>
+						<div className="pt-4">
+							<div className="p-3.5 rounded-2xl bg-red-500/10 border border-red-400/30 text-red-600 dark:text-red-300 font-semibold text-center text-[14px]">
+								{localError}
+							</div>
+						</div>
+					</motion.div>
+				)}
+			</AnimatePresence>
 			<AnimatePresence>
 				{fastestMutation.isError && !isLoading && (
 					<motion.div

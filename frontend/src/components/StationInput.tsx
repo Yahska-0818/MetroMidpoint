@@ -33,6 +33,12 @@ export default function StationInput({
 	const { trigger } = useWebHaptics();
 	const [firstInputFocused, setFirstInputFocused] = useState(false);
 	const [geoLoading, setGeoLoading] = useState(false);
+	const [localError, setLocalError] = useState("");
+
+	const handleInputChange = (index: number, value: string) => {
+		setLocalError("");
+		onInputChange(index, value);
+	};
 
 	const handleNearestStation = () => {
 		if (!navigator.geolocation) return;
@@ -41,7 +47,7 @@ export default function StationInput({
 			async (pos) => {
 				try {
 					const nearest = await getNearestStation(pos.coords.latitude, pos.coords.longitude);
-					onInputChange(0, nearest);
+					handleInputChange(0, nearest);
 				} catch {
 				} finally {
 					setGeoLoading(false);
@@ -85,7 +91,7 @@ export default function StationInput({
 								<div className="flex-1 relative">
 									<input
 										value={val}
-										onChange={(e) => onInputChange(idx, e.target.value)}
+										onChange={(e) => handleInputChange(idx, e.target.value)}
 										placeholder={`Station ${idx + 1}`}
 										list="stations-list"
 										disabled={loading}
@@ -183,6 +189,13 @@ export default function StationInput({
 				whileHover={{ scale: loading ? 1 : 1.01 }}
 				whileTap={{ scale: loading ? 1 : 0.98 }}
 				onClick={() => {
+					const validCount = inputs.filter((s) => s.trim()).length;
+					if (validCount < 2) {
+						trigger([{ duration: 40 }, { delay: 40, duration: 40 }], { intensity: 0.9 });
+						setLocalError("Please fill in at least two stations to find a meetup.");
+						return;
+					}
+					setLocalError("");
 					onSubmit();
 					trigger([{ duration: 15 }], { intensity: 0.4 });
 				}}
@@ -198,6 +211,24 @@ export default function StationInput({
 					"Find Meetup"
 				)}
 			</motion.button>
+
+			<AnimatePresence>
+				{localError && (
+					<motion.div
+						initial={{ opacity: 0, height: 0 }}
+						animate={{ opacity: 1, height: "auto" }}
+						exit={{ opacity: 0, height: 0 }}
+						transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+						className="overflow-hidden"
+					>
+						<div className="pt-4">
+							<div className="p-3.5 rounded-2xl bg-red-500/10 border border-red-400/30 text-red-600 dark:text-red-300 font-semibold text-center text-[14px]">
+								{localError}
+							</div>
+						</div>
+					</motion.div>
+				)}
+			</AnimatePresence>
 		</div>
 	);
 }
