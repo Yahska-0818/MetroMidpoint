@@ -79,7 +79,7 @@ export default function App() {
 		: "bg-gradient-to-br from-sky-100 via-indigo-50 to-violet-100";
 
 	const glassCard =
-		"relative bg-white/[0.07] dark:bg-white/[0.05] backdrop-blur-3xl border border-white/25 dark:border-white/[0.1] shadow-[0_16px_64px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.18)] dark:shadow-[0_16px_64px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.08)] rounded-3xl";
+		"relative bg-white/60 dark:bg-white/[0.05] backdrop-blur-3xl border border-white/80 dark:border-white/[0.1] shadow-[0_16px_64px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_16px_64px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.08)] rounded-3xl";
 
 	if (fetchedStations.isPending) {
 		return (
@@ -93,12 +93,12 @@ export default function App() {
 				>
 					<InnerHighlight />
 					<div className="space-y-4">
-						<div className="h-7 w-44 bg-white/10 rounded-xl animate-pulse" />
-						<div className="h-12 w-full bg-white/8 rounded-2xl animate-pulse" />
-						<div className="h-12 w-full bg-white/8 rounded-2xl animate-pulse" />
-						<div className="h-12 w-full bg-white/10 rounded-2xl animate-pulse" />
+						<div className="h-7 w-44 bg-zinc-200/80 dark:bg-white/10 rounded-xl animate-pulse" />
+						<div className="h-12 w-full bg-zinc-100/80 dark:bg-white/[0.08] rounded-2xl animate-pulse" />
+						<div className="h-12 w-full bg-zinc-100/80 dark:bg-white/[0.08] rounded-2xl animate-pulse" />
+						<div className="h-12 w-full bg-zinc-200/80 dark:bg-white/10 rounded-2xl animate-pulse" />
 					</div>
-					<p className="text-center text-sm text-white/40 mt-6 font-medium">Loading stations…</p>
+					<p className="text-center text-sm text-zinc-400 dark:text-white/40 mt-6 font-medium">Loading stations…</p>
 				</motion.div>
 			</div>
 		);
@@ -115,7 +115,7 @@ export default function App() {
 					className={`max-w-2xl mx-auto ${glassCard} p-6`}
 				>
 					<InnerHighlight />
-					<div className="p-4 rounded-2xl bg-red-500/10 border border-red-400/20 text-red-300 text-center font-semibold text-[15px]">
+					<div className="p-4 rounded-2xl bg-red-500/10 border border-red-400/30 text-red-600 dark:text-red-300 text-center font-semibold text-[15px]">
 						Failed to load stations. Please refresh the page.
 					</div>
 				</motion.div>
@@ -142,7 +142,7 @@ export default function App() {
 					<motion.button
 						whileHover={{ scale: 1.06 }}
 						whileTap={{ scale: 0.92 }}
-						className="p-2.5 rounded-2xl cursor-pointer bg-white/10 dark:bg-white/[0.07] border border-white/25 dark:border-white/10 text-zinc-600 dark:text-white/70 hover:bg-white/20 dark:hover:bg-white/[0.12] backdrop-blur-sm transition-colors"
+						className="p-2.5 rounded-2xl cursor-pointer bg-zinc-200/60 dark:bg-white/[0.07] border border-zinc-300/60 dark:border-white/10 text-zinc-600 dark:text-white/70 hover:bg-zinc-300/60 dark:hover:bg-white/[0.12] backdrop-blur-sm transition-colors"
 						onClick={() => {
 							setDarkMode(!darkMode);
 							trigger([{ duration: 40 }], { intensity: 0.4 });
@@ -195,8 +195,8 @@ export default function App() {
 										exit={{ opacity: 0, y: -4 }}
 										className="mt-6 flex items-center justify-center gap-3"
 									>
-										<div className="w-5 h-5 border-2 border-blue-400/30 border-t-blue-400 rounded-full animate-spin" />
-										<span className="text-sm font-medium text-white/50">
+										<div className="w-5 h-5 border-2 border-blue-400/30 border-t-blue-500 rounded-full animate-spin" />
+										<span className="text-sm font-medium text-zinc-500 dark:text-white/50">
 											Locating optimal meetup station…
 										</span>
 									</motion.div>
@@ -209,7 +209,7 @@ export default function App() {
 										animate={{ opacity: 1, scale: 1 }}
 										exit={{ opacity: 0, scale: 0.95 }}
 										transition={{ type: "spring", stiffness: 400, damping: 25 }}
-										className="mt-6 p-4 rounded-2xl bg-red-500/10 border border-red-400/20 text-red-300 text-center font-semibold text-[15px]"
+										className="mt-6 p-4 rounded-2xl bg-red-500/10 border border-red-400/30 text-red-600 dark:text-red-300 text-center font-semibold text-[15px]"
 									>
 										{fetchMidpointMutation.error.message}
 									</motion.div>
@@ -242,8 +242,7 @@ export default function App() {
 			</motion.div>
 
 			<div className="fixed bottom-6 left-0 right-0 flex justify-center z-50 px-4">
-				<div className="flex items-center gap-1 p-1.5 bg-white/[0.12] dark:bg-white/[0.08] backdrop-blur-3xl border border-white/30 dark:border-white/[0.12] rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.2)]">
-					<div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 dark:via-white/20 to-transparent rounded-t-3xl pointer-events-none" />
+				<div className="flex items-center gap-1 p-1.5 bg-zinc-100/80 dark:bg-white/[0.08] backdrop-blur-3xl border border-zinc-300/70 dark:border-white/[0.12] rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.12)]">
 
 					{(["meetup", "route"] as const).map((tab) => {
 						const isActive = activeTab === tab;
@@ -262,11 +261,11 @@ export default function App() {
 								{isActive && (
 									<motion.div
 										layoutId="tab-bubble"
-										className="absolute inset-0 bg-white/20 dark:bg-white/[0.12] rounded-2xl border border-white/40 dark:border-white/[0.18] shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]"
+										className="absolute inset-0 bg-white/80 dark:bg-white/[0.12] rounded-2xl border border-white dark:border-white/[0.18] shadow-[0_2px_12px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]"
 										transition={{ type: "spring", stiffness: 400, damping: 30 }}
 									/>
 								)}
-								<span className={`relative z-10 transition-colors ${isActive ? "text-white" : "text-white/35 hover:text-white/60"}`}>
+								<span className={`relative z-10 transition-colors ${isActive ? "text-blue-600 dark:text-white" : "text-zinc-400 dark:text-white/35 hover:text-zinc-600 dark:hover:text-white/60"}`}>
 									{tab === "meetup" ? (
 										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
 											<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
@@ -277,7 +276,7 @@ export default function App() {
 										</svg>
 									)}
 								</span>
-								<span className={`relative z-10 text-[13px] font-semibold transition-colors ${isActive ? "text-white" : "text-white/35 hover:text-white/60"}`}>
+								<span className={`relative z-10 text-[13px] font-semibold transition-colors ${isActive ? "text-blue-600 dark:text-white" : "text-zinc-400 dark:text-white/35 hover:text-zinc-600 dark:hover:text-white/60"}`}>
 									{tab === "meetup" ? "Find Meetup" : "Route Planner"}
 								</span>
 							</motion.button>
@@ -292,15 +291,15 @@ export default function App() {
 function Orbs() {
 	return (
 		<div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-			<div className="orb-a absolute -top-32 -left-32 w-96 h-96 bg-violet-600/25 dark:bg-violet-600/20 rounded-full blur-[100px]" />
-			<div className="orb-b absolute top-1/2 -right-48 w-[28rem] h-[28rem] bg-blue-600/20 dark:bg-blue-500/15 rounded-full blur-[120px]" />
-			<div className="orb-c absolute -bottom-24 left-1/4 w-80 h-80 bg-indigo-500/20 dark:bg-indigo-400/12 rounded-full blur-[90px]" />
+			<div className="orb-a absolute -top-32 -left-32 w-96 h-96 bg-violet-400/20 dark:bg-violet-600/20 rounded-full blur-[100px]" />
+			<div className="orb-b absolute top-1/2 -right-48 w-[28rem] h-[28rem] bg-blue-400/15 dark:bg-blue-500/15 rounded-full blur-[120px]" />
+			<div className="orb-c absolute -bottom-24 left-1/4 w-80 h-80 bg-indigo-400/15 dark:bg-indigo-400/12 rounded-full blur-[90px]" />
 		</div>
 	);
 }
 
 function InnerHighlight() {
 	return (
-		<div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 dark:via-white/15 to-transparent rounded-t-3xl pointer-events-none" />
+		<div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 dark:via-white/15 to-transparent rounded-t-3xl pointer-events-none" />
 	);
 }

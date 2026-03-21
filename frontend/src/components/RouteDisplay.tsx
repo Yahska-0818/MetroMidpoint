@@ -33,7 +33,7 @@ export default function RouteDisplay({ result }: { result: ResultType }) {
 			initial={{ opacity: 0, y: 16 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.4, ease: "easeOut" }}
-			className="mt-8 pt-6 border-t border-white/10"
+			className="mt-8 pt-6 border-t border-zinc-200/60 dark:border-white/10"
 		>
 			<motion.div
 				initial={{ opacity: 0, scale: 0.9 }}
@@ -41,16 +41,16 @@ export default function RouteDisplay({ result }: { result: ResultType }) {
 				transition={{ type: "spring", stiffness: 400, damping: 25, delay: 0.1 }}
 				className="text-center mb-6"
 			>
-				<div className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-400/10 rounded-full border border-emerald-400/20 mb-3 backdrop-blur-sm">
-					<div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-					<span className="text-xs font-bold text-emerald-400 uppercase tracking-wider">
+				<div className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/10 rounded-full border border-emerald-500/25 mb-3 backdrop-blur-sm">
+					<div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+					<span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
 						Optimal Meeting Point
 					</span>
 				</div>
-				<h2 className="text-2xl font-extrabold text-white tracking-tight">
+				<h2 className="text-2xl font-extrabold text-zinc-900 dark:text-white tracking-tight">
 					{result.meet_station}
 				</h2>
-				<p className="text-sm text-white/40 mt-1 font-medium">
+				<p className="text-sm text-zinc-500 dark:text-white/40 mt-1 font-medium">
 					Max Travel Time: ~{result.max_travel_time} mins
 				</p>
 			</motion.div>
@@ -59,7 +59,7 @@ export default function RouteDisplay({ result }: { result: ResultType }) {
 				<motion.button
 					whileHover={{ scale: 1.03 }}
 					whileTap={{ scale: 0.96 }}
-					className="px-5 py-2.5 rounded-2xl bg-white/[0.07] text-white/70 font-semibold text-sm hover:bg-white/[0.12] transition-colors cursor-pointer border border-white/[0.12] backdrop-blur-sm"
+					className="px-5 py-2.5 rounded-2xl bg-zinc-200/70 dark:bg-white/[0.07] text-zinc-700 dark:text-white/70 font-semibold text-sm hover:bg-zinc-300/70 dark:hover:bg-white/[0.12] transition-colors cursor-pointer border border-zinc-300/60 dark:border-white/[0.12] backdrop-blur-sm"
 					onClick={() => {
 						navigator.clipboard.writeText(window.location.href);
 						setCopied(true);
@@ -71,9 +71,9 @@ export default function RouteDisplay({ result }: { result: ResultType }) {
 				</motion.button>
 			</div>
 
-			<div className="bg-white/[0.04] backdrop-blur-sm p-4 sm:p-5 rounded-2xl border border-white/[0.08] max-h-[600px] overflow-y-auto">
+			<div className="bg-zinc-100/60 dark:bg-white/[0.04] backdrop-blur-sm p-4 sm:p-5 rounded-2xl border border-zinc-200/60 dark:border-white/[0.08] max-h-[600px] overflow-y-auto">
 				{!result.routes || result.routes.length === 0 ? (
-					<div className="text-center text-white/30 font-medium py-4">
+					<div className="text-center text-zinc-400 dark:text-white/30 font-medium py-4">
 						Optimal route not available for this combination.
 					</div>
 				) : (
@@ -89,11 +89,11 @@ export default function RouteDisplay({ result }: { result: ResultType }) {
 								variants={itemVariants}
 								className={`border-l-[3px] pl-4 ${ROUTE_COLORS[idx % ROUTE_COLORS.length]}`}
 							>
-								<div className="flex items-center justify-between pb-3 mb-3 border-b border-white/[0.08]">
-									<h3 className="text-[15px] font-bold text-white">
+								<div className="flex items-center justify-between pb-3 mb-3 border-b border-zinc-200/60 dark:border-white/[0.08]">
+									<h3 className="text-[15px] font-bold text-zinc-900 dark:text-white">
 										Person {idx + 1}
 									</h3>
-									<span className="text-xs font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-lg border border-emerald-400/20">
+									<span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/20">
 										₹{routeData.fare}
 									</span>
 								</div>

@@ -20,7 +20,7 @@ const statCardVariants: Variants = {
 };
 
 const glassInput =
-	"w-full py-3 px-4 bg-white/[0.07] dark:bg-white/[0.05] text-zinc-900 dark:text-white rounded-2xl border border-white/30 dark:border-white/10 focus:bg-white/[0.12] dark:focus:bg-white/[0.09] focus:border-white/50 dark:focus:border-white/25 focus:ring-0 outline-none transition-all font-medium text-[15px] placeholder:text-zinc-400 dark:placeholder:text-white/25 backdrop-blur-sm";
+	"w-full py-3 px-4 bg-white/70 dark:bg-white/[0.05] text-zinc-900 dark:text-white rounded-2xl border border-zinc-200/80 dark:border-white/10 focus:bg-white/90 dark:focus:bg-white/[0.09] focus:border-blue-300 dark:focus:border-white/25 focus:ring-0 outline-none transition-all font-medium text-[15px] placeholder:text-zinc-400 dark:placeholder:text-white/25 backdrop-blur-sm";
 
 export default function RouteVisualizer({ stations }: Props) {
 	const [source, setSource] = useState("");
@@ -55,11 +55,11 @@ export default function RouteVisualizer({ stations }: Props) {
 			</datalist>
 
 			<div className="relative mb-6 mt-1">
-				<div className="absolute left-[15px] top-7 bottom-7 w-[2px] bg-white/10 dark:bg-white/[0.08] rounded-full z-0" />
+				<div className="absolute left-[15px] top-7 bottom-7 w-[2px] bg-zinc-300/60 dark:bg-white/[0.08] rounded-full z-0" />
 
 				<div className="space-y-4 relative z-10 flex flex-col">
 					<div className="flex items-center gap-3">
-						<div className="w-8 h-8 rounded-full bg-blue-500/15 dark:bg-blue-400/10 flex items-center justify-center border-[3px] border-white/20 dark:border-white/[0.08] shrink-0 z-10">
+						<div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-400/10 flex items-center justify-center border-[3px] border-white/80 dark:border-white/[0.08] shrink-0 z-10">
 							<div className="w-2 h-2 rounded-full bg-blue-500 dark:bg-blue-400" />
 						</div>
 						<input
@@ -80,16 +80,16 @@ export default function RouteVisualizer({ stations }: Props) {
 							transition={{ type: "spring", stiffness: 400, damping: 15 }}
 							onClick={handleSwap}
 							disabled={routeMutation.isPending}
-							className="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white/[0.08] dark:bg-white/[0.06] border border-white/25 dark:border-white/10 hover:bg-white/[0.15] dark:hover:bg-white/[0.12] backdrop-blur-sm transition-colors shadow-sm disabled:opacity-50 cursor-pointer"
+							className="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white/80 dark:bg-white/[0.06] border border-zinc-200/80 dark:border-white/10 hover:bg-white dark:hover:bg-white/[0.12] backdrop-blur-sm transition-colors shadow-sm disabled:opacity-50 cursor-pointer"
 						>
-							<svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-white/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+							<svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-zinc-500 dark:text-white/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
 								<path d="M7 7h11l-4-4" /><path d="M17 17H6l4 4" />
 							</svg>
 						</motion.button>
 					</div>
 
 					<div className="flex items-center gap-3">
-						<div className="w-8 h-8 rounded-full bg-red-500/15 dark:bg-red-400/10 flex items-center justify-center border-[3px] border-white/20 dark:border-white/[0.08] shrink-0 z-10">
+						<div className="w-8 h-8 rounded-full bg-red-100 dark:bg-red-400/10 flex items-center justify-center border-[3px] border-white/80 dark:border-white/[0.08] shrink-0 z-10">
 							<div className="w-2 h-2 rounded-full bg-red-500 dark:bg-red-400" />
 						</div>
 						<input
@@ -115,7 +115,7 @@ export default function RouteVisualizer({ stations }: Props) {
 					}
 				}}
 				disabled={routeMutation.isPending}
-				className="w-full py-3.5 bg-blue-500/80 hover:bg-blue-400/90 disabled:bg-blue-500/30 text-white rounded-2xl font-bold text-[15px] transition-all shadow-[0_0_24px_rgba(59,130,246,0.3)] border border-blue-400/30 backdrop-blur-sm cursor-pointer flex items-center justify-center gap-2"
+				className="w-full py-3.5 bg-blue-500 hover:bg-blue-400 disabled:bg-blue-300 dark:disabled:bg-blue-500/30 text-white rounded-2xl font-bold text-[15px] transition-all shadow-[0_4px_20px_rgba(59,130,246,0.35)] dark:shadow-[0_0_24px_rgba(59,130,246,0.3)] border border-blue-400/30 cursor-pointer flex items-center justify-center gap-2"
 			>
 				{routeMutation.isPending ? (
 					<>
@@ -134,7 +134,7 @@ export default function RouteVisualizer({ stations }: Props) {
 						animate={{ opacity: 1, scale: 1 }}
 						exit={{ opacity: 0, scale: 0.95 }}
 						transition={{ type: "spring", stiffness: 400, damping: 25 }}
-						className="p-4 rounded-2xl bg-red-500/10 border border-red-400/20 text-red-300 font-semibold text-center mt-5 text-[15px]"
+						className="p-4 rounded-2xl bg-red-500/10 border border-red-400/30 text-red-600 dark:text-red-300 font-semibold text-center mt-5 text-[15px]"
 					>
 						{routeMutation.error.message}
 					</motion.div>
@@ -148,7 +148,7 @@ export default function RouteVisualizer({ stations }: Props) {
 						animate={{ opacity: 1, y: 0 }}
 						exit={{ opacity: 0, y: -8 }}
 						transition={{ duration: 0.4, ease: "easeOut" }}
-						className="mt-8 pt-6 border-t border-white/10"
+						className="mt-8 pt-6 border-t border-zinc-200/60 dark:border-white/10"
 					>
 						<motion.div
 							initial="hidden"
@@ -158,37 +158,37 @@ export default function RouteVisualizer({ stations }: Props) {
 						>
 							<motion.div
 								variants={statCardVariants}
-								className="bg-blue-500/10 rounded-2xl p-4 text-center border border-blue-400/15 backdrop-blur-sm"
+								className="bg-blue-50/80 dark:bg-blue-500/10 rounded-2xl p-4 text-center border border-blue-200/60 dark:border-blue-400/15 backdrop-blur-sm"
 							>
-								<div className="text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-1">Time</div>
-								<div className="text-2xl font-extrabold text-white">
+								<div className="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-1">Time</div>
+								<div className="text-2xl font-extrabold text-zinc-900 dark:text-white">
 									{routeMutation.data.total_time}
-									<span className="text-xs font-semibold text-white/40 ml-0.5">min</span>
+									<span className="text-xs font-semibold text-zinc-400 dark:text-white/40 ml-0.5">min</span>
 								</div>
 							</motion.div>
 
 							<motion.div
 								variants={statCardVariants}
-								className="bg-emerald-500/10 rounded-2xl p-4 text-center border border-emerald-400/15 backdrop-blur-sm"
+								className="bg-emerald-50/80 dark:bg-emerald-500/10 rounded-2xl p-4 text-center border border-emerald-200/60 dark:border-emerald-400/15 backdrop-blur-sm"
 							>
-								<div className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider mb-1">Fare</div>
-								<div className="text-2xl font-extrabold text-white">
+								<div className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-1">Fare</div>
+								<div className="text-2xl font-extrabold text-zinc-900 dark:text-white">
 									₹{routeMutation.data.fare}
 								</div>
 							</motion.div>
 
 							<motion.div
 								variants={statCardVariants}
-								className="bg-violet-500/10 rounded-2xl p-4 text-center border border-violet-400/15 backdrop-blur-sm"
+								className="bg-violet-50/80 dark:bg-violet-500/10 rounded-2xl p-4 text-center border border-violet-200/60 dark:border-violet-400/15 backdrop-blur-sm"
 							>
-								<div className="text-[10px] font-bold text-violet-400 uppercase tracking-wider mb-1">Changes</div>
-								<div className="text-2xl font-extrabold text-white">
+								<div className="text-[10px] font-bold text-violet-600 dark:text-violet-400 uppercase tracking-wider mb-1">Changes</div>
+								<div className="text-2xl font-extrabold text-zinc-900 dark:text-white">
 									{routeMutation.data.interchanges}
 								</div>
 							</motion.div>
 						</motion.div>
 
-						<div className="bg-white/[0.04] backdrop-blur-sm rounded-2xl p-4 sm:p-5 border border-white/[0.08]">
+						<div className="bg-zinc-100/60 dark:bg-white/[0.04] backdrop-blur-sm rounded-2xl p-4 sm:p-5 border border-zinc-200/60 dark:border-white/[0.08]">
 							<TransitTimeline path={routeMutation.data.path} />
 						</div>
 					</motion.div>
