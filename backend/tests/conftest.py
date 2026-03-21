@@ -14,6 +14,13 @@ with open(os.path.join(dist_dir, "index.html"), "w") as f:
 with open(os.path.join(dist_dir, "test.txt"), "w") as f:
     f.write("test")
 
+import warnings
+try:
+    from sklearn.exceptions import InconsistentVersionWarning
+    warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
+except ImportError:
+    pass
+
 from main import app, graph, algo_service
 
 @pytest.fixture(scope="session")
