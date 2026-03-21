@@ -8,3 +8,11 @@ __pycache__
 .env.*
 .DS_Store
 graph.pkl
+
+backend/compare_models.py
+backend/dmrc_data_collector.py
+backend/dmrc_training_data.csv
+backend/feature_names.pkl
+backend/station_code_builder.py
+backend/station_codes.json
+backend/train_model.py
