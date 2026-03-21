@@ -1,18 +1,29 @@
-export function formatLineColor(line: string) {
-  const colors: Record<string, string> = {
-    "Yellow Line": "border-yellow-400 text-yellow-900 bg-yellow-400",
-    "Blue Line": "border-blue-500 text-white bg-blue-500",
-    "Blue Line Branch": "border-blue-400 text-white bg-blue-400",
-    "Red Line": "border-red-500 text-white bg-red-500",
-    "Green Line": "border-green-500 text-white bg-green-500",
-    "Green Line Branch": "border-green-400 text-white bg-green-400",
-    "Violet Line": "border-purple-600 text-white bg-purple-600",
-    "Pink Line": "border-pink-500 text-white bg-pink-500",
-    "Magenta Line": "border-fuchsia-600 text-white bg-fuchsia-600",
-    "Grey Line": "border-gray-500 text-white bg-gray-500",
-    "Orange Line": "border-orange-500 text-white bg-orange-500",
-    "Aqua Line": "border-teal-500 text-white bg-teal-500",
-    "Rapid Metro": "border-emerald-500 text-white bg-emerald-500",
-  };
-  return colors[line] || "border-gray-300 text-gray-800 bg-gray-300";
+const colorMap: Record<string, { badge: string; hex: string }> = {
+  "yellow line":       { badge: "border-yellow-400 text-yellow-900 bg-yellow-400", hex: "#facc15" },
+  "blue line":         { badge: "border-blue-500 text-white bg-blue-500",           hex: "#3b82f6" },
+  "blue line branch":  { badge: "border-blue-400 text-white bg-blue-400",           hex: "#60a5fa" },
+  "red line":          { badge: "border-red-500 text-white bg-red-500",             hex: "#ef4444" },
+  "green line":        { badge: "border-green-500 text-white bg-green-500",         hex: "#22c55e" },
+  "green line branch": { badge: "border-green-400 text-white bg-green-400",         hex: "#4ade80" },
+  "violet line":       { badge: "border-purple-600 text-white bg-purple-600",       hex: "#9333ea" },
+  "pink line":         { badge: "border-pink-500 text-white bg-pink-500",           hex: "#ec4899" },
+  "magenta line":      { badge: "border-fuchsia-600 text-white bg-fuchsia-600",     hex: "#c026d3" },
+  "grey line":         { badge: "border-gray-500 text-white bg-gray-500",           hex: "#6b7280" },
+  "orange line":       { badge: "border-orange-500 text-white bg-orange-500",       hex: "#f97316" },
+  "aqua line":         { badge: "border-teal-500 text-white bg-teal-500",           hex: "#14b8a6" },
+  "rapid metro":       { badge: "border-emerald-500 text-white bg-emerald-500",     hex: "#10b981" },
+};
+
+const fallback = { badge: "border-zinc-400 text-zinc-800 bg-zinc-300", hex: "#a1a1aa" };
+
+function lookup(line: string) {
+  return colorMap[line.toLowerCase()] ?? fallback;
+}
+
+export function formatLineColor(line: string): string {
+  return lookup(line).badge;
+}
+
+export function getLineHex(line: string): string {
+  return lookup(line).hex;
 }
