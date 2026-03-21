@@ -46,8 +46,9 @@ export const findMeetupInfo = async (
 export const fetchRouteInfo = async (
   source: string,
   destination: string,
+  optimize: "fastest" | "fewest_interchanges" = "fastest",
 ): Promise<RouteInfo> => {
-  const res = await fetch(`${API_URL}/route`, {
+  const res = await fetch(`${API_URL}/route?optimize=${optimize}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ source, destination }),

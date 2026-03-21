@@ -107,6 +107,42 @@ class AlgorithmService:
             "interchanges": interchanges,
         }
 
+    def get_route_details_least_interchanges(self, source: str, destination: str) -> Dict[str, Any]:
+        def interchange_biased_weight(u, v, data):
+            if data.get("type") == "interchange":
+                return 10_000 + data["weight"]
+            return data["weight"]
+
+        path = nx.dijkstra_path(
+            self.graph, source, destination, weight=interchange_biased_weight
+        )
+
+        stations = len(path)
+        interchanges = sum(
+            1
+            for i in range(len(path) - 1)
+            if self.graph[path[i]][path[i + 1]]["type"] == "interchange"
+        )
+        distance = sum(
+            self.graph[path[i]][path[i + 1]].get("distance", 0)
+            for i in range(len(path) - 1)
+            if self.graph[path[i]][path[i + 1]]["type"] == "travel"
+        )
+
+        time = self._predict_time(distance, stations, interchanges)
+
+        formatted_path = []
+        for node in path:
+            name, line = node.rsplit(" (", 1)
+            formatted_path.append({"name": name, "line": line.strip(")")})
+
+        return {
+            "path": formatted_path,
+            "total_time": round(time, 1),
+            "fare": FareService.calculate_fare(path, self.graph),
+            "interchanges": interchanges,
+        }
+
     def find_best_midpoint(self, start_stations: List[str]) -> Dict[str, Any]:
         resolved_start_nodes = [self._resolve_station_name(s) for s in start_stations]
         valid_nodes = []

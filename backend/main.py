@@ -67,10 +67,12 @@ def find_midpoint(req: MeetRequest):
 
 
 @app.post("/route", response_model=RouteResponse)
-def get_route(req: RouteRequest):
+def get_route(req: RouteRequest, optimize: str = Query("fastest", pattern="^(fastest|fewest_interchanges)$")):
     try:
         src_node = algo_service._resolve_station_name(req.source)
         dest_node = algo_service._resolve_station_name(req.destination)
+        if optimize == "fewest_interchanges":
+            return algo_service.get_route_details_least_interchanges(src_node, dest_node)
         return algo_service.get_route_details(src_node, dest_node)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
