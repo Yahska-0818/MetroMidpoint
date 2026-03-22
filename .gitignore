@@ -1,8 +1,6 @@
 /metro_path_finder_home.png
 /backend/dist
 /backend/.coverage
-/backend/tests
-/backend/tests
 /frontend/coverage
 /frontend/playwright-report
 /frontend/test-results
