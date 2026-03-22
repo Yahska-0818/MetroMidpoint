@@ -86,5 +86,8 @@ if os.path.isdir("dist"):
     @app.get("/{full_path:path}")
     async def serve_frontend(full_path: str):
         if full_path != "" and os.path.exists(f"dist/{full_path}"):
-            return FileResponse(f"dist/{full_path}")
+            response = FileResponse(f"dist/{full_path}")
+            if full_path.startswith("assets/"):
+                response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
+            return response
         return FileResponse("dist/index.html")
