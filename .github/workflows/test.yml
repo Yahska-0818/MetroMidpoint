@@ -1,5 +1,4 @@
 name: Run Tests
-
 on:
   push:
     branches: [ "main" ]
@@ -8,11 +7,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: backend
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -22,11 +16,34 @@ jobs:
       with:
         python-version: "3.14.3"
 
-    - name: Install dependencies
+    - name: Install backend dependencies
+      working-directory: backend
       run: |
         pip install -r requirements.txt
         pip install httpx
 
-    - name: Run tests
+    - name: Run backend tests
+      working-directory: backend
+      run: pytest
+
+    - name: Set up Bun
+      uses: oven-sh/setup-bun@v1
+
+    - name: Install frontend dependencies
+      working-directory: frontend
+      run: bun install
+
+    - name: Run vitest
+      working-directory: frontend
+      run: bun vitest run
+
+    - name: Install Playwright Browsers
+      working-directory: frontend
+      run: bun x playwright install --with-deps
+
+    - name: Run Playwright tests
+      working-directory: frontend
       run: |
-        pytest
+        cd ../backend && uvicorn main:app --host 0.0.0.0 --port 8000 &
+        sleep 5
+        bun x playwright test
