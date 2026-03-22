@@ -24,9 +24,7 @@ jobs:
 
     - name: Run backend tests
       working-directory: backend
-      run: pytest tests
-      env:
-        PYTHONPATH: .
+      run: pytest
 
     - name: Set up Bun
       uses: oven-sh/setup-bun@v1
