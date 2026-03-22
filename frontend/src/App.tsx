@@ -79,7 +79,7 @@ export default function App() {
 		: "bg-gradient-to-br from-sky-100 via-indigo-50 to-violet-100";
 
 	const glassCard =
-		"relative bg-white/60 dark:bg-white/[0.05] backdrop-blur-3xl border border-white/80 dark:border-white/[0.1] shadow-[0_16px_64px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_16px_64px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.08)] rounded-3xl";
+		"relative bg-zinc-100/80 dark:bg-white/[0.08] backdrop-blur-3xl border border-zinc-300/70 dark:border-white/[0.12] shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.12)] rounded-3xl";
 
 	if (fetchedStations.isPending) {
 		return (
@@ -142,7 +142,7 @@ export default function App() {
 					<motion.button
 						whileHover={{ scale: 1.06 }}
 						whileTap={{ scale: 0.92 }}
-						className="p-2.5 rounded-2xl cursor-pointer bg-zinc-200/60 dark:bg-white/[0.07] border border-zinc-300/60 dark:border-white/10 text-zinc-600 dark:text-white/70 hover:bg-zinc-300/60 dark:hover:bg-white/[0.12] backdrop-blur-sm transition-colors"
+						className="p-2.5 rounded-2xl cursor-pointer bg-zinc-100/80 dark:bg-white/[0.08] border border-zinc-300/70 dark:border-white/[0.12] text-zinc-600 dark:text-white/70 hover:bg-zinc-200/80 dark:hover:bg-white/[0.14] backdrop-blur-3xl transition-colors shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]"
 						onClick={() => {
 							setDarkMode(!darkMode);
 							trigger([{ duration: 40 }], { intensity: 0.4 });

@@ -6,10 +6,7 @@ from typing import Dict, Tuple, Optional
 class GTFSParser:
     @staticmethod
     def compute_edge_weights_from_gtfs(gtfs_path: str) -> Dict[Tuple[str, str], float]:
-        """
-        Parses GTFS files to calculate average travel times between stations.
-        Expects a directory containing stops.txt, stop_times.txt, etc.
-        """
+
         if not os.path.exists(gtfs_path):
             return {}
 

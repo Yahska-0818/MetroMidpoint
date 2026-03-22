@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { VitePWA } from "vite-plugin-pwa";
@@ -61,6 +61,22 @@ export default defineConfig({
         drop_console: true,
         drop_debugger: true,
       },
+    },
+  },
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: ["./src/setupTests.ts"],
+    include: ["src/**/*.{test,spec}.{ts,tsx}"],
+    coverage: {
+      provider: "v8",
+      exclude: [
+        "src/main.tsx",
+        "src/vite-env.d.ts",
+        "**/*.test.tsx",
+        "**/*.test.ts",
+        "**/*.spec.ts",
+      ],
     },
   },
 });

@@ -59,7 +59,7 @@ export default function RouteDisplay({ result }: { result: ResultType }) {
 				<motion.button
 					whileHover={{ scale: 1.03 }}
 					whileTap={{ scale: 0.96 }}
-					className="px-5 py-2.5 rounded-2xl bg-zinc-200/70 dark:bg-white/[0.07] text-zinc-700 dark:text-white/70 font-semibold text-sm hover:bg-zinc-300/70 dark:hover:bg-white/[0.12] transition-colors cursor-pointer border border-zinc-300/60 dark:border-white/[0.12] backdrop-blur-sm"
+					className="px-5 py-2.5 rounded-2xl bg-zinc-100/80 dark:bg-white/[0.08] text-zinc-700 dark:text-white/70 font-semibold text-sm hover:bg-zinc-200/80 dark:hover:bg-white/[0.14] transition-colors cursor-pointer border border-zinc-300/70 dark:border-white/[0.12] backdrop-blur-3xl shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]"
 					onClick={() => {
 						navigator.clipboard.writeText(window.location.href);
 						setCopied(true);
@@ -71,7 +71,7 @@ export default function RouteDisplay({ result }: { result: ResultType }) {
 				</motion.button>
 			</div>
 
-			<div className="bg-zinc-100/60 dark:bg-white/[0.04] backdrop-blur-sm p-4 sm:p-5 rounded-2xl border border-zinc-200/60 dark:border-white/[0.08] max-h-[600px] overflow-y-auto">
+			<div className="bg-zinc-100/80 dark:bg-white/[0.08] backdrop-blur-3xl p-4 sm:p-5 rounded-2xl border border-zinc-300/70 dark:border-white/[0.12] shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] max-h-[600px] overflow-y-auto">
 				{!result.routes || result.routes.length === 0 ? (
 					<div className="text-center text-zinc-400 dark:text-white/30 font-medium py-4">
 						Optimal route not available for this combination.

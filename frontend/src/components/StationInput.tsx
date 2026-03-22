@@ -15,10 +15,10 @@ type Props = {
 };
 
 const glassInput =
-	"w-full py-3 px-4 bg-white/70 dark:bg-white/[0.05] text-zinc-900 dark:text-white rounded-2xl border border-zinc-200/80 dark:border-white/10 focus:bg-white/90 dark:focus:bg-white/[0.09] focus:border-blue-300 dark:focus:border-white/25 focus:ring-0 outline-none transition-all font-medium text-[15px] placeholder:text-zinc-400 dark:placeholder:text-white/25 backdrop-blur-sm";
+	"w-full py-3 px-4 bg-zinc-100/80 dark:bg-white/[0.08] text-zinc-900 dark:text-white rounded-2xl border border-zinc-300/70 dark:border-white/[0.12] focus:bg-white dark:focus:bg-white/[0.12] focus:border-zinc-400 dark:focus:border-white/20 focus:ring-0 outline-none transition-all font-medium text-[15px] placeholder:text-zinc-400 dark:placeholder:text-white/25 backdrop-blur-3xl shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]";
 
 const glassBtn =
-	"flex-1 py-2.5 px-4 bg-zinc-200/60 dark:bg-white/[0.05] text-zinc-700 dark:text-white/80 rounded-2xl font-semibold hover:bg-zinc-300/60 dark:hover:bg-white/[0.10] transition-colors cursor-pointer flex items-center justify-center gap-2 text-sm border border-zinc-300/60 dark:border-white/10 backdrop-blur-sm";
+	"flex-1 py-2.5 px-4 bg-zinc-100/80 dark:bg-white/[0.08] text-zinc-700 dark:text-white/80 rounded-2xl font-semibold hover:bg-zinc-200/80 dark:hover:bg-white/[0.14] transition-colors cursor-pointer flex items-center justify-center gap-2 text-sm border border-zinc-300/70 dark:border-white/[0.12] backdrop-blur-3xl shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]";
 
 export default function StationInput({
 	inputs,
@@ -109,7 +109,7 @@ export default function StationInput({
 												onMouseDown={(e) => e.preventDefault()}
 												onClick={handleNearestStation}
 												disabled={geoLoading}
-												className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 px-2.5 py-1 bg-blue-50/90 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400 text-[11px] font-semibold rounded-xl border border-blue-200/70 dark:border-blue-400/20 backdrop-blur-sm hover:bg-blue-100/90 dark:hover:bg-blue-500/25 transition-colors cursor-pointer disabled:opacity-60 whitespace-nowrap"
+												className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 px-2.5 py-1 bg-blue-100/80 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400 text-[11px] font-semibold rounded-xl border border-blue-300/70 dark:border-blue-400/20 backdrop-blur-3xl hover:bg-blue-200/80 dark:hover:bg-blue-500/25 transition-colors cursor-pointer disabled:opacity-60 whitespace-nowrap shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
 											>
 												{geoLoading ? (
 													<div className="w-3 h-3 border border-blue-400/40 border-t-blue-500 rounded-full animate-spin" />
@@ -200,7 +200,7 @@ export default function StationInput({
 					trigger([{ duration: 15 }], { intensity: 0.4 });
 				}}
 				disabled={loading}
-				className="w-full py-3.5 bg-blue-500 hover:bg-blue-400 disabled:bg-blue-300 dark:disabled:bg-blue-500/30 text-white rounded-2xl font-bold text-[15px] transition-all shadow-[0_4px_20px_rgba(59,130,246,0.35)] dark:shadow-[0_0_24px_rgba(59,130,246,0.3)] border border-blue-400/30 cursor-pointer flex items-center justify-center gap-2"
+				className="w-full py-3.5 bg-blue-500/90 hover:bg-blue-500 disabled:bg-blue-300 dark:disabled:bg-blue-500/30 text-white rounded-2xl font-bold text-[15px] transition-all shadow-[0_8px_32px_rgba(59,130,246,0.25),inset_0_1px_0_rgba(255,255,255,0.3)] dark:shadow-[0_8px_32px_rgba(59,130,246,0.2),inset_0_1px_0_rgba(255,255,255,0.15)] border border-blue-400/50 dark:border-blue-400/30 cursor-pointer flex items-center justify-center gap-2 backdrop-blur-3xl"
 			>
 				{loading ? (
 					<>

@@ -16,3 +16,17 @@ backend/feature_names.pkl
 backend/station_code_builder.py
 backend/station_codes.json
 backend/train_model.py
+backend/tests/
+backend/.pytest_cache/
+frontend/src/__tests__/
+frontend/src/components/__tests__/
+frontend/e2e/
+frontend/playwright-report/
+frontend/test-results/
+frontend/playwright.config.ts
+frontend/src/setupTests.ts
+**/*.test.tsx
+**/*.test.ts
+**/*.spec.ts
+frontend/coverage/
+backend/.ruff_cache/
