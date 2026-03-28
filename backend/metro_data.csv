@@ -14,7 +14,7 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 13,Tikri Border,20.2,Green line,2018-06-24,Elevated,28.6880254,76.9640828
 14,Jangpura,12.9,Voilet line,2010-03-10,Underground,28.5843,77.23766
 15,Major Mohit Sharma,5.7,Red line,2019-08-03,Elevated,28.6776112,77.3581426
-16,Majlis Park,0.0,Pink line,2018-03-14,Elevated,28.7244312,77.181964
+16,Majlis Park [Conn:Magenta],0.0,Pink line,2018-03-14,Elevated,28.7244312,77.181964
 17,Bhikaji Cama Place,22.6,Pink line,2018-06-08,Underground,28.56790025,77.18701648
 18,Mundka Industrial Area (MIA),15.0,Green line,2018-06-24,Elevated,28.6834491,77.0171333
 19,Belvedere Towers,8.0,Rapid Metro,2013-11-14,Elevated,28.4936,77.0935
@@ -97,7 +97,7 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 96,Sector 55-66,0.0,Rapid Metro,2017-03-31,Elevated,28.4936,77.0935
 97,Terminal 1-IGI Airport,8.9,Magenta line,2018-05-29,Underground,28.5771509,77.1111533
 98,Brigadier Hoshiar Singh,24.8,Green line,2018-06-24,Elevated,28.6974603,76.9192027
-99,Haiderpur Badli Mor,2.1,Yellow line,2015-10-11,Elevated,28.7301214,77.1494029
+99,Haiderpur Badli Mor [Conn:Magenta],2.1,Yellow line,2015-10-11,Elevated,28.7301214,77.1494029
 100,Sector 142,10.5,Aqua line,2019-01-25,Elevated,28.4758348,77.55447875
 101,Uttam Nagar East,13.4,Blue line,2005-12-30,Elevated,28.62177,77.05585
 102,Delhi Cantt,16.1,Pink line,2018-03-14,Elevated,28.5938331,77.13497891
@@ -286,3 +286,8 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 285,Mayur Vihar Extention,39.5,Blue line,2009-12-11,Elevated,28.59415815,77.29458935
 286,Deepali Chowk,0.0,Magenta line branch,2026-03-08,Elevated,28.698045,77.1175823
 287,Madhuban Chowk [Conn: Red],1.26,Magenta line branch,2026-03-08,Elevated,28.703532,77.1293953
+288,Uttari Pitampura-Prashant Vihar,2.71, Magenta line branch,2026-03-08,Elevated, 28.7129769, 77.1386619
+289,North Pitampura,4.07,Magenta line branch,2026-03-08,Elevated,28.72474,77.1417923
+290,Haiderpur Badli Mor [Conn:Yellow],5.0,Magenta line branch,2026-03-08,Elevated,28.7300193,77.1489978
+291,Bhalaswa,7.1,Magenta line branch,2026-03-08,Elevated,28.736942,77.1677495
+292,Majlis Park [Conn:Pink],9.38,Magenta line branch,2026-03-08,Elevated,28.7242222,77.1816873
