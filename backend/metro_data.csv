@@ -1,35 +1,35 @@
-Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layout,Latitude,Longitude
+Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layout,Latitude,Longitude,Distance To Next
 1,Jhilmil,10.3,Red line,2008-04-06,Elevated,28.67579,77.31239
-2,Welcome [Conn: Red],46.8,Pink line,2018-10-31,Elevated,28.6718,77.27756
+2,Welcome [Conn: Red],46.8,Pink line,2018-10-31,Elevated,28.6718,77.27756,1.2
 3,Phase 3,10.0,Rapid Metro,2013-11-14,Elevated,28.4936,77.0935
 4,Okhla NSIC,23.8,Magenta line,2017-12-25,Elevated,28.5544828,77.2648487
 5,Dwarka Mor,10.2,Blue line,2005-12-30,Elevated,28.61932,77.03326
-6,Dilli Haat-INA [Conn: Yellow],24.9,Pink line,2018-06-08,Underground,28.57440755,77.21024148
+6,Dilli Haat-INA [Conn: Yellow],24.9,Pink line,2018-06-08,Underground,28.57440755,77.21024148,1.2
 7,Sector 143,11.5,Aqua line,2019-01-25,Elevated,28.50266325,77.42625566
 8,Moolchand,15.1,Voilet line,2010-03-10,Elevated,28.56417,77.23423
 9,Chawri Bazar,15.3,Yellow line,2005-03-07,Underground,28.64931,77.22637
-10,Mayapuri,12.8,Pink line,2018-03-14,Elevated,28.6371795,77.1297333
+10,Mayapuri,12.8,Pink line,2018-03-14,Elevated,28.6371795,77.1297333,1.5
 11,Central Secretariat [Conn: Violet],19.4,Yellow line,2005-03-07,Underground,28.61474,77.21191
 12,Sector 146,15.8,Aqua line,2019-01-25,Elevated,28.4082289,76.963024
 13,Tikri Border,20.2,Green line,2018-06-24,Elevated,28.6880254,76.9640828
 14,Jangpura,12.9,Voilet line,2010-03-10,Underground,28.5843,77.23766
 15,Major Mohit Sharma,5.7,Red line,2019-08-03,Elevated,28.6776112,77.3581426
-16,Majlis Park [Conn:Magenta],0.0,Pink line,2018-03-14,Elevated,28.7244312,77.181964
-17,Bhikaji Cama Place,22.6,Pink line,2018-06-08,Underground,28.56790025,77.18701648
+16,Majlis Park [Conn:Magenta],0.0,Pink line,2018-03-14,Elevated,28.7244312,77.181964,1.6
+17,Bhikaji Cama Place,22.6,Pink line,2018-06-08,Underground,28.56790025,77.18701648,1.2
 18,Mundka Industrial Area (MIA),15.0,Green line,2018-06-24,Elevated,28.6834491,77.0171333
 19,Belvedere Towers,8.0,Rapid Metro,2013-11-14,Elevated,28.4936,77.0935
 20,Adarsh Nagar,4.7,Yellow line,2009-04-02,Elevated,28.71642,77.17046
 21,Noida City Center,47.2,Blue line,2009-12-11,Elevated,28.57466,77.35608
 22,Arjan Garh,38.6,Yellow line,2010-06-21,Elevated,28.48076,77.12583
 23,Dwarka Sector-9,2.7,Blue line,2006-01-04,Elevated,28.57487,77.06454
-24,Azadpur [Conn: Yellow],2.1,Pink line,2018-03-14,Underground,28.7076568,77.1755473
+24,Azadpur [Conn: Yellow],2.1,Pink line,2018-03-14,Underground,28.7076568,77.1755473,1.6
 25,Qutab Minar,31.7,Yellow line,2010-06-21,Elevated,28.51302,77.18648
 26,Ramakrishna Ashram Marg,28.9,Blue line,2005-12-30,Elevated,28.63923,77.2084
 27,Uttam Nagar West,12.4,Blue line,2005-12-30,Elevated,28.62481,77.0653
 28,Dwarka [Conn: Blue],0.0,Gray line,2019-04-10,Elevated,28.5771915,77.0442935
 29,Delta 1,24.9,Aqua line,2019-01-25,Elevated,28.474388,77.50399
 30,Golf Course,45.9,Blue line,2009-12-11,Elevated,28.56714,77.34598
-31,Shiv Vihar,52.6,Pink line,2018-10-31,Elevated,28.61753755,77.03543017
+31,Shiv Vihar,3.5,Pink line branch,2018-10-31,Elevated,28.61753755,77.03543017
 32,Kashmere Gate [Conn: Yellow],0.0,Voilet line,2017-05-28,Underground,28.6675,77.22817
 33,JLN Stadium,12.0,Voilet line,2010-03-10,Underground,28.5904,77.23326
 34,Patel Chowk,18.5,Yellow line,2005-03-07,Underground,28.62295,77.21389
@@ -45,8 +45,8 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 44,Paschim Vihar West,6.7,Green line,2010-02-04,Elevated,28.67855,77.10227
 45,Dwarka Sector-14,7.6,Blue line,2006-01-04,Elevated,28.60223,77.02588
 46,IIT,16.3,Magenta line,2018-05-29,Underground,28.544788,77.18987
-47,Rajouri Garden [Conn: Blue],11.3,Pink line,2018-03-14,Elevated,28.6421518,77.11606038
-48,Karkarduma Court,44.0,Pink line,2018-10-31,Elevated,28.6536001,77.2957877
+47,Rajouri Garden [Conn: Blue],11.3,Pink line,2018-03-14,Elevated,28.6421518,77.11606038,1.5
+48,Karkarduma Court,44.0,Pink line,2018-10-31,Elevated,28.6536001,77.2957877,0.7
 49,Rajendra Place,25.7,Blue line,2005-12-30,Elevated,28.6425,77.17815
 50,Hauz Khas [Conn: Yellow],17.5,Magenta line,2018-05-29,Underground,28.5442564,77.2067072
 51,Sector 137,8.9,Aqua line,2019-01-25,Elevated,28.5090789,77.409015
@@ -78,7 +78,7 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 77,Janpath,7.2,Voilet line,2014-06-26,Underground,28.6088598,77.2181649
 78,Sector-52 Noida [Conn: Aqua],49.3,Blue line,2019-09-03,Elevated,28.4808629,77.0848883
 79,Munirka,14.0,Magenta line,2018-05-29,Underground,28.554886,77.1710841
-80,Sarai Kale Khan-Nizamuddin,32.2,Pink line,2018-12-31,Underground,28.5887494,77.2572494
+80,Sarai Kale Khan-Nizamuddin,32.2,Pink line,2018-12-31,Underground,28.5887494,77.2572494,3.6
 81,Pratap Nagar,21.4,Red line,2003-03-10,Elevated,28.66662,77.19882
 82,Satguru Ram Singh Marg,1.1,Green line branch,2011-08-24,Elevated,28.66199,77.15748
 83,Botanical Garden [Conn: Blue],33.1,Magenta line,2017-12-25,Elevated,28.5638964,77.334332
@@ -88,9 +88,9 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 87,NHPC Chowk,30.4,Voilet line,2015-06-09,Elevated,28.45769,77.2219388
 88,Saket,30.0,Yellow line,2010-03-09,Underground,28.5206,77.20138
 89,Sector-61 Noida,50.5,Blue line,2019-09-03,Elevated,28.4808629,77.0848883
-90,Shakurpur,6.3,Pink line,2018-03-14,Elevated,28.6857668,77.1496094
+90,Shakurpur,6.3,Pink line,2018-03-14,Elevated,28.6857668,77.1496094,1.4
 91,Vidhan Sabha,10.8,Yellow line,2004-12-20,Underground,28.68802,77.2214
-92,Sarojini Nagar,23.8,Pink line,2018-06-08,Underground,28.5741575,77.1953703
+92,Sarojini Nagar,23.8,Pink line,2018-06-08,Underground,28.5741575,77.1953703,1.1
 93,Supreme Court (Pragati Maidan),32.6,Blue line,2006-11-11,Elevated,28.62342,77.2425
 94,Chhattarpur,33.0,Yellow line,2010-08-26,Elevated,28.50671,77.17484
 95,Delhi Aerocity,14.5,Orange line,2011-08-15,Underground,28.54881,77.12092
@@ -100,9 +100,9 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 99,Haiderpur Badli Mor [Conn:Magenta],2.1,Yellow line,2015-10-11,Elevated,28.7301214,77.1494029
 100,Sector 142,10.5,Aqua line,2019-01-25,Elevated,28.4758348,77.55447875
 101,Uttam Nagar East,13.4,Blue line,2005-12-30,Elevated,28.62177,77.05585
-102,Delhi Cantt,16.1,Pink line,2018-03-14,Elevated,28.5938331,77.13497891
+102,Delhi Cantt,16.1,Pink line,2018-03-14,Elevated,28.5938331,77.13497891,3.6
 103,Sector 147,17.3,Aqua line,2019-01-25,Elevated,28.4089049,76.9155232
-104,Maujpur-Babarpur [Conn:Pink],49.1,Pink line,2018-10-31,Elevated,28.69197845,77.27962397
+104,Maujpur-Babarpur [Conn:Pink],49.1,Pink line,2018-10-31,Elevated,28.69197845,77.27962397,1.81
 105,Karkarduma [Conn: Pink],4.6,Blue line branch,2010-06-01,Elevated,28.64849,77.30558
 106,Central Secretariat [Conn: Yellow],8.5,Voilet line,2010-03-10,Underground,28.61474,77.21191
 107,Laxmi Nagar,1.3,Blue line branch,2010-06-01,Elevated,28.63064,77.27749
@@ -128,30 +128,30 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 127,Dwarka [Conn: Gray],9.1,Blue line,2005-12-30,Elevated,28.61564,77.02197
 128,Sarai,28.8,Voilet line,2015-06-09,Elevated,28.6517178,77.2219388
 129,Samaypur Badli (First Station),0.0,Yellow line,2015-10-11,Elevated,28.7446158,77.1382654
-130,Ashram,30.3,Pink line,2018-12-31,Underground,28.5724231,77.2585979
+130,Ashram,30.3,Pink line,2018-12-31,Underground,28.5724231,77.2585979,1.9
 131,Jasola Vihar Shaheen Bagh,28.4,Magenta line,2017-12-25,Elevated,28.5458279,77.2966578
 132,Botanical Garden [Conn: Magenta],44.7,Blue line,2009-12-11,Elevated,28.56409,77.3342
 133,Kalkaji Mandir [Conn: Magenta],18.2,Voilet line,2010-03-10,Elevated,28.55007,77.25835
 134,Mewala Maharajpur,31.3,Voilet line,2015-06-09,Elevated,28.4418747,77.3023001
-135,Netaji Subash Place [Conn: Red],5.1,Pink line,2018-03-14,Underground,28.69605175,77.15264042
-136,Krishna Nagar,44.7,Pink line,2018-10-31,Elevated,28.6578461,77.2901853
+135,Netaji Subash Place [Conn: Red],5.1,Pink line,2018-03-14,Underground,28.69605175,77.15264042,1.2
+136,Krishna Nagar,44.7,Pink line,2018-10-31,Elevated,28.6578461,77.2901853,2.1
 137,Janakpuri West [Conn: Blue],0.0,Magenta line,2018-05-29,Underground,28.6289502,77.0779235
 138,Millennium City Centre Gurugram,45.7,Yellow line,2010-06-21,Elevated,28.45927,77.07268
-139,Sir M.Vishweshwaraiah Moti Bagh,21.0,Pink line,2018-06-08,Elevated,28.5785326,77.175741
+139,Sir M.Vishweshwaraiah Moti Bagh,21.0,Pink line,2018-06-08,Elevated,28.5785326,77.175741,1.6
 140,Ramesh Nagar,20.6,Blue line,2005-12-30,Elevated,28.65274,77.13164
 141,Panchsheel Park,19.0,Magenta line,2018-05-29,Underground,28.5433525,77.2140757
 142,Welcome [Conn: Pink],13.7,Red line,2002-12-25,Elevated,28.6718,77.27756
 143,Model Town,7.6,Yellow line,2009-04-02,Elevated,28.70278,77.19363
 144,Rithala (last station),32.7,Red line,2004-03-31,Elevated,28.72072,77.10713
 145,Tikri Kalan,18.9,Green line,2018-06-24,Elevated,28.6868661,76.9772069
-146,Punjabi Bagh West,7.7,Pink line,2018-03-14,Elevated,28.6703201,77.1420875
+146,Punjabi Bagh West,7.7,Pink line,2018-03-14,Elevated,28.6703201,77.1420875,2.5
 147,Sector 54 Chowk,1.1,Rapid Metro,2017-03-31,Elevated,28.4936,77.0935
 148,AIIMS,24.6,Yellow line,2010-02-09,Underground,28.56892,77.20771
 149,Barakhamba Road,30.8,Blue line,2005-12-30,Underground,28.63003,77.22436
 150,Sector-28,32.5,Voilet line,2015-06-09,Elevated,28.54525655,77.03257609
 151,Sadar Bazaar Cantonment,7.2,Magenta line,2018-05-29,Elevated,28.5771509,77.1111533
 152,Chandni Chowk,14.3,Yellow line,2005-03-07,Underground,28.65785,77.23014
-153,Shree Ram Mandir Mayur Vihar,36.6,Pink line,2018-10-31,Elevated,28.6058619,77.2987023
+153,Shree Ram Mandir Mayur Vihar,36.6,Pink line,2018-10-31,Elevated,28.6058619,77.2987023,1.3
 154,Dabri Mor - Janakpuri South,2.0,Magenta line,2018-05-29,Underground,28.6157555,77.085178
 155,Nangloi,10.3,Green line,2010-02-04,Elevated,28.68231,77.06471
 156,Rohini East,30.4,Red line,2004-03-31,Elevated,28.7076,77.12591
@@ -159,10 +159,10 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 158,Ghevra Metro station,17.1,Green line,2018-06-24,Elevated,28.6852384,76.9961591
 159,Jasola-Apollo,20.9,Voilet line,2010-03-10,Elevated,28.53824,77.28319
 160,Shaheed Sthal (First Station),0.0,Red line,2019-08-03,Elevated,28.6706109,77.4155822
-161,Johri Enclave,51.7,Pink line,2018-10-31,Elevated,28.71288,77.2861253
+161,Johri Enclave,2.6,Pink line branch,2018-10-31,Elevated,28.71288,77.2861253
 162,Akshardham,36.5,Blue line,2009-12-11,Elevated,28.61806,77.27869
 163,Sector 145,14.1,Aqua line,2019-01-25,Elevated,28.4089049,76.9155232
-164,ESI-BASAIDARAPUR,10.2,Pink line,2018-03-14,Elevated,28.6580737,77.1272678
+164,ESI-BASAIDARAPUR,10.2,Pink line,2018-03-14,Elevated,28.6580737,77.1272678,1.1
 165,Indraprastha,33.4,Blue line,2006-11-11,Elevated,28.62051,77.24993
 166,Guru Teg Bahadur Nagar,9.0,Yellow line,2009-04-02,Underground,28.69785,77.20722
 167,Guru Dronacharya,40.9,Yellow line,2010-06-21,Elevated,28.48203,77.10232
@@ -172,7 +172,7 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 171,Okhla Vihar,26.6,Magenta line,2017-12-25,Elevated,28.5613002,77.2919304
 172,Shahdara,12.5,Red line,2002-12-24,Elevated,28.67345,77.28962
 173,Dhaula Kuan [Conn: Pink],8.3,Orange line,2011-08-15,Elevated,28.59178,77.16155
-174,Jafrabad,48.0,Pink line,2018-10-31,Elevated,28.6826822,77.2748055
+174,Jafrabad,48.0,Pink line,2018-10-31,Elevated,28.6826822,77.2748055,1.1
 175,Rohini West,31.7,Red line,2004-03-31,Elevated,28.71483,77.11467
 176,Palam,4.6,Magenta line,2018-05-29,Underground,28.5918933,77.0828242
 177,Shyam park,4.5,Red line,2019-08-03,Elevated,28.6988072,28.6988072
@@ -181,26 +181,26 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 180,Badarpur Border,26.3,Voilet line,2011-01-14,Elevated,28.49334,77.30307
 181,ITO,5.0,Voilet line,2015-08-06,Underground,28.6305091,77.2414363
 182,Badkal Mor,34.2,Voilet line,2015-06-09,Elevated,28.422814,77.310278
-183,Naraina Vihar,14.3,Pink line,2018-03-14,Underground,28.6273375,77.1403175
+183,Naraina Vihar,14.3,Pink line,2018-03-14,Underground,28.6273375,77.1403175,1.8
 184,Rajdhani Park,12.4,Green line,2010-02-04,Elevated,28.68221,77.04381
 185,Sikanderpur [Conn: Rapid],41.9,Yellow line,2010-06-21,Elevated,28.48182,77.09235
 186,Maharaja Surajmal Stadium,9.5,Green line,2010-02-04,Elevated,28.6818,77.07385
 187,Punjabi Bagh,2.3,Green line,2010-02-04,Elevated,28.67289,77.14614
 188,Depot Station,27.1,Aqua line,2019-01-25,Elevated,28.474388,77.50399
-189,Trilokpuri-Sanjay Lake,37.9,Pink line,2018-10-31,Elevated,28.613453,77.3088549
+189,Trilokpuri-Sanjay Lake,37.9,Pink line,2018-10-31,Elevated,28.613453,77.3088549,0.8
 190,Dwarka Sector-11,4.8,Blue line,2006-01-04,Elevated,28.58657,77.04929
-191,Anand Vihar ISBT [Conn: Blue],41.9,Pink line,2018-10-31,Elevated,28.6467533,77.3180037
+191,Anand Vihar ISBT [Conn: Blue],41.9,Pink line,2018-10-31,Elevated,28.6467533,77.3180037,1.0
 192,IFFCO Chowk,44.2,Yellow line,2010-06-21,Elevated,28.47209,77.07175
 193,Rajiv Chowk [Conn: Blue],17.2,Yellow line,2005-03-07,Underground,28.63282,77.21826
 194,Greater Kailash,20.8,Magenta line,2018-05-29,Underground,28.5418777,77.2384553
 195,Moulsari Avenue,9.2,Rapid Metro,2013-11-14,Elevated,28.4936,77.0935
 196,Kashmere Gate [Conn: Violet],13.2,Yellow line,2004-12-20,Underground,28.6675,77.22817
 197,Ashok Park Main,0.0,Green line branch,2010-02-04,Elevated,28.67292,77.1442
-198,South Extension,26.1,Pink line,2018-06-08,Underground,28.6517178,77.2219388
+198,South Extension,26.1,Pink line,2018-06-08,Underground,28.6517178,77.2219388,1.6
 199,Phase 2,7.3,Rapid Metro,2013-11-14,Elevated,28.4936,77.0935
 200,Netaji Subash Place [Conn: Pink],27.4,Red line,2018-03-14,Elevated,28.69591,77.15226
-201,Mayur Vihar -1 [Conn: Blue],35.8,Pink line,2018-12-31,Elevated,28.603133,77.2925892
-202,Lajpat Nagar [Conn: Violet],27.7,Pink line,2018-06-08,Underground,28.57079,77.23653
+201,Mayur Vihar -1 [Conn: Blue],35.8,Pink line,2018-12-31,Elevated,28.603133,77.2925892,0.8
+202,Lajpat Nagar [Conn: Violet],27.7,Pink line,2018-06-08,Underground,28.57079,77.23653,1.4
 203,Tilak Nagar,16.7,Blue line,2005-12-30,Elevated,28.63657,77.09648
 204,Civil Lines,12.1,Yellow line,2004-12-20,Underground,28.6768508,77.2250299
 205,Sukhdev Vihar,24.9,Magenta line,2017-12-25,Elevated,28.5597477,77.2749004
@@ -208,20 +208,20 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 207,Shastri Park,16.4,Red line,2002-12-25,Elevated,28.668,77.24994
 208,Udyog Bhawan,19.7,Yellow line,2010-03-09,Underground,28.61166,77.21198
 209,Rajiv Chowk [Conn: Yellow],30.1,Blue line,2005-12-30,Underground,28.63282,77.21826
-210,Mandawali - West Vinod Nagar,39.3,Pink line,2018-10-31,Elevated,28.6249712,77.3044906
+210,Mandawali - West Vinod Nagar,39.3,Pink line,2018-10-31,Elevated,28.6249712,77.3044906,1.0
 211,NSEZ,6.3,Aqua line,2019-01-25,Elevated,28.535517,77.391029
 212,R.K.Puram,15.4,Magenta line,2018-05-29,Underground,28.5514261,77.1847012
 213,Delhi Gate,3.7,Voilet line,2017-05-28,Underground,28.6392036,77.2407823
 214,New Delhi [Conn: Orange],16.1,Yellow line,2005-03-07,Underground,28.64307,77.22144
 215,Bahdurgarh City,23.0,Green line,2018-06-24,Elevated,28.6907847,76.9354851
 216,Sant Surdas (Sihi),41.8,Voilet line,2018-11-19,Elevated,28.3546513,77.3162264
-217,Shalimar Bagh,3.7,Pink line,2018-03-14,Underground,28.71745265,77.15086655
+217,Shalimar Bagh,3.7,Pink line,2018-03-14,Underground,28.71745265,77.15086655,1.4
 218,Mohan Nagar,3.2,Red line,2019-08-03,Elevated,28.60631905,77.10608185
 219,Noida Sector 16,42.5,Blue line,2009-12-11,Elevated,28.57819,77.31757
 220,Hauz Khas [Conn: Magenta],27.4,Yellow line,2010-03-09,Underground,28.54335,77.20667
 221,Peera Garhi,7.6,Green line,2010-02-04,Elevated,28.67959,77.09261
 222,Hindon River,1.0,Red line,2019-08-03,Elevated,28.878965,77.4154832
-223,Karkarduma [Conn: Blue],42.9,Pink line,2018-10-31,Elevated,28.6491622,77.30620811
+223,Karkarduma [Conn: Blue],42.9,Pink line,2018-10-31,Elevated,28.6491622,77.30620811,1.1
 224,New Ashok Nagar,40.4,Blue line,2009-12-11,Elevated,28.58916,77.30204
 225,Jor Bagh,22.5,Yellow line,2010-03-09,Underground,28.58708,77.21209
 226,Mandi House [Conn: Blue],5.8,Voilet line,2014-06-26,Underground,28.6255556,77.234195
@@ -240,7 +240,7 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 239,Green Park,25.6,Yellow line,2010-03-09,Underground,28.55979,77.20682
 240,Patel Nagar,24.8,Blue line,2005-12-30,Elevated,28.64498,77.16929
 241,Dilshad Garden,9.4,Red line,2008-04-06,Elevated,28.67592,77.32142
-242,East Vinod Nagar-Maur Vihar -II,38.7,Pink line,2018-10-31,Elevated,28.6200437,77.3054069
+242,East Vinod Nagar-Maur Vihar -II,38.7,Pink line,2018-10-31,Elevated,28.6200437,77.3054069,0.6
 243,Seelampur,14.8,Red line,2002-12-25,Elevated,28.66989,77.2667
 244,Ghitorni,35.9,Yellow line,2010-06-21,Elevated,28.49383,77.14922
 245,Shadipur,23.5,Blue line,2005-12-30,Elevated,28.6516,77.15824
@@ -251,11 +251,11 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 250,New Delhi [Conn: Yellow],0.0,Orange line,2011-02-23,Underground,28.64307,77.22144
 251,Udyog Nagar,8.8,Green line,2010-02-04,Elevated,28.6809,77.08077
 252,Sector 101,3.4,Aqua line,2019-01-25,Elevated,28.556402,77.384798
-253,Durgabai Deshmukh South Campus [Conn: Orange],19.7,Pink line,2018-03-14,Elevated,28.5894384,77.1690817
+253,Durgabai Deshmukh South Campus [Conn: Orange],19.7,Pink line,2018-03-14,Elevated,28.5894384,77.1690817,1.3
 254,Alpha 1 ,23.4,Aqua line,2019-01-25,Elevated,28.4709,77.5127
 255,East Azad Nagar,45.7,Pink line,2018-10-31,Elevated,28.6646964,77.284881
 256,M.G. Road,43.1,Yellow line,2010-06-21,Elevated,28.47957,77.08006
-257,IP Extension,40.3,Pink line,2018-10-31,Elevated,28.6288991,77.31019788
+257,IP Extension,40.3,Pink line,2018-10-31,Elevated,28.6288991,77.31019788,1.6
 258,Malviya Nagar,29.1,Yellow line,2010-03-09,Underground,28.52798,77.20565
 259,Dilli Haat-INA [Conn: Pink],23.8,Yellow line,2010-03-09,Underground,28.57526,77.20935
 260,Govind Puri,18.9,Voilet line,2010-03-10,Elevated,28.54451,77.26401
@@ -264,8 +264,8 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 263,Lajpat Nagar [Conn: Pink],14.4,Voilet line,2010-03-10,Elevated,28.57079,77.23653
 264,Sultanpur,34.6,Yellow line,2010-06-21,Elevated,28.49927,77.16153
 265,Lok Kalyan Marg,21.3,Yellow line,2010-03-09,Underground,28.59726,77.21088
-266,Vinobapuri,29.1,Pink line,2018-12-31,Underground,28.5669763,77.2491906
-267,Gokulpuri,50.4,Pink line,2018-10-31,Elevated,28.7024752,77.2861253
+266,Vinobapuri,29.1,Pink line,2018-12-31,Underground,28.5669763,77.2491906,1.2
+267,Gokulpuri,1.3,Pink line branch,2018-10-31,Elevated,28.7024752,77.2861253
 268,Kanhaiya Nagar,25.5,Red line,2004-03-31,Elevated,28.68254,77.16459
 269,Jama Masjid,2.3,Voilet line,2017-05-28,Underground,28.65001015,77.23767617
 270,Raja Nahar Singh,43.5,Voilet line,2018-11-19,Elevated,28.3400192,77.3164281
@@ -291,4 +291,11 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 290,Haiderpur Badli Mor [Conn:Yellow],5.0,Magenta line branch,2026-03-08,Elevated,28.7300193,77.1489978
 291,Bhalaswa,7.1,Magenta line branch,2026-03-08,Elevated,28.736942,77.1677495
 292,Majlis Park [Conn:Pink],9.38,Magenta line branch,2026-03-08,Elevated,28.7242222,77.1816873
-293,Maujpur-Babarpur [Conn:Pink],49.1,Pink line branch,2018-10-31,Elevated,28.69197845,77.27962397
+293,Maujpur-Babarpur [Conn:Pink],0,Pink line branch,2018-10-31,Elevated,28.69197845,77.27962397
+294,Yamuna Vihar,50.91,Pink line,2026-03-08,Elevated,28.702311,77.2768743,1.49
+295,Bhajanpura,52.4,Pink line,2026-03-08,Elevated,28.703556,77.2617053,0.83
+296,Khajuri Khas,53.23,Pink line,2026-03-08,Elevated,28.70526,77.2534653,1.23
+297,Nanksar-Sonia Vihar,54.46,Pink line,2026-03-08,Elevated,28.708729,77.2415243,3.06
+298,Jagatpur Wazirabad,57.52,Pink line,2026-03-08,Elevated,28.721235,77.2232543,1.09
+299,Jharoda Majra,58.61,Pink line,2026-03-08,Elevated,28.724911,77.2129383,1.46
+300,Burari,60.07,Pink line,2026-03-08,Elevated,28.729858,77.1990513,2.37
