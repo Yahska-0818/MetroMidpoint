@@ -25,8 +25,12 @@ const colorMap: Record<string, { badge: string; hex: string }> = {
 		hex: "#9333ea",
 	},
 	"pink line": {
-		badge: "border-pink-500 text-white bg-pink-500",
-		hex: "#ec4899",
+		badge: "border-pink-400 text-white bg-pink-400",
+		hex: "#f472b6",
+	},
+	"pink line branch": {
+		badge: "border-pink-400 text-white bg-pink-400",
+		hex: "#f472b6",
 	},
 	"magenta line": {
 		badge: "border-fuchsia-600 text-white bg-fuchsia-600",

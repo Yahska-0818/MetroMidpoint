@@ -102,7 +102,7 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 101,Uttam Nagar East,13.4,Blue line,2005-12-30,Elevated,28.62177,77.05585
 102,Delhi Cantt,16.1,Pink line,2018-03-14,Elevated,28.5938331,77.13497891
 103,Sector 147,17.3,Aqua line,2019-01-25,Elevated,28.4089049,76.9155232
-104,Maujpur-Babarpur,49.1,Pink line,2018-10-31,Elevated,28.69197845,77.27962397
+104,Maujpur-Babarpur [Conn:Pink],49.1,Pink line,2018-10-31,Elevated,28.69197845,77.27962397
 105,Karkarduma [Conn: Pink],4.6,Blue line branch,2010-06-01,Elevated,28.64849,77.30558
 106,Central Secretariat [Conn: Yellow],8.5,Voilet line,2010-03-10,Underground,28.61474,77.21191
 107,Laxmi Nagar,1.3,Blue line branch,2010-06-01,Elevated,28.63064,77.27749
@@ -291,3 +291,4 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 290,Haiderpur Badli Mor [Conn:Yellow],5.0,Magenta line branch,2026-03-08,Elevated,28.7300193,77.1489978
 291,Bhalaswa,7.1,Magenta line branch,2026-03-08,Elevated,28.736942,77.1677495
 292,Majlis Park [Conn:Pink],9.38,Magenta line branch,2026-03-08,Elevated,28.7242222,77.1816873
+293,Maujpur-Babarpur [Conn:Pink],49.1,Pink line branch,2018-10-31,Elevated,28.69197845,77.27962397
