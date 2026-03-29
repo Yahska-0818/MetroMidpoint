@@ -169,6 +169,7 @@ if __name__ == "__main__":
     logger.setLevel(logging.INFO)
     loader = GraphLoader("metro_data.csv")
     graph = loader.build_or_load_graph()
-    df = build_dataset(graph, samples=1000)
+    samples = int(input("Enter number of samples: "))
+    df = build_dataset(graph, samples)
     df.to_csv("dmrc_training_data.csv", index=False)
     logger.info("Dataset saved to dmrc_training_data.csv")
