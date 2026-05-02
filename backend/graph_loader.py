@@ -1,9 +1,12 @@
+import hashlib
 import os
 import pickle
-import hashlib
-import pandas as pd
+
 import networkx as nx
+import pandas as pd
+
 from gtfs_parser import GTFSParser
+
 
 class GraphLoader:
     INTERCHANGE_PENALTIES = {
@@ -39,7 +42,9 @@ class GraphLoader:
                     return pickle.load(f)
 
         df = pd.read_csv(self.csv_url)
-        df["Station Name"] = df["Station Name"].str.replace(r"\s*\[.*\]", "", regex=True).str.strip()
+        df["Station Name"] = (
+            df["Station Name"].str.replace(r"\s*\[.*\]", "", regex=True).str.strip()
+        )
         df["Node Name"] = df["Station Name"] + " (" + df["Line"] + ")"
 
         G = nx.Graph()
@@ -51,9 +56,15 @@ class GraphLoader:
 
             for i in range(len(nodes) - 1):
                 u, v = nodes[i], nodes[i + 1]
-                
+
                 dist = u.get("Distance To Next")
-                physical_distance = float(dist) if pd.notna(dist) else abs(v["Distance from Start (km)"] - u["Distance from Start (km)"])
+                physical_distance = (
+                    float(dist)
+                    if pd.notna(dist)
+                    else abs(
+                        v["Distance from Start (km)"] - u["Distance from Start (km)"]
+                    )
+                )
 
                 segment_time = v.get("Segment Time (min)", 2.5)
                 pair = tuple(sorted((u["Station Name"], v["Station Name"])))
@@ -75,7 +86,9 @@ class GraphLoader:
                 physical_distance = float(wrap_dist) if pd.notna(wrap_dist) else 2.0
 
                 segment_time = 2.5
-                pair = tuple(sorted((first_node["Station Name"], last_node["Station Name"])))
+                pair = tuple(
+                    sorted((first_node["Station Name"], last_node["Station Name"]))
+                )
                 weight = gtfs_weights.get(pair, segment_time)
 
                 G.add_edge(

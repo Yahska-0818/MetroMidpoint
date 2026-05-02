@@ -1,5 +1,8 @@
-import networkx as nx
 from typing import List
+
+import networkx as nx
+
+
 class FareService:
     @staticmethod
     def calculate_fare(path: List[str], graph: nx.Graph) -> int:

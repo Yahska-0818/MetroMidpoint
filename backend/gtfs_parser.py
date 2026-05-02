@@ -1,6 +1,7 @@
-import pandas as pd
 import os
-from typing import Dict, Tuple, Optional
+from typing import Dict, Tuple
+
+import pandas as pd
 
 
 class GTFSParser:

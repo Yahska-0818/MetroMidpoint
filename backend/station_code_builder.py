@@ -1,8 +1,9 @@
-import requests
-import pandas as pd
 import json
-import time
 import re
+import time
+
+import pandas as pd
+import requests
 
 BASE_URL = "https://backend.delhimetrorail.com/api/v2/en/station_by_keyword/all"
 

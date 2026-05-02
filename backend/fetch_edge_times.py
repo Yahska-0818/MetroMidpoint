@@ -1,15 +1,22 @@
-import requests
 import json
-import time
 import logging
-import pandas as pd
+import time
 from datetime import datetime
+
+import pandas as pd
+import requests
+
 from graph_loader import GraphLoader
+
 BASE_URL = "https://backend.delhimetrorail.com/api/v2/en/station_route"
 HEADERS = {"User-Agent": "Mozilla/5.0", "Referer": "https://www.delhimetrorail.com/"}
 logging.basicConfig(level=logging.INFO, format="%(message)s")
+
+
 def fetch_time(src_code: str, dst_code: str):
-    url = f"{BASE_URL}/{src_code}/{dst_code}/least-distance/{datetime.now().isoformat()}"
+    url = (
+        f"{BASE_URL}/{src_code}/{dst_code}/least-distance/{datetime.now().isoformat()}"
+    )
     try:
         res = requests.get(url, headers=HEADERS, timeout=10)
         if res.status_code == 200:
@@ -19,6 +26,8 @@ def fetch_time(src_code: str, dst_code: str):
     except:
         pass
     return None
+
+
 def build_time_graph():
     with open("station_codes.json", "r") as f:
         codes = json.load(f)
@@ -43,5 +52,7 @@ def build_time_graph():
             edge_times.append({"u": u, "v": v, "time": 3.0})
         time.sleep(0.3)
     pd.DataFrame(edge_times).to_csv("edge_times.csv", index=False)
+
+
 if __name__ == "__main__":
     build_time_graph()
