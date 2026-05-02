@@ -48,7 +48,8 @@ export default function StationInput({
 				try {
 					const nearest = await getNearestStation(pos.coords.latitude, pos.coords.longitude);
 					handleInputChange(0, nearest);
-				} catch {
+				} catch (error) {
+					console.error(error);
 				} finally {
 					setGeoLoading(false);
 				}

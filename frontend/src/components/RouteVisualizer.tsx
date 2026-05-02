@@ -40,7 +40,8 @@ export default function RouteVisualizer({ stations }: Props) {
 				try {
 					const nearest = await getNearestStation(pos.coords.latitude, pos.coords.longitude);
 					setSource(nearest);
-				} catch {
+				} catch (error) {
+					console.error(error);
 				} finally {
 					setGeoLoading(false);
 				}
