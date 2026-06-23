@@ -52,7 +52,7 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 51,Sector 137,8.9,Aqua line,2019-01-25,Elevated,28.5090789,77.409015
 52,Harkesh Nagar Okhla,20.0,Voilet line,2010-03-10,Elevated,28.54292,77.27504
 53,Jhandewalan,27.9,Blue line,2005-12-30,Elevated,28.64427,77.19988
-54,Raj Bagh,6.9,Red line,2019-08-03,Elevated,28.6408602,77.2094999
+54,Raj Bagh,6.9,Red line,2019-08-03,Elevated,28.6770,77.3466
 55,Inderlok Conn:Red,0.0,Green line,2010-02-04,Elevated,28.67319,77.16994
 56,Sector 51 [Conn: Blue],0.0,Aqua line,2019-01-25,Elevated,28.5857,77.3753
 57,Pari Chowk,22.5,Aqua line,2019-01-25,Elevated,28.4631285,77.50809851
@@ -117,7 +117,7 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 116,Yamuna Bank,0.0,Blue line branch,2009-10-05,At-Grade,28.62331,77.26792
 117,Anand Vihar [Conn: Pink],5.7,Blue line branch,2010-06-01,Elevated,28.64695,77.31603
 118,Cyber City,8.6,Rapid Metro,2014-07-05,Elevated,28.4936,77.0935
-119,Lal Quila,1.5,Voilet line,2017-05-28,Underground,27.92086195,77.52850191
+119,Lal Quila,1.5,Voilet line,2017-05-28,Underground,28.6567,77.2367
 120,Mandi House [Conn: Violet],31.8,Blue line,2006-11-11,Underground,28.62588,77.2341
 121,Ashok Park Main,1.4,Green line,2010-02-04,Elevated,28.67153,77.15527
 122,Dashrathpuri,3.1,Magenta line,2018-05-29,Underground,28.6018751,77.0823561
@@ -175,7 +175,7 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 174,Jafrabad,48.0,Pink line,2018-10-31,Elevated,28.6826822,77.2748055,1.1
 175,Rohini West,31.7,Red line,2004-03-31,Elevated,28.71483,77.11467
 176,Palam,4.6,Magenta line,2018-05-29,Underground,28.5918933,77.0828242
-177,Shyam park,4.5,Red line,2019-08-03,Elevated,28.6988072,28.6988072
+177,Shyam park,4.5,Red line,2019-08-03,Elevated,28.6782,77.3709
 178,Vaishali,8.1,Blue line branch,2011-07-14,Elevated,28.64997,77.33974
 179,Jahangirpuri,3.4,Yellow line,2009-04-02,Elevated,28.72592,77.16267
 180,Badarpur Border,26.3,Voilet line,2011-01-14,Elevated,28.49334,77.30307
@@ -216,11 +216,11 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 215,Bahdurgarh City,23.0,Green line,2018-06-24,Elevated,28.6907847,76.9354851
 216,Sant Surdas (Sihi),41.8,Voilet line,2018-11-19,Elevated,28.3546513,77.3162264
 217,Shalimar Bagh,3.7,Pink line,2018-03-14,Underground,28.71745265,77.15086655,1.4
-218,Mohan Nagar,3.2,Red line,2019-08-03,Elevated,28.60631905,77.10608185
+218,Mohan Nagar,3.2,Red line,2019-08-03,Elevated,28.6785,77.3840
 219,Noida Sector 16,42.5,Blue line,2009-12-11,Elevated,28.57819,77.31757
 220,Hauz Khas [Conn: Magenta],27.4,Yellow line,2010-03-09,Underground,28.54335,77.20667
 221,Peera Garhi,7.6,Green line,2010-02-04,Elevated,28.67959,77.09261
-222,Hindon River,1.0,Red line,2019-08-03,Elevated,28.878965,77.4154832
+222,Hindon River,1.0,Red line,2019-08-03,Elevated,28.6734,77.4064
 223,Karkarduma [Conn: Blue],42.9,Pink line,2018-10-31,Elevated,28.6491622,77.30620811,1.1
 224,New Ashok Nagar,40.4,Blue line,2009-12-11,Elevated,28.58916,77.30204
 225,Jor Bagh,22.5,Yellow line,2010-03-09,Underground,28.58708,77.21209
@@ -229,7 +229,7 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 228,Chirag Delhi,19.9,Magenta line,2018-05-29,Underground,28.5381411,77.2280694
 229,Azadpur [Conn: Pink],6.2,Yellow line,2009-04-02,Elevated,28.70696,77.18053
 230,Sector 81,4.3,Aqua line,2019-01-25,Elevated,28.6225753,77.3743146
-231,Shaheed Nagar,8.2,Red line,2019-08-03,Elevated,28.5307795,77.2120573
+231,Shaheed Nagar,8.2,Red line,2019-08-03,Elevated,28.6766,77.3339
 232,Kailash Colony,16.4,Voilet line,2010-03-10,Elevated,28.55527,77.24205
 233,Shankar Vihar,10.7,Magenta line,2018-05-29,Elevated,28.55743865,77.13966549
 234,Sector 83,7.4,Aqua line,2019-01-25,Elevated,28.524115,77.397244
