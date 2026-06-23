@@ -1,6 +1,7 @@
 import type { ResultType } from "../types";
 import { useState } from "react";
 import TransitTimeline from "./TransitTimeline";
+import RouteMap from "./RouteMap";
 import { useWebHaptics } from "web-haptics/react";
 import { motion } from "framer-motion";
 
@@ -12,6 +13,16 @@ const ROUTE_COLORS = [
 	"border-purple-400",
 	"border-pink-400",
 	"border-cyan-400",
+];
+
+const MAP_ROUTE_COLORS = [
+	"#ef4444",
+	"#3b82f6",
+	"#22c55e",
+	"#eab308",
+	"#8b5cf6",
+	"#ec4899",
+	"#06b6d4",
 ];
 
 const containerVariants = {
@@ -103,6 +114,10 @@ export default function RouteDisplay({ result }: { result: ResultType }) {
 					</motion.div>
 				)}
 			</div>
+
+			{result.routes && result.routes.length > 0 && (
+				<RouteMap routes={result.routes} routeColors={MAP_ROUTE_COLORS} />
+			)}
 		</motion.div>
 	);
 }

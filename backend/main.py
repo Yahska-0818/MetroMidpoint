@@ -27,6 +27,17 @@ def list_stations() -> List[str]:
     return sorted(list(graph.nodes))
 
 
+@app.get("/station-coordinates")
+def station_coordinates():
+    df = algo_service.df
+    valid = df.dropna(subset=["Latitude", "Longitude"])
+    coords = {}
+    for _, row in valid.iterrows():
+        name = row["Station Name"]
+        if name not in coords:
+            coords[name] = {"lat": row["Latitude"], "lng": row["Longitude"]}
+    return coords
+
 def haversine(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     R = 6371.0
     dlat = math.radians(lat2 - lat1)

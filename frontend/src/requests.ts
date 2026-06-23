@@ -71,3 +71,9 @@ export const getNearestStation = async (lat: number, lng: number): Promise<strin
   if (!res.ok) throw new Error("Could not find nearest station");
   return data.station as string;
 };
+
+export const getStationCoordinates = async (): Promise<Record<string, { lat: number; lng: number }>> => {
+  const res = await fetch(`${API_URL}/station-coordinates`);
+  if (!res.ok) throw new Error("Failed to fetch station coordinates");
+  return res.json();
+};

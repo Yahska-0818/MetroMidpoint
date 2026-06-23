@@ -2,6 +2,11 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import RouteDisplay from '../RouteDisplay';
 
+vi.mock('../RouteMap', () => ({
+  default: () => <div data-testid="route-map" />
+}));
+
+
 describe('RouteDisplay', () => {
   const mockResult = {
     meet_station: 'Rajiv Chowk',

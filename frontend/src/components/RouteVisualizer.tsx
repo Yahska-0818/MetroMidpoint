@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { fetchRouteInfo, getNearestStation } from "../requests";
 import TransitTimeline from "./TransitTimeline";
+import RouteMap from "./RouteMap";
 import { useWebHaptics } from "web-haptics/react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import type { RouteInfo } from "../types";
@@ -350,6 +351,8 @@ export default function RouteVisualizer({ stations }: Props) {
 									<div className="bg-zinc-100/80 dark:bg-white/[0.08] backdrop-blur-3xl rounded-2xl p-4 sm:p-5 border border-zinc-300/70 dark:border-white/[0.12] shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]">
 										<TransitTimeline path={activeRoute.path} />
 									</div>
+
+									<RouteMap routes={[activeRoute]} />
 								</motion.div>
 							)}
 						</AnimatePresence>
