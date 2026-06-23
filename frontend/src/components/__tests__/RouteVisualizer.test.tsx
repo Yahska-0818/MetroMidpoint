@@ -5,6 +5,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import RouteVisualizer from '../RouteVisualizer';
 import { fetchRouteInfo } from '../../requests';
 
+vi.mock('../RouteMap', () => ({
+  default: () => <div data-testid="route-map" />
+}));
+
 vi.mock('../../requests', () => ({
   fetchRouteInfo: vi.fn(),
   getNearestStation: vi.fn().mockResolvedValue('Nearest Station')
