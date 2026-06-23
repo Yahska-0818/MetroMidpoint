@@ -241,8 +241,8 @@ export default function App() {
 				</AnimatePresence>
 			</motion.div>
 
-			<div className="fixed bottom-6 left-0 right-0 flex justify-center z-50 px-4">
-				<div className="flex items-center gap-1 p-1.5 bg-transparent backdrop-blur-3xl border border-zinc-300/70 dark:border-white/[0.12] rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.12)]">
+			<div className="fixed bottom-6 left-0 right-0 flex justify-center z-[1010] px-4 pointer-events-none">
+				<div className="flex items-center gap-1 p-1.5 bg-transparent backdrop-blur-3xl border border-zinc-300/70 dark:border-white/[0.12] rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.12)] pointer-events-auto">
 
 					{(["route", "meetup"] as const).map((tab) => {
 						const isActive = activeTab === tab;
