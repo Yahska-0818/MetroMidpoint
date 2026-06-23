@@ -59,7 +59,7 @@ export default function RouteDisplay({ result }: { result: ResultType }) {
 				<motion.button
 					whileHover={{ scale: 1.03 }}
 					whileTap={{ scale: 0.96 }}
-					className="px-5 py-2.5 rounded-2xl bg-zinc-100/80 dark:bg-white/[0.08] text-zinc-700 dark:text-white/70 font-semibold text-sm hover:bg-zinc-200/80 dark:hover:bg-white/[0.14] transition-colors cursor-pointer border border-zinc-300/70 dark:border-white/[0.12] backdrop-blur-3xl shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]"
+					className="px-5 py-2.5 rounded-2xl bg-transparent text-zinc-700 dark:text-white/70 font-semibold text-sm hover:bg-zinc-200/20 dark:hover:bg-white/[0.06] transition-colors cursor-pointer border border-zinc-300/70 dark:border-white/[0.12] backdrop-blur-3xl shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]"
 					onClick={() => {
 						navigator.clipboard.writeText(window.location.href);
 						setCopied(true);

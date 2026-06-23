@@ -58,8 +58,10 @@ describe('App Component', () => {
     
     await screen.findByText('MetroMidpoint');
     
-    fireEvent.click(screen.getAllByText('Route Planner')[0]);
     expect(screen.queryByPlaceholderText('Station 1')).not.toBeInTheDocument();
+    
+    fireEvent.click(screen.getAllByText('Find Meetup')[0]);
+    expect(screen.getByPlaceholderText('Station 1')).toBeInTheDocument();
   });
   
   it('manages the dark-theme toggler internally', async () => {

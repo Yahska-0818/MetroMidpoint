@@ -21,7 +21,7 @@ const statCardVariants: Variants = {
 };
 
 const glassInput =
-	"w-full py-3 px-4 bg-zinc-100/80 dark:bg-white/[0.08] text-zinc-900 dark:text-white rounded-2xl border border-zinc-300/70 dark:border-white/[0.12] focus:bg-white dark:focus:bg-white/[0.12] focus:border-zinc-400 dark:focus:border-white/20 focus:ring-0 outline-none transition-all font-medium text-[15px] placeholder:text-zinc-400 dark:placeholder:text-white/25 backdrop-blur-3xl shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]";
+	"w-full py-3 px-4 bg-transparent text-zinc-900 dark:text-white rounded-2xl border border-zinc-300/70 dark:border-white/[0.12] focus:bg-transparent dark:focus:bg-transparent focus:border-zinc-400 dark:focus:border-white/20 focus:ring-0 outline-none transition-all font-medium text-[15px] placeholder:text-zinc-400 dark:placeholder:text-white/25 backdrop-blur-3xl shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]";
 
 export default function RouteVisualizer({ stations }: Props) {
 	const [source, setSource] = useState("");
@@ -158,7 +158,7 @@ export default function RouteVisualizer({ stations }: Props) {
 							transition={{ type: "spring", stiffness: 400, damping: 15 }}
 							onClick={handleSwap}
 							disabled={isLoading}
-							className="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-zinc-100/80 dark:bg-white/[0.08] border border-zinc-300/70 dark:border-white/[0.12] hover:bg-zinc-200/80 dark:hover:bg-white/[0.14] backdrop-blur-3xl transition-colors shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] disabled:opacity-50 cursor-pointer"
+							className="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-transparent border border-zinc-300/70 dark:border-white/[0.12] hover:bg-zinc-200/20 dark:hover:bg-white/[0.06] backdrop-blur-3xl transition-colors shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] disabled:opacity-50 cursor-pointer"
 						>
 							<svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-zinc-500 dark:text-white/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
 								<path d="M7 7h11l-4-4" /><path d="M17 17H6l4 4" />
@@ -244,7 +244,7 @@ export default function RouteVisualizer({ stations }: Props) {
 						className="mt-8 pt-6 border-t border-zinc-200/60 dark:border-white/10"
 					>
 						{!isSameRoute && (
-							<div className="flex items-center gap-2 mb-5 p-1.5 bg-zinc-100/80 dark:bg-white/[0.08] rounded-2xl border border-zinc-300/70 dark:border-white/[0.12] backdrop-blur-3xl shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.12)]">
+							<div className="flex items-center gap-2 mb-5 p-1.5 bg-transparent rounded-2xl border border-zinc-300/70 dark:border-white/[0.12] backdrop-blur-3xl shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.12)]">
 								{(["fastest", "fewest_interchanges"] as const).map((view) => {
 									const isActive = activeView === view;
 									return (
@@ -260,7 +260,7 @@ export default function RouteVisualizer({ stations }: Props) {
 											{isActive && (
 												<motion.div
 													layoutId="route-view-bubble"
-													className="absolute inset-0 bg-white/80 dark:bg-white/[0.12] rounded-xl border border-white dark:border-white/[0.18] shadow-[0_2px_12px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]"
+													className="absolute inset-0 bg-white/40 dark:bg-white/[0.06] rounded-xl border border-white dark:border-white/[0.18] shadow-[0_2px_12px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]"
 													transition={{ type: "spring", stiffness: 400, damping: 30 }}
 												/>
 											)}

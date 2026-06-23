@@ -15,10 +15,10 @@ type Props = {
 };
 
 const glassInput =
-	"w-full py-3 px-4 bg-zinc-100/80 dark:bg-white/[0.08] text-zinc-900 dark:text-white rounded-2xl border border-zinc-300/70 dark:border-white/[0.12] focus:bg-white dark:focus:bg-white/[0.12] focus:border-zinc-400 dark:focus:border-white/20 focus:ring-0 outline-none transition-all font-medium text-[15px] placeholder:text-zinc-400 dark:placeholder:text-white/25 backdrop-blur-3xl shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]";
+	"w-full py-3 px-4 bg-transparent text-zinc-900 dark:text-white rounded-2xl border border-zinc-300/70 dark:border-white/[0.12] focus:bg-transparent dark:focus:bg-transparent focus:border-zinc-400 dark:focus:border-white/20 focus:ring-0 outline-none transition-all font-medium text-[15px] placeholder:text-zinc-400 dark:placeholder:text-white/25 backdrop-blur-3xl shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]";
 
 const glassBtn =
-	"flex-1 py-2.5 px-4 bg-zinc-100/80 dark:bg-white/[0.08] text-zinc-700 dark:text-white/80 rounded-2xl font-semibold hover:bg-zinc-200/80 dark:hover:bg-white/[0.14] transition-colors cursor-pointer flex items-center justify-center gap-2 text-sm border border-zinc-300/70 dark:border-white/[0.12] backdrop-blur-3xl shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]";
+	"flex-1 py-2.5 px-4 bg-transparent text-zinc-700 dark:text-white/80 rounded-2xl font-semibold hover:bg-zinc-200/20 dark:hover:bg-white/[0.06] transition-colors cursor-pointer flex items-center justify-center gap-2 text-sm border border-zinc-300/70 dark:border-white/[0.12] backdrop-blur-3xl shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]";
 
 export default function StationInput({
 	inputs,

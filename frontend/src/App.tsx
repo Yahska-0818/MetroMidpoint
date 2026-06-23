@@ -8,7 +8,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function App() {
-	const [activeTab, setActiveTab] = useState<"meetup" | "route">("meetup");
+	const [activeTab, setActiveTab] = useState<"meetup" | "route">("route");
 	const [inputs, setInputs] = useState<string[]>(() => {
 		const params = new URLSearchParams(window.location.search);
 		const urlStations = params.get("stations");
@@ -75,11 +75,11 @@ export default function App() {
 	};
 
 	const pageBase = darkMode
-		? "dark bg-gradient-to-br from-[#060612] via-[#0d0a23] to-[#120820]"
-		: "bg-gradient-to-br from-sky-100 via-indigo-50 to-violet-100";
+		? "dark bg-black"
+		: "bg-gradient-to-br from-zinc-100 via-neutral-50 to-zinc-100";
 
 	const glassCard =
-		"relative bg-zinc-100/80 dark:bg-white/[0.08] backdrop-blur-3xl border border-zinc-300/70 dark:border-white/[0.12] shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.12)] rounded-3xl";
+		"relative bg-transparent backdrop-blur-3xl border border-zinc-300/70 dark:border-white/[0.12] shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.12)] rounded-3xl";
 
 	if (fetchedStations.isPending) {
 		return (
@@ -142,7 +142,7 @@ export default function App() {
 					<motion.button
 						whileHover={{ scale: 1.06 }}
 						whileTap={{ scale: 0.92 }}
-						className="p-2.5 rounded-2xl cursor-pointer bg-zinc-100/80 dark:bg-white/[0.08] border border-zinc-300/70 dark:border-white/[0.12] text-zinc-600 dark:text-white/70 hover:bg-zinc-200/80 dark:hover:bg-white/[0.14] backdrop-blur-3xl transition-colors shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]"
+						className="p-2.5 rounded-2xl cursor-pointer bg-transparent border border-zinc-300/70 dark:border-white/[0.12] text-zinc-600 dark:text-white/70 hover:bg-zinc-200/20 dark:hover:bg-white/[0.06] backdrop-blur-3xl transition-colors shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]"
 						onClick={() => {
 							setDarkMode(!darkMode);
 							trigger([{ duration: 40 }], { intensity: 0.4 });
@@ -242,9 +242,9 @@ export default function App() {
 			</motion.div>
 
 			<div className="fixed bottom-6 left-0 right-0 flex justify-center z-50 px-4">
-				<div className="flex items-center gap-1 p-1.5 bg-zinc-100/80 dark:bg-white/[0.08] backdrop-blur-3xl border border-zinc-300/70 dark:border-white/[0.12] rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.12)]">
+				<div className="flex items-center gap-1 p-1.5 bg-transparent backdrop-blur-3xl border border-zinc-300/70 dark:border-white/[0.12] rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.12)]">
 
-					{(["meetup", "route"] as const).map((tab) => {
+					{(["route", "meetup"] as const).map((tab) => {
 						const isActive = activeTab === tab;
 						return (
 							<motion.button
@@ -261,7 +261,7 @@ export default function App() {
 								{isActive && (
 									<motion.div
 										layoutId="tab-bubble"
-										className="absolute inset-0 bg-white/80 dark:bg-white/[0.12] rounded-2xl border border-white dark:border-white/[0.18] shadow-[0_2px_12px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]"
+										className="absolute inset-0 bg-white/40 dark:bg-white/[0.06] rounded-2xl border border-white dark:border-white/[0.18] shadow-[0_2px_12px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]"
 										transition={{ type: "spring", stiffness: 400, damping: 30 }}
 									/>
 								)}
@@ -291,9 +291,9 @@ export default function App() {
 function Orbs() {
 	return (
 		<div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-			<div className="orb-a absolute -top-32 -left-32 w-96 h-96 bg-violet-400/20 dark:bg-violet-600/20 rounded-full blur-[100px]" />
-			<div className="orb-b absolute top-1/2 -right-48 w-[28rem] h-[28rem] bg-blue-400/15 dark:bg-blue-500/15 rounded-full blur-[120px]" />
-			<div className="orb-c absolute -bottom-24 left-1/4 w-80 h-80 bg-indigo-400/15 dark:bg-indigo-400/12 rounded-full blur-[90px]" />
+			<div className="orb-a absolute -top-32 -left-32 w-96 h-96 bg-zinc-400/10 dark:bg-zinc-800/10 rounded-full blur-[100px]" />
+			<div className="orb-b absolute top-1/2 -right-48 w-[28rem] h-[28rem] bg-zinc-300/10 dark:bg-zinc-800/5 rounded-full blur-[120px]" />
+			<div className="orb-c absolute -bottom-24 left-1/4 w-80 h-80 bg-zinc-400/5 dark:bg-zinc-800/5 rounded-full blur-[90px]" />
 		</div>
 	);
 }

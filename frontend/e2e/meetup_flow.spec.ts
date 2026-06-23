@@ -7,6 +7,8 @@ test.describe('Find Meetup Interaction Flow', () => {
 
     await page.waitForSelector('text=MetroMidpoint');
 
+    await page.locator('button:has-text("Find Meetup")').click();
+
     const sourceInputs = page.locator('input[placeholder^="Station"]');
     
     await expect(sourceInputs).toHaveCount(2);
