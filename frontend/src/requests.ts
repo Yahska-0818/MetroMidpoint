@@ -77,3 +77,15 @@ export const getStationCoordinates = async (): Promise<Record<string, { lat: num
   if (!res.ok) throw new Error("Failed to fetch station coordinates");
   return res.json();
 };
+
+export interface NetworkLineStation {
+  name: string;
+  lat: number;
+  lng: number;
+}
+
+export const getNetworkLines = async (): Promise<Record<string, NetworkLineStation[]>> => {
+  const res = await fetch(`${API_URL}/network-lines`);
+  if (!res.ok) throw new Error("Failed to fetch network lines");
+  return res.json();
+};

@@ -38,6 +38,30 @@ def station_coordinates():
             coords[name] = {"lat": row["Latitude"], "lng": row["Longitude"]}
     return coords
 
+
+@app.get("/network-lines")
+def network_lines():
+    df = algo_service.df
+    valid = df.dropna(subset=["Latitude", "Longitude"])
+    result = {}
+    for line_name, group in valid.groupby("Line"):
+        group_sorted = group.sort_values("Distance from Start (km)")
+        stations = []
+        for _, row in group_sorted.iterrows():
+            stations.append({
+                "name": row["Station Name"],
+                "lat": float(row["Latitude"]),
+                "lng": float(row["Longitude"]),
+            })
+        if line_name.lower() == "pink line" and len(stations) > 1:
+            stations.append(stations[0])
+        elif line_name.lower() == "rapid metro" and len(stations) > 1:
+            sikandarpur = next((s for s in stations if s["name"].startswith("Sikandar")), None)
+            if sikandarpur:
+                stations.append(sikandarpur)
+        result[line_name] = stations
+    return result
+
 def haversine(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     R = 6371.0
     dlat = math.radians(lat2 - lat1)

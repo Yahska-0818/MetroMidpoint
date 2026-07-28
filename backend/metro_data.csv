@@ -17,7 +17,7 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 16,Majlis Park [Conn:Magenta],0.0,Pink line,2018-03-14,Elevated,28.7244312,77.181964,1.6
 17,Bhikaji Cama Place,22.6,Pink line,2018-06-08,Underground,28.56790025,77.18701648,1.2
 18,Mundka Industrial Area (MIA),15.0,Green line,2018-06-24,Elevated,28.6834491,77.0171333,
-19,Belvedere Towers,8.0,Rapid Metro,2013-11-14,Elevated,28.4679,77.083,
+19,Belvedere Towers,8.0,Rapid Metro,2013-11-14,Elevated,28.4878,77.0872,
 20,Adarsh Nagar,4.7,Yellow line,2009-04-02,Elevated,28.71642,77.17046,
 21,Noida City Center,47.2,Blue line,2009-12-11,Elevated,28.57466,77.35608,
 22,Arjan Garh,38.6,Yellow line,2010-06-21,Elevated,28.48076,77.12583,
@@ -83,7 +83,7 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 82,Satguru Ram Singh Marg,1.1,Green line branch,2011-08-24,Elevated,28.66199,77.15748,
 83,Botanical Garden [Conn: Blue],33.1,Magenta line,2017-12-25,Elevated,28.5638964,77.334332,
 84,Rajouri Garden [Conn: Pink],19.6,Blue line,2005-12-30,Elevated,28.64902,77.1227,
-85,Sikandarpur [Conn: Yellow],6.6,Rapid Metro,2013-11-14,Elevated,28.4936,77.0935,
+85,Sikandarpur [Conn: Yellow],6.6,Rapid Metro,2013-11-14,Elevated,28.48182,77.09235,
 86,GNIDA,26.2,Aqua line,2019-01-25,Elevated,28.474388,77.50399,
 87,NHPC Chowk,30.4,Voilet line,2015-06-09,Elevated,28.4528,77.3079,
 88,Saket,30.0,Yellow line,2010-03-09,Underground,28.5206,77.20138,
@@ -197,7 +197,7 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 196,Kashmere Gate [Conn: Violet],13.2,Yellow line,2004-12-20,Underground,28.6675,77.22817,
 197,Ashok Park Main,0.0,Green line branch,2010-02-04,Elevated,28.67292,77.1442,
 198,South Extension,26.1,Pink line,2018-06-08,Underground,28.5689,77.2217,1.6
-199,Phase 2,7.3,Rapid Metro,2013-11-14,Elevated,28.476,77.0868,
+199,Phase 2,7.3,Rapid Metro,2013-11-14,Elevated,28.481,77.0885,
 200,Netaji Subash Place [Conn: Pink],27.4,Red line,2018-03-14,Elevated,28.69591,77.15226,
 201,Mayur Vihar 1 [Conn: Blue],35.8,Pink line,2018-12-31,Elevated,28.603133,77.2925892,0.8
 202,Lajpat Nagar [Conn: Violet],27.7,Pink line,2018-06-08,Underground,28.57079,77.23653,1.4
@@ -286,7 +286,7 @@ Station ID,Station Name,Distance from Start (km),Line,Opening Date,Station Layou
 285,Mayur Vihar Extention,39.5,Blue line,2009-12-11,Elevated,28.59415815,77.29458935,
 286,Deepali Chowk,0.0,Magenta line branch,2026-03-08,Elevated,28.698045,77.1175823,
 287,Madhuban Chowk [Conn: Red],1.26,Magenta line branch,2026-03-08,Elevated,28.703532,77.1293953,
-288,Uttari Pitampura-Prashant Vihar,2.71, Magenta line branch,2026-03-08,Elevated,28.7129769,77.1386619,
+288,Uttari Pitampura-Prashant Vihar,2.71,Magenta line branch,2026-03-08,Elevated,28.7129769,77.1386619,
 289,North Pitampura,4.07,Magenta line branch,2026-03-08,Elevated,28.72474,77.1417923,
 290,Haiderpur Badli Mor [Conn:Yellow],5.0,Magenta line branch,2026-03-08,Elevated,28.7300193,77.1489978,
 291,Bhalaswa,7.1,Magenta line branch,2026-03-08,Elevated,28.736942,77.1677495,

@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import StationInput from "./components/StationInput";
 import RouteDisplay from "./components/RouteDisplay";
 import RouteVisualizer from "./components/RouteVisualizer";
+import FullTransitMap from "./components/FullTransitMap";
 import { useWebHaptics } from "web-haptics/react";
 import { findMeetupInfo, getStations } from "./requests";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function App() {
-	const [activeTab, setActiveTab] = useState<"meetup" | "route">("route");
+	const [activeTab, setActiveTab] = useState<"meetup" | "route" | "map">("route");
 	const [inputs, setInputs] = useState<string[]>(() => {
 		const params = new URLSearchParams(window.location.search);
 		const urlStations = params.get("stations");
@@ -131,7 +132,7 @@ export default function App() {
 				initial={{ opacity: 0, y: 12 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.4, ease: "easeOut" }}
-				className={`max-w-2xl mx-auto ${glassCard} p-5 sm:p-6`}
+				className={`max-w-3xl mx-auto ${glassCard} p-5 sm:p-6`}
 			>
 				<InnerHighlight />
 
@@ -227,7 +228,7 @@ export default function App() {
 								)}
 							</AnimatePresence>
 						</motion.div>
-					) : (
+					) : activeTab === "route" ? (
 						<motion.div
 							key="route"
 							initial={{ opacity: 0, y: 8 }}
@@ -237,6 +238,16 @@ export default function App() {
 						>
 							<RouteVisualizer stations={stations} />
 						</motion.div>
+					) : (
+						<motion.div
+							key="map"
+							initial={{ opacity: 0, y: 8 }}
+							animate={{ opacity: 1, y: 0 }}
+							exit={{ opacity: 0, y: -8 }}
+							transition={{ duration: 0.25, ease: "easeInOut" }}
+						>
+							<FullTransitMap />
+						</motion.div>
 					)}
 				</AnimatePresence>
 			</motion.div>
@@ -244,7 +255,7 @@ export default function App() {
 			<div className="fixed bottom-6 left-0 right-0 flex justify-center z-[1010] px-4 pointer-events-none">
 				<div className="flex items-center gap-1 p-1.5 bg-transparent backdrop-blur-3xl border border-zinc-300/70 dark:border-white/[0.12] rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.12)] pointer-events-auto">
 
-					{(["route", "meetup"] as const).map((tab) => {
+					{(["route", "meetup", "map"] as const).map((tab) => {
 						const isActive = activeTab === tab;
 						return (
 							<motion.button
@@ -256,7 +267,7 @@ export default function App() {
 										trigger([{ duration: 15 }], { intensity: 0.4 });
 									}
 								}}
-								className="relative flex items-center gap-2.5 px-5 py-3 rounded-2xl cursor-pointer transition-colors"
+								className="relative flex items-center gap-2.5 px-4 sm:px-5 py-3 rounded-2xl cursor-pointer transition-colors"
 							>
 								{isActive && (
 									<motion.div
@@ -270,14 +281,20 @@ export default function App() {
 										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
 											<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
 										</svg>
-									) : (
+									) : tab === "route" ? (
 										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
 											<polygon points="3 11 22 2 13 21 11 13 3 11" />
+										</svg>
+									) : (
+										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+											<polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
+											<line x1="8" y1="2" x2="8" y2="18" />
+											<line x1="16" y1="6" x2="16" y2="22" />
 										</svg>
 									)}
 								</span>
 								<span className={`relative z-10 text-[13px] font-semibold transition-colors ${isActive ? "text-blue-600 dark:text-white" : "text-zinc-400 dark:text-white/35 hover:text-zinc-600 dark:hover:text-white/60"}`}>
-									{tab === "meetup" ? "Find Meetup" : "Route Planner"}
+									{tab === "meetup" ? "Find Meetup" : tab === "route" ? "Route Planner" : "Transit Map"}
 								</span>
 							</motion.button>
 						);

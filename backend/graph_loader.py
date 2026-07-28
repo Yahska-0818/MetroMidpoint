@@ -23,6 +23,9 @@ class GraphLoader:
         ("Sector 51 (Aqua line)", "Sector-52 Noida (Blue line)", 4.0),
         ("Sikanderpur (Yellow line)", "Sikandarpur (Rapid Metro)", 4.0),
     ]
+    CUSTOM_TRAVEL_EDGES = [
+        ("Phase 3 (Rapid Metro)", "Sikandarpur (Rapid Metro)", 2.5, 1.5),
+    ]
 
     def __init__(self, csv_url: str, gtfs_path: str = "gtfs_data"):
         self.csv_url = csv_url
@@ -125,6 +128,16 @@ class GraphLoader:
                     weight=penalty,
                     distance=0.0,
                     type="interchange",
+                )
+
+        for u, v, weight, dist in self.CUSTOM_TRAVEL_EDGES:
+            if u in G and v in G:
+                G.add_edge(
+                    u,
+                    v,
+                    weight=weight,
+                    distance=dist,
+                    type="travel",
                 )
 
         with open(self.PICKLE_PATH, "wb") as f:
