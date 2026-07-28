@@ -19,6 +19,10 @@ class GraphLoader:
     PICKLE_PATH = "graph.pkl"
     HASH_PATH = "graph_hash.txt"
     CIRCULAR_LINES = ["Pink line"]
+    CUSTOM_INTERCHANGES = [
+        ("Sector 51 (Aqua line)", "Sector-52 Noida (Blue line)", 4.0),
+        ("Sikanderpur (Yellow line)", "Sikandarpur (Rapid Metro)", 4.0),
+    ]
 
     def __init__(self, csv_url: str, gtfs_path: str = "gtfs_data"):
         self.csv_url = csv_url
@@ -112,6 +116,16 @@ class GraphLoader:
                         distance=0.0,
                         type="interchange",
                     )
+
+        for u, v, penalty in self.CUSTOM_INTERCHANGES:
+            if u in G and v in G:
+                G.add_edge(
+                    u,
+                    v,
+                    weight=penalty,
+                    distance=0.0,
+                    type="interchange",
+                )
 
         with open(self.PICKLE_PATH, "wb") as f:
             pickle.dump(G, f)

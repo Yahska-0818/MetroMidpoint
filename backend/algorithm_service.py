@@ -60,9 +60,14 @@ class AlgorithmService:
         possible = self.df[self.df["Station Name"].str.lower() == station_name.lower()][
             "Node Name"
         ].tolist()
-        if not possible:
-            raise ValueError(f"Invalid station: {station_name}")
-        return possible[0]
+        if possible:
+            return possible[0]
+        cleaned_input = station_name.lower().replace("-", " ").strip()
+        for idx, row in self.df.iterrows():
+            st_clean = row["Station Name"].lower().replace("-", " ").strip()
+            if st_clean == cleaned_input or st_clean == f"{cleaned_input} noida" or cleaned_input == f"{st_clean} noida":
+                return row["Node Name"]
+        raise ValueError(f"Invalid station: {station_name}")
 
     def get_route_details(self, source: str, destination: str) -> Dict[str, Any]:
         return self._build_route_response(source, destination, self.all_pairs_shortest)
