@@ -23,8 +23,8 @@ function buildSegments(path: RouteStep[]): Segment[] {
 	for (let i = 0; i < path.length; i++) {
 		const step = path[i];
 		const prev = path[i - 1];
-		const isInterchange = i > 0 && prev.name === step.name && prev.line !== step.line;
-		if (!current || isInterchange) {
+		const isLineChange = i > 0 && prev.line !== step.line;
+		if (!current || isLineChange) {
 			current = { line: step.line, steps: [] };
 			segments.push(current);
 		}
