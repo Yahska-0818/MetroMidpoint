@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { MapContainer, TileLayer, Polyline, CircleMarker, Tooltip, useMap } from "react-leaflet";
 import { useQuery } from "@tanstack/react-query";
 import { getStationCoordinates } from "../requests";
+import { getLineHex } from "../utils/colors";
 import { motion, AnimatePresence } from "framer-motion";
 import type { RouteInfo } from "../types";
 import L from "leaflet";
@@ -9,16 +10,25 @@ import type { LatLngTuple } from "leaflet";
 
 const LINE_COLORS: Record<string, string> = {
 	"Blue line": "#2563eb",
+	"Blue line branch": "#2563eb",
 	"Yellow line": "#eab308",
 	"Red line": "#dc2626",
 	"Green line": "#16a34a",
+	"Green line branch": "#16a34a",
 	"Voilet line": "#7c3aed",
+	"Voilet line branch": "#7c3aed",
 	"Violet line": "#7c3aed",
+	"Violet line branch": "#7c3aed",
+	"Purple line": "#7c3aed",
+	"Purple line branch": "#7c3aed",
 	"Pink line": "#ec4899",
+	"Pink line branch": "#ec4899",
 	"Magenta line": "#d946ef",
+	"Magenta line branch": "#d946ef",
 	"Orange line": "#f97316",
 	"Aqua line": "#06b6d4",
 	"Grey line": "#6b7280",
+	"Gray line": "#6b7280",
 	"Rapid Metro": "#14b8a6",
 };
 
@@ -91,7 +101,7 @@ export default function RouteMap({ routes, routeColors }: RouteMapProps) {
 				stationPoints.push({
 					pos,
 					name: step.name,
-					color: LINE_COLORS[step.line] || ROUTE_FALLBACK_COLORS[routeIdx % ROUTE_FALLBACK_COLORS.length],
+					color: getLineHex(step.line) || LINE_COLORS[step.line] || ROUTE_FALLBACK_COLORS[routeIdx % ROUTE_FALLBACK_COLORS.length],
 				});
 			}
 		});

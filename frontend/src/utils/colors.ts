@@ -22,7 +22,27 @@ const colorMap: Record<string, { badge: string; hex: string }> = {
 	},
 	"violet line": {
 		badge: "border-purple-600 text-white bg-purple-600",
-		hex: "#9333ea",
+		hex: "#7c3aed",
+	},
+	"violet line branch": {
+		badge: "border-purple-600 text-white bg-purple-600",
+		hex: "#7c3aed",
+	},
+	"voilet line": {
+		badge: "border-purple-600 text-white bg-purple-600",
+		hex: "#7c3aed",
+	},
+	"voilet line branch": {
+		badge: "border-purple-600 text-white bg-purple-600",
+		hex: "#7c3aed",
+	},
+	"purple line": {
+		badge: "border-purple-600 text-white bg-purple-600",
+		hex: "#7c3aed",
+	},
+	"purple line branch": {
+		badge: "border-purple-600 text-white bg-purple-600",
+		hex: "#7c3aed",
 	},
 	"pink line": {
 		badge: "border-pink-400 text-white bg-pink-400",
@@ -34,9 +54,13 @@ const colorMap: Record<string, { badge: string; hex: string }> = {
 	},
 	"magenta line": {
 		badge: "border-fuchsia-600 text-white bg-fuchsia-600",
-		hex: "#c026d3",
+		hex: "#d946ef",
 	},
 	"grey line": {
+		badge: "border-gray-500 text-white bg-gray-500",
+		hex: "#6b7280",
+	},
+	"gray line": {
 		badge: "border-gray-500 text-white bg-gray-500",
 		hex: "#6b7280",
 	},
@@ -54,7 +78,7 @@ const colorMap: Record<string, { badge: string; hex: string }> = {
 	},
 	"magenta line branch": {
 		badge: "border-fuchsia-600 text-white bg-fuchsia-600",
-		hex: "#c026d3",
+		hex: "#d946ef",
 	},
 };
 
@@ -64,7 +88,24 @@ const fallback = {
 };
 
 function lookup(line: string) {
-	return colorMap[line.toLowerCase()] ?? fallback;
+	const normalized = line.toLowerCase().trim();
+	if (colorMap[normalized]) {
+		return colorMap[normalized];
+	}
+	if (normalized.includes("purple") || normalized.includes("voilet") || normalized.includes("violet")) {
+		return colorMap["violet line"];
+	}
+	const baseLine = normalized.replace(/\s+branch$/, "");
+	if (colorMap[baseLine]) {
+		return colorMap[baseLine];
+	}
+	if (!normalized.endsWith("line") && !normalized.endsWith("metro")) {
+		const withLine = `${normalized} line`;
+		if (colorMap[withLine]) {
+			return colorMap[withLine];
+		}
+	}
+	return fallback;
 }
 
 export function formatLineColor(line: string): string {
