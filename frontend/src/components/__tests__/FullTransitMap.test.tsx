@@ -82,7 +82,7 @@ describe("FullTransitMap", () => {
 		renderWithClient(<FullTransitMap />);
 
 		expect(await screen.findByPlaceholderText("Search station on map…")).toBeInTheDocument();
-		expect(screen.getByText("Blue line")).toBeInTheDocument();
+		expect(screen.getAllByText("Blue line").length).toBeGreaterThan(0);
 		expect(screen.getByTestId("full-map-container")).toBeInTheDocument();
 	});
 });

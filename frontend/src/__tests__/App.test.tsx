@@ -6,7 +6,11 @@ import { getStations } from '../requests';
 
 vi.mock('../requests', () => ({
   getStations: vi.fn(),
-  findMeetupInfo: vi.fn()
+  findMeetupInfo: vi.fn(),
+  fetchRouteInfo: vi.fn(),
+  getNearestStation: vi.fn(),
+  getStationCoordinates: vi.fn(),
+  getNetworkLines: vi.fn(),
 }));
 
 const queryClient = new QueryClient({
