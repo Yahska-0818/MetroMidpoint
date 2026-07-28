@@ -1,9 +1,8 @@
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { MapContainer, TileLayer, Polyline, CircleMarker, Tooltip, useMap } from "react-leaflet";
 import { useQuery } from "@tanstack/react-query";
-import { getNetworkLines, type NetworkLineStation } from "../requests";
+import { getNetworkLines } from "../requests";
 import { getLineHex, formatLineColor } from "../utils/colors";
-import { motion, AnimatePresence } from "framer-motion";
 import type { LatLngTuple } from "leaflet";
 
 function MapController({ centerPos, zoomLevel }: { centerPos: LatLngTuple | null; zoomLevel: number }) {
@@ -164,6 +163,8 @@ export default function FullTransitMap() {
 						<button
 							key={line}
 							onClick={() => toggleLine(line)}
+							onMouseEnter={() => setSelectedLine(line)}
+							onMouseLeave={() => setSelectedLine(null)}
 							className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-xs font-bold transition-all cursor-pointer border ${
 								isActive
 									? "border-zinc-400/50 dark:border-white/20 bg-white/80 dark:bg-white/10 text-zinc-900 dark:text-white shadow-sm"

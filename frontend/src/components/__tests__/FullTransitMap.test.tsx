@@ -29,7 +29,7 @@ vi.mock("framer-motion", () => ({
 vi.mock("react-leaflet", () => ({
 	MapContainer: ({ children }: any) => <div data-testid="full-map-container">{children}</div>,
 	TileLayer: ({ url }: any) => <div data-testid="tile-layer" data-url={url} />,
-	Polyline: ({ positions, pathOptions }: any) => (
+	Polyline: ({ pathOptions }: any) => (
 		<div data-testid="polyline" data-color={pathOptions.color} />
 	),
 	CircleMarker: ({ pathOptions, children }: any) => (
